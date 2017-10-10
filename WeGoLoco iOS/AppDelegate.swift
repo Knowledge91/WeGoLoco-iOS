@@ -1,0 +1,110 @@
+//
+//  AppDelegate.swift
+//  AWS Mobile SDK
+//
+//  Created by Dirk Hornung on 8/10/17.
+//  Copyright © 2017 Dirk Hornung. All rights reserved.
+//
+
+import UIKit
+import AWSCore
+import AWSCognitoIdentityProvider
+
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate {
+
+    var window: UIWindow?
+    var signInViewController: SignInViewController?
+    var navigationController: UINavigationController?
+    var storyboard: UIStoryboard?
+
+
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        // setup logs
+        AWSDDLog.sharedInstance.logLevel = .verbose
+        
+//        let credentialsProvider = AWSCognitoCredentialsProvider(
+//            regionType: .EUWest1,
+//            identityPoolId: "eu-west-1:64a9de95-136c-4ba3-b366-6aa4079fef8b")
+        
+        
+        // MARK: - User Pool 
+        // Following: https://github.com/awslabs/aws-sdk-ios-samples/tree/master/CognitoYourUserPools-Sample/Swift
+        
+        // setup service configuration
+        let serviceConfiguration = AWSServiceConfiguration(
+            region: .EUWest1,
+            credentialsProvider: nil)
+        
+        // create user pool configuration
+        let poolConfiguration = AWSCognitoIdentityUserPoolConfiguration(clientId: "qcamujg704d2pfp0no6vchi83",
+                                                                        clientSecret: "1qd5657mehvsvd98oieemare03jodfio39csfjgt0nsm6krkimbf",
+                                                                        poolId: "eu-west-1_yXmyTIERh")
+        
+        // initialize pool configuration
+        AWSCognitoIdentityUserPool.register(with: serviceConfiguration, userPoolConfiguration: poolConfiguration, forKey: "UserPool")
+        
+        // fetch the user pool client we initialized in above step
+        let pool = AWSCognitoIdentityUserPool(forKey: "UserPool")
+        self.storyboard = UIStoryboard(name: "Main", bundle: nil)
+        pool.delegate = self
+        
+        return true
+    }
+
+    func applicationWillResignActive(_ application: UIApplication) {
+        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
+        // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+    }
+
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
+        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    }
+
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+    }
+
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    }
+
+    func applicationWillTerminate(_ application: UIApplication) {
+        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+
+}
+
+// MARK: - AWSCognitoIdentityInteractiveAuthenticationDelegate protocol delegate
+
+
+// API: http://docs.aws.amazon.com/AWSiOSSDK/latest/Protocols/AWSCognitoIdentityInteractiveAuthenticationDelegate.html
+extension AppDelegate: AWSCognitoIdentityInteractiveAuthenticationDelegate {
+    
+    func startPasswordAuthentication() -> AWSCognitoIdentityPasswordAuthentication {
+        print("startPasswordAuth")
+        if (self.navigationController == nil) {
+            self.navigationController = self.storyboard?.instantiateViewController(withIdentifier: "signInNavigationController") as? UINavigationController
+        }
+        
+        if (self.signInViewController == nil) {
+            self.signInViewController = self.navigationController?.viewControllers[0] as? SignInViewController
+        }
+        
+        DispatchQueue.main.async {
+            self.navigationController!.popToRootViewController(animated: true)
+            if (!self.navigationController!.isViewLoaded
+                || self.navigationController!.view.window == nil) {
+                print("startPasswordAuth main queue")
+
+                self.window?.rootViewController?.present(self.navigationController!,
+                                                         animated: true,
+                                                         completion: nil)
+            }
+        }
+        
+        return self.signInViewController!
+    }
+}
+

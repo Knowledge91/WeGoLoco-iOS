@@ -1,0 +1,138 @@
+{
+  "iOS" : [
+    {
+      "hash" : "86182bd870a4c715a868a6b8bd734304313655fcb028f78e366d64d66110c2ce",
+      "name" : "AWSAuthUI"
+    },
+    {
+      "hash" : "f5f425f110980a5a00d8c68d059ff1cb7d9e36f2ba0366fe14c12c37fd4ef810",
+      "name" : "AWSCognitoAuth"
+    },
+    {
+      "hash" : "d9a2b69b39760ebc690ee89419a1a502a0b0f15516250b29cfb8ed2afdec66f5",
+      "name" : "AWSAuthCore"
+    },
+    {
+      "hash" : "9ba5d643eec367dd32bc3ae7751379b121a4c154161c2b5dba414fbb24e26a84",
+      "name" : "AWSAPIGateway"
+    },
+    {
+      "hash" : "73915f8b951c420c4b70a6dc4f48644c42a5bfff21f56d57e3c285ecb59d3483",
+      "name" : "AWSCloudWatch"
+    },
+    {
+      "hash" : "5ce27f9f07796a910e1154d80f6e7e83cb61db07e1dac052432e68b2357b31a0",
+      "name" : "AWSFacebookSignIn"
+    },
+    {
+      "hash" : "6c2aa2d26bfb7c5ab0e808fdeb7f7c802ae8850f2d759bce30527451203f3da4",
+      "name" : "AWSGoogleSignIn"
+    },
+    {
+      "hash" : "ab1cdba71787d0747162f83fb0941387559063177d50bec5817aee46af06e9ea",
+      "name" : "AWSMachineLearning"
+    },
+    {
+      "hash" : "8e0d6d434bca9ed0c7eac6364bb3213d491a0466f3c941bea14ccfdb86f88904",
+      "name" : "AWSLogs"
+    },
+    {
+      "hash" : "2ff2fcb21141f4f59e2a39d05d42248e42500f89f5c564eceb2503cc12b7692b",
+      "name" : "AWSSimpleDB"
+    },
+    {
+      "hash" : "33120a1160cf6bd11ea23212e4d1a9fae922ff23439be75cd5e70d94f6e5970c",
+      "name" : "AWSAutoScaling"
+    },
+    {
+      "hash" : "e1ba2600b45b7b0d074678ac771e91c4ea055464a02c8f0f2397f4527871648a",
+      "name" : "AWSElasticLoadBalancing"
+    },
+    {
+      "hash" : "8474a2a7e7938969e39becaab24eb5447cfe692b4c0ebc93b1710f258781c380",
+      "name" : "AWSUserPoolsSignIn"
+    },
+    {
+      "hash" : "4befe2b1ce419ff99f9a3591dfc3ca3632bb44c11e9287a5fd78138ba2d12c27",
+      "name" : "AWSPolly"
+    },
+    {
+      "hash" : "b8f8007358eb6cdb455a3a5e04f2f4b363ea05cdc05374b4dad831f20993ab79",
+      "name" : "AWSLambda"
+    },
+    {
+      "hash" : "32c248f67c6cd3a10fa2419f0c242ea9bacaaba6bc48be72e874432a081ada31",
+      "name" : "AWSRekognition"
+    },
+    {
+      "hash" : "4926b44ec09b7c403634179400763abb4a483eb0a19bcf89a5b0bcc41301ec8a",
+      "name" : "AWSCognito"
+    },
+    {
+      "hash" : "6d182335e0d1f5e136318c89f2d0b59e98094ecff85402864820ede0c9c8a8f1",
+      "name" : "AWSKMS"
+    },
+    {
+      "hash" : "7783dcdd8512443642c747a431d1af523bbdb8e521d65a23d6a1c0e7f176b93e",
+      "name" : "AWSSQS"
+    },
+    {
+      "hash" : "5a4125cf8cd7ea13342e41a6dd55eacefe313a13454003126c380d104e0b07f8",
+      "name" : "AWSSNS"
+    },
+    {
+      "hash" : "ecae7dd94bc108dc459e4a07a7c5e4fb3fab0b4a1f53d78b5a2985f5ca059d82",
+      "name" : "AWSDynamoDB"
+    },
+    {
+      "hash" : "7bef7faf95d1cab15f5962fe3bc8cd02a24e3a809b4f506b093984ae8cd2d874",
+      "name" : "AWSKinesis"
+    },
+    {
+      "hash" : "7ee5620c2447c588aadffb5fbd4fe5766c4d81a5aef77e44fc8f4c5a36eee05c",
+      "name" : "AWSMobileAnalytics"
+    },
+    {
+      "hash" : "7e85bc8f3f312211325b91da1ddfe1b6f2442297570d7c306f9290d164fdd34f",
+      "name" : "AWSSES"
+    },
+    {
+      "hash" : "729dbbe8f43a475f16f13cf27501ac59cbef8453b27d94ff418f336aee152069",
+      "name" : "AWSIoT"
+    },
+    {
+      "hash" : "c0e0c0a1248e82e16f78bed9636f4dc0ab4383f71214c58cb1e15474bd7fba82",
+      "name" : "AWSLex"
+    },
+    {
+      "hash" : "365035656471b1cfeb115e538ac0bfd50f1fc495e92c6a5c9922769a1139a58f",
+      "name" : "AWSPinpoint"
+    },
+    {
+      "hash" : "86b2d592fbea4afe179c1f6fc861e6b458302bb2ee733e9c7fca1c49a874b457",
+      "name" : "AWSCognitoIdentityProvider"
+    },
+    {
+      "hash" : "b1e62e0c73977fc6f96a12d47b39fae972e9b2bfbe5223369feffcb7e28d99a5",
+      "name" : "AWSCore"
+    },
+    {
+      "hash" : "2926cf874c5b7b1ebdfd211a6fd2d2bfc7b955afe411e9775d65c5ef1e8a34fc",
+      "name" : "AWSS3"
+    },
+    {
+      "hash" : "99170399fd9c3bbc2eb8ed96411c97c4e117b3e170069df8f284e022aa38539d",
+      "name" : "AWSEC2"
+    }
+  ],
+  "commitish" : "2.6.2",
+  "watchOS" : [
+
+  ],
+  "tvOS" : [
+
+  ],
+  "Mac" : [
+
+  ]
+}
