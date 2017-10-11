@@ -37,9 +37,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             credentialsProvider: nil)
         
         // create user pool configuration
-        let poolConfiguration = AWSCognitoIdentityUserPoolConfiguration(clientId: "qcamujg704d2pfp0no6vchi83",
-                                                                        clientSecret: "1qd5657mehvsvd98oieemare03jodfio39csfjgt0nsm6krkimbf",
-                                                                        poolId: "eu-west-1_yXmyTIERh")
+        let poolConfiguration = AWSCognitoIdentityUserPoolConfiguration(clientId: "65fdrigc1ot1bcac93q1miuh5c",
+                                                                        clientSecret: "1r2pkpqhr9ubhcf7mhctprn0hqj9qsevqd4q910rgnpn3sbv1lif",
+                                                                        poolId: " eu-west-1_3pXUAmj5o")
         
         // initialize pool configuration
         AWSCognitoIdentityUserPool.register(with: serviceConfiguration, userPoolConfiguration: poolConfiguration, forKey: "UserPool")

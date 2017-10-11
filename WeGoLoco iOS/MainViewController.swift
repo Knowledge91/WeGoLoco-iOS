@@ -17,8 +17,6 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("Main loaded")
-        
         self.userPool = AWSCognitoIdentityUserPool(forKey: "UserPool")
         if ( self.user == nil) {
             self.user = self.userPool?.currentUser()
@@ -27,10 +25,19 @@ class MainViewController: UIViewController {
         self.user?.getDetails().continueOnSuccessWith { (task) -> AnyObject? in
             DispatchQueue.main.async(execute: {
                 self.title = self.user?.username
-                print("Title: \(self.title)")
+                print("Title: \(String(describing: self.title))")
             })
             return nil
         }
+        
+        
+        // API Gateway test
+        let client = APIGATEWAYWeGoLocoClient.default()
+        
+        client.tinponsGet().continueWith { task in
+            print(task.result as Any)
+        }
+        
     }
     
     @IBAction func signOut(_ sender: AnyObject) {

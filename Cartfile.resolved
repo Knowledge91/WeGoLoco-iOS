@@ -1,1 +1,2 @@
-github "aws/aws-sdk-ios" "2.6.2"
+github "aws/aws-sdk-ios" "2.6.3"
+github "xmartlabs/Eureka" "4.0.1"
