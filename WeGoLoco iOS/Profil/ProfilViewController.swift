@@ -18,13 +18,10 @@ class ProfilViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        User.getUserData()
     }
     
     @IBAction func signOut(_ sender: AnyObject) {
         User.signOut()
-        User.getUserData()
     }
 
 }

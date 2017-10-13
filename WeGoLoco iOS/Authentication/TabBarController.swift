@@ -16,7 +16,6 @@ class TabBarController: UITabBarController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        print("test")
         // remove Manager Tab if user is not a retailer
         firstly {
             User.isRetailer()

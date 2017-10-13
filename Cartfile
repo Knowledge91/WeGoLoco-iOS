@@ -1,4 +1,7 @@
 github "aws/aws-sdk-ios"
 github "xmartlabs/Eureka"
+github "EurekaCommunity/ImageRow"
 github "hyperoslo/Whisper"
 github "mxcl/PromiseKit"
+github "TimOliver/TOCropViewController"
+github "Instagram/IGListKit"
