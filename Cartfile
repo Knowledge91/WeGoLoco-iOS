@@ -1,2 +1,4 @@
 github "aws/aws-sdk-ios"
 github "xmartlabs/Eureka"
+github "hyperoslo/Whisper"
+github "mxcl/PromiseKit"

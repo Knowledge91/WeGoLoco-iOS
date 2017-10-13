@@ -7,9 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D4675BB41F8BDB2600784AA4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4675BB31F8BDB2600784AA4 /* MainViewController.swift */; };
+		D41A9D671F90BA56003F075B /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D41A9D661F90BA53003F075B /* PromiseKit.framework */; };
+		D41A9D681F90BA56003F075B /* PromiseKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D41A9D661F90BA53003F075B /* PromiseKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D42FA7011F8F6A4600474958 /* AWSS3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D42FA7001F8F6A4300474958 /* AWSS3.framework */; };
+		D42FA7021F8F6A4600474958 /* AWSS3.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D42FA7001F8F6A4300474958 /* AWSS3.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D4675BB41F8BDB2600784AA4 /* ProfilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4675BB31F8BDB2600784AA4 /* ProfilViewController.swift */; };
 		D47876151F8BBDA20079818C /* AWSCognitoIdentityProvider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D47876141F8BBDA20079818C /* AWSCognitoIdentityProvider.framework */; };
 		D47876161F8BBDA20079818C /* AWSCognitoIdentityProvider.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D47876141F8BBDA20079818C /* AWSCognitoIdentityProvider.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D495DE851F8E8FDC002C1CCB /* Whisper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D495DE841F8E8FD8002C1CCB /* Whisper.framework */; };
+		D495DE861F8E8FDC002C1CCB /* Whisper.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D495DE841F8E8FD8002C1CCB /* Whisper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D49A5C051F9096F1003A824E /* FederatedIdentities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49A5C041F9096F1003A824E /* FederatedIdentities.swift */; };
+		D49A5C0B1F909C83003A824E /* ManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49A5C0A1F909C83003A824E /* ManagerViewController.swift */; };
+		D49A5C0D1F909CDC003A824E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49A5C0C1F909CDC003A824E /* TabBarController.swift */; };
+		D49A5C0F1F909DED003A824E /* UserPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49A5C0E1F909DED003A824E /* UserPool.swift */; };
+		D49A5C121F90B8DB003A824E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49A5C111F90B8DB003A824E /* User.swift */; };
 		D4B95CAC1F8AA7ED005F5DCA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B95CAB1F8AA7ED005F5DCA /* AppDelegate.swift */; };
 		D4B95CAE1F8AA7ED005F5DCA /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B95CAD1F8AA7ED005F5DCA /* SignInViewController.swift */; };
 		D4B95CB11F8AA7ED005F5DCA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B95CAF1F8AA7ED005F5DCA /* Main.storyboard */; };
@@ -37,10 +48,13 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				D41A9D681F90BA56003F075B /* PromiseKit.framework in Embed Frameworks */,
 				D4CBC97A1F8CF86900CA6183 /* AWSAPIGateway.framework in Embed Frameworks */,
 				D4CB2C5F1F8E634E0095BF1F /* Eureka.framework in Embed Frameworks */,
+				D42FA7021F8F6A4600474958 /* AWSS3.framework in Embed Frameworks */,
 				D4B95CDB1F8AA8C5005F5DCA /* AWSCore.framework in Embed Frameworks */,
 				D47876161F8BBDA20079818C /* AWSCognitoIdentityProvider.framework in Embed Frameworks */,
+				D495DE861F8E8FDC002C1CCB /* Whisper.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -48,8 +62,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		D4675BB31F8BDB2600784AA4 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		D41A9D661F90BA53003F075B /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PromiseKit.framework; path = Carthage/Build/iOS/PromiseKit.framework; sourceTree = "<group>"; };
+		D42FA7001F8F6A4300474958 /* AWSS3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSS3.framework; path = Carthage/Build/iOS/AWSS3.framework; sourceTree = "<group>"; };
+		D4675BB31F8BDB2600784AA4 /* ProfilViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilViewController.swift; sourceTree = "<group>"; };
 		D47876141F8BBDA20079818C /* AWSCognitoIdentityProvider.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSCognitoIdentityProvider.framework; path = Carthage/Build/iOS/AWSCognitoIdentityProvider.framework; sourceTree = "<group>"; };
+		D495DE841F8E8FD8002C1CCB /* Whisper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Whisper.framework; path = Carthage/Build/iOS/Whisper.framework; sourceTree = "<group>"; };
+		D49A5C041F9096F1003A824E /* FederatedIdentities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FederatedIdentities.swift; sourceTree = "<group>"; };
+		D49A5C0A1F909C83003A824E /* ManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerViewController.swift; sourceTree = "<group>"; };
+		D49A5C0C1F909CDC003A824E /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		D49A5C0E1F909DED003A824E /* UserPool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPool.swift; sourceTree = "<group>"; };
+		D49A5C111F90B8DB003A824E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D4B95CA81F8AA7ED005F5DCA /* WeGoLoco iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WeGoLoco iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4B95CAB1F8AA7ED005F5DCA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4B95CAD1F8AA7ED005F5DCA /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
@@ -76,10 +98,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D41A9D671F90BA56003F075B /* PromiseKit.framework in Frameworks */,
 				D4CBC9791F8CF86900CA6183 /* AWSAPIGateway.framework in Frameworks */,
 				D4CB2C5E1F8E634E0095BF1F /* Eureka.framework in Frameworks */,
+				D42FA7011F8F6A4600474958 /* AWSS3.framework in Frameworks */,
 				D4B95CDA1F8AA8C5005F5DCA /* AWSCore.framework in Frameworks */,
 				D47876151F8BBDA20079818C /* AWSCognitoIdentityProvider.framework in Frameworks */,
+				D495DE851F8E8FDC002C1CCB /* Whisper.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,6 +121,30 @@
 				D4B95CB71F8AA7ED005F5DCA /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D49A5C081F909C2B003A824E /* Profil */ = {
+			isa = PBXGroup;
+			children = (
+				D4675BB31F8BDB2600784AA4 /* ProfilViewController.swift */,
+			);
+			path = Profil;
+			sourceTree = "<group>";
+		};
+		D49A5C091F909C62003A824E /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				D49A5C0A1F909C83003A824E /* ManagerViewController.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		D49A5C101F90B8CC003A824E /* API */ = {
+			isa = PBXGroup;
+			children = (
+				D49A5C111F90B8DB003A824E /* User.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 		D4B95C9F1F8AA7ED005F5DCA = {
@@ -118,8 +167,10 @@
 			isa = PBXGroup;
 			children = (
 				D4CBC9851F8CF8D100CA6183 /* AWS */,
-				D4675BB31F8BDB2600784AA4 /* MainViewController.swift */,
+				D49A5C101F90B8CC003A824E /* API */,
 				D4CB2C621F8E63870095BF1F /* Authentication */,
+				D49A5C091F909C62003A824E /* Manager */,
+				D49A5C081F909C2B003A824E /* Profil */,
 				D4B95CAB1F8AA7ED005F5DCA /* AppDelegate.swift */,
 				D4B95CAD1F8AA7ED005F5DCA /* SignInViewController.swift */,
 				D4B95CAF1F8AA7ED005F5DCA /* Main.storyboard */,
@@ -131,6 +182,9 @@
 		D4B95CDD1F8AA8D9005F5DCA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D41A9D661F90BA53003F075B /* PromiseKit.framework */,
+				D42FA7001F8F6A4300474958 /* AWSS3.framework */,
+				D495DE841F8E8FD8002C1CCB /* Whisper.framework */,
 				D4CB2C5D1F8E634B0095BF1F /* Eureka.framework */,
 				D4CBC9781F8CF86900CA6183 /* AWSAPIGateway.framework */,
 				D47876141F8BBDA20079818C /* AWSCognitoIdentityProvider.framework */,
@@ -143,8 +197,11 @@
 		D4CB2C621F8E63870095BF1F /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				D49A5C0C1F909CDC003A824E /* TabBarController.swift */,
 				D4CB2C601F8E637D0095BF1F /* SignUpViewController.swift */,
 				D4F803A71F8E7D8600E13FFC /* EmailConfirmationViewController.swift */,
+				D49A5C041F9096F1003A824E /* FederatedIdentities.swift */,
+				D49A5C0E1F909DED003A824E /* UserPool.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -262,11 +319,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4675BB41F8BDB2600784AA4 /* MainViewController.swift in Sources */,
+				D49A5C0F1F909DED003A824E /* UserPool.swift in Sources */,
+				D49A5C0B1F909C83003A824E /* ManagerViewController.swift in Sources */,
+				D49A5C0D1F909CDC003A824E /* TabBarController.swift in Sources */,
+				D4675BB41F8BDB2600784AA4 /* ProfilViewController.swift in Sources */,
 				D4F803A61F8E793700E13FFC /* Iso8601Date.swift in Sources */,
 				D4CBC98E1F8CF91000CA6183 /* APIGATEWAYResponseSchema.swift in Sources */,
 				D4CB2C611F8E637D0095BF1F /* SignUpViewController.swift in Sources */,
 				D4B95CAE1F8AA7ED005F5DCA /* SignInViewController.swift in Sources */,
+				D49A5C121F90B8DB003A824E /* User.swift in Sources */,
+				D49A5C051F9096F1003A824E /* FederatedIdentities.swift in Sources */,
 				D4CBC98F1F8CF91000CA6183 /* APIGATEWAYWeGoLocoClient.swift in Sources */,
 				D4CBC98D1F8CF91000CA6183 /* APIGATEWAYRequestSchema.swift in Sources */,
 				D4CBC9901F8CF91000CA6183 /* Empty.swift in Sources */,

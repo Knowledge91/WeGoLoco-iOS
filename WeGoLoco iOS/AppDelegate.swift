@@ -8,6 +8,7 @@
 
 import UIKit
 import AWSCore
+import AWSCognito
 import AWSCognitoIdentityProvider
 
 @UIApplicationMain
@@ -23,31 +24,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // setup logs
         AWSDDLog.sharedInstance.logLevel = .verbose
         
-//        let credentialsProvider = AWSCognitoCredentialsProvider(
-//            regionType: .EUWest1,
-//            identityPoolId: "eu-west-1:64a9de95-136c-4ba3-b366-6aa4079fef8b")
-        
-        
-        // MARK: - User Pool 
-        // Following: https://github.com/awslabs/aws-sdk-ios-samples/tree/master/CognitoYourUserPools-Sample/Swift
-        
-        // setup service configuration
-        let serviceConfiguration = AWSServiceConfiguration(
-            region: .EUWest1,
-            credentialsProvider: nil)
-        
-        // create user pool configuration
-        let poolConfiguration = AWSCognitoIdentityUserPoolConfiguration(clientId: "65fdrigc1ot1bcac93q1miuh5c",
-                                                                        clientSecret: "1r2pkpqhr9ubhcf7mhctprn0hqj9qsevqd4q910rgnpn3sbv1lif",
-                                                                        poolId: " eu-west-1_3pXUAmj5o")
-        
-        // initialize pool configuration
-        AWSCognitoIdentityUserPool.register(with: serviceConfiguration, userPoolConfiguration: poolConfiguration, forKey: "UserPool")
+        // MARK: - User Pool
+        UserPool.register()
+        // MARK: - Federated Identities
+        FederatedIdentities.register()
         
         // fetch the user pool client we initialized in above step
-        let pool = AWSCognitoIdentityUserPool(forKey: "UserPool")
         self.storyboard = UIStoryboard(name: "Main", bundle: nil)
-        pool.delegate = self
+        UserPool.pool.delegate = self
         
         return true
     }

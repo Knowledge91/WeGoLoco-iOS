@@ -7,7 +7,10 @@
 //
 
 import UIKit
+import AWSCore
+import AWSCognito
 import AWSCognitoIdentityProvider
+import AWSS3
 
 class SignInViewController: UIViewController {
 

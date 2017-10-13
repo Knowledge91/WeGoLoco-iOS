@@ -34,17 +34,17 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="zya-rN-Ifb" kind="relationship" relationship="rootViewController" id="Igu-68-V3R"/>
+                        <segue destination="9F1-Gx-eep" kind="relationship" relationship="rootViewController" id="8HW-ih-2FN"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PDf-tH-F92" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-612" y="-535"/>
         </scene>
-        <!--Main-->
+        <!--Profil-->
         <scene sceneID="nWm-6R-jNt">
             <objects>
-                <viewController id="zya-rN-Ifb" customClass="MainViewController" customModule="WeGoLoco_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="zya-rN-Ifb" customClass="ProfilViewController" customModule="WeGoLoco_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fu1-oQ-THd"/>
                         <viewControllerLayoutGuide type="bottom" id="cH8-Uh-FST"/>
@@ -61,14 +61,70 @@
                                     <action selector="signOut:" destination="zya-rN-Ifb" eventType="touchUpInside" id="MUh-ym-VnA"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UWr-BP-HHD">
+                                <rect key="frame" x="67" y="123" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Main" id="E8j-Qo-rxX"/>
+                    <tabBarItem key="tabBarItem" title="Profil" id="657-zD-cV0"/>
+                    <navigationItem key="navigationItem" title="Profil" id="E8j-Qo-rxX"/>
+                    <connections>
+                        <outlet property="imageView" destination="UWr-BP-HHD" id="uF1-Kl-kx9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2SI-aC-uRh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137" y="-534"/>
+            <point key="canvasLocation" x="1548" y="-537"/>
+        </scene>
+        <!--Manager-->
+        <scene sceneID="9Zl-eR-0qB">
+            <objects>
+                <viewController storyboardIdentifier="managerViewController" id="Uas-S2-QCn" customClass="ManagerViewController" customModule="WeGoLoco_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YIW-vp-Ot4"/>
+                        <viewControllerLayoutGuide type="bottom" id="lXB-dX-laY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ors-Ek-QfW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Manager" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Rz-Cs-Xyf">
+                                <rect key="frame" x="166" y="323" width="68" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Manager" id="nQQ-PA-y1x"/>
+                    <navigationItem key="navigationItem" title="Manager" id="77W-3l-aSb"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mM6-lz-bqK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1548" y="-1220"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="PwW-PZ-Ybi">
+            <objects>
+                <tabBarController id="9F1-Gx-eep" customClass="TabBarController" customModule="WeGoLoco_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="5RI-pQ-jSk"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="L0f-Ic-OML">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="zya-rN-Ifb" kind="relationship" relationship="viewControllers" id="Udb-f3-ZXT"/>
+                        <segue destination="Uas-S2-QCn" kind="relationship" relationship="viewControllers" id="Ixp-1q-aRK"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9wk-7F-lk3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137" y="-537"/>
         </scene>
         <!--Sign In-->
         <scene sceneID="tne-QT-ifu">

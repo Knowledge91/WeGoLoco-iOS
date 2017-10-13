@@ -1,2 +1,4 @@
-github "aws/aws-sdk-ios" "2.6.3"
+github "aws/aws-sdk-ios" "2.6.4"
+github "hyperoslo/Whisper" "5.0.0"
+github "mxcl/PromiseKit" "4.4.2"
 github "xmartlabs/Eureka" "4.0.1"
