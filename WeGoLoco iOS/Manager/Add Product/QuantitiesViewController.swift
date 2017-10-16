@@ -154,15 +154,12 @@ class QuantitiesViewController: FormViewController, AddProductProtocol, LoadingA
     
     // MARK : - Actions
     @IBAction func createTinponButton(_ sender: UIBarButtonItem) {
-        let jsonEncoder = JSONEncoder()
-        jsonEncoder.outputFormatting = .prettyPrinted
-        do {
-            let jsonData = try jsonEncoder.encode(tinpon)
-            let jsonString = String(data: jsonData, encoding: .utf8)
-            print(jsonString!)
-        }
-        catch {
-            
+        firstly {
+            API.createTinpon(tinpon: tinpon)
+        }.then {
+            print("tinpon created")
+        }.catch{ error in
+            print(error)
         }
     }
     

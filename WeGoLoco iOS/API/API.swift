@@ -37,17 +37,26 @@ class API {
     
     //  Tinpon
     static func createTinpon(tinpon: Tinpon, completion: @escaping (Error?)->()) {
-        let body = ["name" : "tinpon"]
-        firstly {
-            self.invoke(httpMethod: .POST, endPoint: .Tinpons, queryParameters: nil, headerParameters: nil, httpBody: body)
-        }.then {
-            completion(nil)
-        }.catch { error -> () in
-            completion(error)
+        let jsonEncoder = JSONEncoder()
+        jsonEncoder.outputFormatting = .prettyPrinted
+        do {
+            let jsonData = try jsonEncoder.encode(tinpon)
+            //let jsonString = String(data: jsonData, encoding: .utf8)
+            let body = jsonData
+            firstly {
+                self.invoke(httpMethod: .POST, endPoint: .Tinpons, queryParameters: nil, headerParameters: nil, httpBody: body)
+                }.then {
+                    completion(nil)
+                }.catch { error -> () in
+                    completion(error)
+            }
         }
-                
+        catch {
+            
+        }
     }
     static func createTinpon(tinpon: Tinpon) -> Promise<Void> {
         return PromiseKit.wrap{ createTinpon(tinpon: tinpon, completion: $0) }
     }
 }
+
