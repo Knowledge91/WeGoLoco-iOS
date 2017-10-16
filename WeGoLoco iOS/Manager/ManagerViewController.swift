@@ -7,29 +7,31 @@
 //
 
 import UIKit
+import AWSAPIGateway
+import PromiseKit
+
 
 class ManagerViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
 
-        // Do any additional setup after loading the view.
-    }
+//        let tinpon = Tinpon()
+//        tinpon.name = "Tinpon"
+//        print(JSONDecoder().)
+//        firstly {
+//            API.createTinpon(tinpon: Tinpon(testing: true))
+//        }.catch { error in
+//            print("lol \(error)")
+//        }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+
+
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func viewDidLoad() {
+        super.viewDidLoad()
     }
-    */
-
 }

@@ -10,15 +10,9 @@ class SelectProductCategoryViewController: SelectCategoryViewController, AddProd
     // MARK: - AddProductProtocol
     var tinpon: Tinpon!
     func guardTinpon() {
-        tinpon.category = self.category
+        tinpon.category = Tinpon.Category(rawValue: singleSelection!)
     }
-    
-    // MARK: - Model
-    var category: String {
-        get {
-            return Categories.getCategoryfrom(name: singleSelection!).rawValue
-        }
-    }
+
     
     override func onContinue() {
         super.onContinue()
@@ -32,6 +26,6 @@ class SelectProductCategoryViewController: SelectCategoryViewController, AddProd
         let sizesVC = segue.destination as! SizesViewController
         sizesVC.tinpon = tinpon
         sizesVC.gender = gender
-        sizesVC.category = Categories.getCategoryfrom(name: singleSelection!)
+        sizesVC.category = tinpon.category
     }
 }

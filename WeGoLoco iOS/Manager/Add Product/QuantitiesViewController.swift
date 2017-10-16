@@ -19,7 +19,6 @@ class QuantitiesViewController: FormViewController, AddProductProtocol, LoadingA
     //MARK: - AddProductProtocol
     var tinpon: Tinpon!
     func guardTinpon() {
-        
     }
     
     // MARK: LoadingAnimationProtocol
@@ -27,13 +26,14 @@ class QuantitiesViewController: FormViewController, AddProductProtocol, LoadingA
     var loadingAnimationOverlay: UIView!
     var loadingAnimationIndicator: UIActivityIndicatorView!
     
-    @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBOutlet weak var createTinponButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadingAnimationView = navigationController?.view
+        createTinponButton.isEnabled = false
         
+        loadingAnimationView = navigationController?.view
         tableView.isEditing = false
         
         addColorSections()
@@ -44,44 +44,39 @@ class QuantitiesViewController: FormViewController, AddProductProtocol, LoadingA
     // MARK: Sections
     
     fileprivate func addColorSections() {
-        for color in tinpon.colors {
-            form +++ colorSection(color)
+        // group tinpon.variations in groups of different color
+        var xColor : Tinpon.Variation.Color? = nil
+        for variation in tinpon.variations! {
+            if xColor != variation.color {
+                xColor = variation.color
+                form +++ colorSection(xColor!)
+            }
         }
     }
     
-    fileprivate func colorSection(_ color: Color) -> Section {
-        let section = MultivaluedSection(multivaluedOptions: [.Reorder, .Delete],
-                               header: color.name,
-                               footer: "Swipe left to remove size")
-
-        switch tinpon.sizes! {
-        case .StringSize(let sizes):
-            for size in sizes {
-                section <<< IntRow() {
-                    $0.title = "Quantity - \(size)"
-                    $0.add(rule: RuleRequired())
-                }.cellUpdate { cell, row in
-                    if !row.isValid {
-                        cell.titleLabel?.textColor = .red
+    fileprivate func colorSection(_ color: Tinpon.Variation.Color) -> Section {
+        let section = MultivaluedSection(multivaluedOptions: [], // [.Delete]
+                                        header: color.rawValue
+                                        )
+//                               footer: "Swipe left to remove size")
+        for variation in tinpon.variations! {
+            if color == variation.color {
+                switch variation.size {
+                case .double(let size):
+                    section <<< IntRow() {
+                        $0.title = "Quantity - \(size)"
+                        $0.add(rule: RuleRequired())
+                    }.cellUpdate { cell, row in
+                        if !row.isValid {
+                            cell.titleLabel?.textColor = .red
+                        }
+                    }.onChange{ row in
+                        if let quantity = row.value {
+                            self.addQuantityToTinponVariationFor(color: variation.color, size: variation.size, quantity: quantity)
+                        }
+                        self.validate()
                     }
-                }
-            }
-        case .DoubleSize(let sizes):
-            for size in sizes {
-                section <<< IntRow() {
-                    $0.title = "Quantity - \(size)"
-                    $0.add(rule: RuleRequired())
-                }.cellUpdate { cell, row in
-                    if !row.isValid {
-                        cell.titleLabel?.textColor = .red
-                    }
-                }
-            }
-        case .DoubleDoubleSize(let sizes):
-            let widths = Array(sizes.keys.sorted())
-            for width in widths {
-                let lengths = sizes[width]!.sorted()
-                for length in lengths {
+                case .doubleDouble(let width, let length):
                     section <<< IntRow() {
                         $0.title = "Quantity - \(width)/\(length)"
                         $0.add(rule: RuleRequired())
@@ -89,11 +84,29 @@ class QuantitiesViewController: FormViewController, AddProductProtocol, LoadingA
                         if !row.isValid {
                             cell.titleLabel?.textColor = .red
                         }
+                    }.onChange{ row in
+                        if let quantity = row.value {
+                            self.addQuantityToTinponVariationFor(color: variation.color, size: variation.size, quantity: quantity)
+                        }
+                        self.validate()
+                    }
+                case .string(let size):
+                    section <<< IntRow() {
+                        $0.title = "Quantity - \(size)"
+                        $0.add(rule: RuleRequired())
+                    }.cellUpdate { cell, row in
+                        if !row.isValid {
+                            cell.titleLabel?.textColor = .red
+                        }
+                    }.onChange{ row in
+                        if let quantity = row.value {
+                            self.addQuantityToTinponVariationFor(color: variation.color, size: variation.size, quantity: quantity)
+                        }
+                        self.validate()
                     }
                 }
             }
         }
-
         
         //section <<< recursiveImageRow(color)
         
@@ -139,62 +152,43 @@ class QuantitiesViewController: FormViewController, AddProductProtocol, LoadingA
     }
     
     
-    // MARK : Actions
-    @IBAction func saveButton(_ sender: UIBarButtonItem) {
-//        if form.validate().isEmpty {
-//            guardColorSizesQuantitiesAndImages()
-//            startLoadingAnimation()
-//            firstly {
-////                TinponsAPI.save(tinpon)
-//            }.then { tinponId -> () in
-//                self.tinpon.id = tinponId
-//            }.catch { error in
-//                print("QuantityVC error \(error)")
-//            }.then { () -> Any in 
-////                return TinponsAPI.uploadMainImages(from: self.tinpon)
-//                self.dismiss(animated: true)
-//            }.always {
-//                DispatchQueue.main.async {
-//                    self.stopLoadingAnimation()
-//                }
-//
-//            }
-//        } else {
-//            let message = Message(title: "Faltan cuantidades.", backgroundColor: .red)
-//            Whisper.show(whisper: message, to: navigationController!, action: .show)
-//        }
-    }
-    
-    // MARK: guard Color, Sizes, Quantities and Images
-    fileprivate func guardColorSizesQuantitiesAndImages() {
-        tinpon.productVariations = [:]
-        for section in form.allSections {
-            let color = Color(spanishName: (section.header?.title)!)
-            var sizeVariations = [SizeVariation]()
-            var images = [TinponImage]()
-            for row in section {
-                if let intRow = row as? IntRow {
-                    let rowTitle = intRow.title!
-                    let sizeIndex = rowTitle.index(rowTitle.startIndex, offsetBy: 12)
-                    let size = rowTitle.substring(from: sizeIndex)
-                    let quantity = intRow.value!
-                    
-                    let sizeVariation = SizeVariation(size: size, quantity: quantity)
-                    sizeVariations.append(sizeVariation)
-                } else if let image = (row as? ImageRow)?.value {
-                    images.append(TinponImage(image: image))
-                }
-            }
+    // MARK : - Actions
+    @IBAction func createTinponButton(_ sender: UIBarButtonItem) {
+        let jsonEncoder = JSONEncoder()
+        jsonEncoder.outputFormatting = .prettyPrinted
+        do {
+            let jsonData = try jsonEncoder.encode(tinpon)
+            let jsonString = String(data: jsonData, encoding: .utf8)
+            print(jsonString!)
+        }
+        catch {
             
-            let colorVariation = ColorVariation(sizeVariations: sizeVariations, images: images)
-            tinpon.productVariations[color] = colorVariation
         }
     }
     
-    // MARK : Navigation
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        print("segue")
-//    }
+    // MARK: - Helpers
+    private func addQuantityToTinponVariationFor(color: Tinpon.Variation.Color, size: Tinpon.Variation.Size, quantity: Int) -> Void {
+        for (index, variation) in (tinpon.variations!.enumerated()) {
+            if variation.color == color && variation.size == size {
+                tinpon.variations![index].quantity = quantity
+            }
+        }
+    }
+    private func validate() {
+        if isValid() {
+            createTinponButton.isEnabled = true
+        } else {
+            createTinponButton.isEnabled = false
+        }
+    }
+    private func isValid() -> Bool {
+        // is valid when every quantity row has a quantity
+        if form.validate().count > 0 {
+            return false
+        } else {
+            return true
+        }
+    }
 }
 
 extension QuantitiesViewController:  TOCropViewControllerDelegate {
@@ -245,3 +239,5 @@ extension QuantitiesViewController: SHViewControllerDelegate {
         // This will be called when you cancel filtering the image.
     }
 }
+
+

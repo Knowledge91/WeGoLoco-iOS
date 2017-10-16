@@ -14,18 +14,31 @@ class ColorsViewController: FormViewController, AddProductProtocol {
     // MARK: - AddProductProtocoll
     var tinpon: Tinpon!
     func guardTinpon() {
-        tinpon.colors = selectedColors
+        // clear previous variations
+        tinpon.variations = nil
+        
+        for color in selectedColors {
+            for size in selectedSizes {
+                let variation = Tinpon.Variation(color: color, size: size, quantity: 0)
+                if tinpon.variations != nil {
+                    tinpon.variations?.append(variation)
+                } else {
+                    tinpon.variations = [variation]
+                }
+            }
+        }
     }
     
     // MARK: - Model
-    var selectedColors: [Color] {
+    public var selectedSizes: [Tinpon.Variation.Size]!
+    var selectedColors: [Tinpon.Variation.Color] {
         get {
             let colorSection = form.sectionBy(tag: "colorSection") as! SelectableSection<ListCheckRow<String>>
             let selectedRows = colorSection.selectedRows()
             
-            var result = [Color]()
+            var result = [Tinpon.Variation.Color]()
             for row in selectedRows {
-                result.append(Color(name: row.value!))
+                result.append(Tinpon.Variation.Color(rawValue: row.value!)!)
             }
             return result
         }
@@ -38,29 +51,18 @@ class ColorsViewController: FormViewController, AddProductProtocol {
         
         // Colors
         form +++ SelectableSection<ListCheckRow<String>>("Colors", selectionType: .multipleSelection) { $0.tag = "colorSection" }
-        let colors = Color.spanishColors
-        for option in colors {
-            form.last! <<< ListCheckRow<String>(option){ listRow in
-                listRow.title = option
-                listRow.selectableValue = Color(spanishName: option).name
+        for color in iterateEnum(Tinpon.Variation.Color.self) {
+            let colorName = color.rawValue
+            form.last! <<< ListCheckRow<String>(){ listRow in
+                listRow.title = colorName
+                listRow.selectableValue = colorName
                 listRow.value = nil
                 }.cellUpdate { cell, row in
-                    let color = Color.colorDictionary[row.selectableValue!]
-                    cell.tintColor = color
-                    cell.textLabel?.textColor = color
+                    let uiColor = Tinpon.Variation.Color.colorDictionary[colorName]
+                    cell.tintColor = uiColor
+                    cell.textLabel?.textColor = uiColor
                     
                     self.validate()
-                    
-                    // text outline for better visibility
-//                    if row.title == "blanco" || row.title == "amarillo" || row.title == "gris" {
-//                        let strokeTextAttributes = [
-//                            NSStrokeColorAttributeName : UIColor.black,
-//                            NSForegroundColorAttributeName : color,
-//                            NSStrokeWidthAttributeName : -2.0,
-//                            ] as [String : Any]
-//                        
-//                        cell.textLabel?.attributedText = NSAttributedString(string: row.title!, attributes: strokeTextAttributes)
-//                    }
             }
         }
         

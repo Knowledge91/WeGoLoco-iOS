@@ -25,12 +25,12 @@ class BasicsViewController: FormViewController, AddProductProtocol, CLLocationMa
         tinpon.price = (form.rowBy(tag: "priceRow") as! DecimalRow).value
         tinpon.gender = getGender()
         
-        for row in form.allRows {
-            if let image = (row as? ImageRow)?.value {
-                tinpon.images.append(image)
-                
-            }
-        }
+//        for row in form.allRows {
+//            if let image = (row as? ImageRow)?.value {
+//                tinpon.images.append(image)
+//
+//            }
+//        }
     }
     
     
@@ -129,8 +129,8 @@ class BasicsViewController: FormViewController, AddProductProtocol, CLLocationMa
     // MARK: Location
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-        tinpon.latitude = locValue.latitude
-        tinpon.longitude = locValue.longitude
+//        tinpon.latitude = locValue.latitude
+//        tinpon.longitude = locValue.longitude
     }
     
     // MARK: Actions

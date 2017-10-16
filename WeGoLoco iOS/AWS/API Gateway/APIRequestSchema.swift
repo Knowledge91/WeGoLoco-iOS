@@ -18,7 +18,7 @@ import Foundation
 import AWSCore
 
  
-public class APIGATEWAYRequestSchema : AWSModel {
+public class APIRequestSchema : AWSModel {
     
     var request: String!
     

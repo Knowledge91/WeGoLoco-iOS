@@ -9,7 +9,7 @@
 import Foundation
 
 // MARK: - Gender
-enum Gender: String {
+enum Gender: String, Codable {
     case male = "male"
     case female = "female"
 }
@@ -66,48 +66,47 @@ struct Categories {
         return result
     }
 }
-//Categories.getCategoriesFor(gender: .female)
-
 
 
 // MARK: - Sizes
 struct Sizes {
-    enum Size {
-        case StringSize([String])
-        case DoubleSize([Double])
-        // maps via a dictionary all possible lengths to very possible width
-        case DoubleDoubleSize( [Double:[Double]] )
-    }
-    
-    static var sizes: [Gender : [Categories.Category : Size] ] = [
+    static var sizes: [Gender : [Tinpon.Category : [Tinpon.Variation.Size]] ] = [
         .male : [
-            .coats : Size.DoubleSize( Array(stride(from: 40, through: 78, by: 1)) ),
-            .jeans : initDoubleDoubleSizes(widths: Array(stride(from: 28, through: 44, by: 1)), lengths: Array(stride(from: 30, through: 36, by: 1)) ),
-            .shoes : Size.DoubleSize( Array(stride(from: 35, through: 50, by: 0.5)) ),
-            .shorts : Size.DoubleSize( Array(stride(from: 28, through: 44, by: 1)) ),
-            .sweaters : Size.StringSize( ["XS", "S", "M", "L", "XL", "XXL"] ),
-            .tShirtsAndPolos : Size.StringSize( ["XS", "S", "M", "L", "XL", "XXL"] ),
-            .trousersAndChinos : initDoubleDoubleSizes(widths: Array(stride(from: 28, through: 44, by: 1)), lengths: Array(stride(from: 30, through: 36, by: 1)) )
+            .coats : doubleSizes(from: Array(stride(from: 28, through: 44, by: 1))),
+            .jeans : doubleDoubleSizes( widths: Array(stride(from: 28, through: 44, by: 1)), lengths: Array(stride(from: 30, through: 36, by: 1)) ),
+            .shoes : doubleSizes(from: Array(stride(from: 35, through: 50, by: 0.5)) ),
+            .shorts : doubleSizes(from: Array(stride(from: 28, through: 44, by: 1)) ),
+            .sweaters : stringSizes(from: ["XS", "S", "M", "L", "XL", "XXL"] ),
+            .tShirtsAndPolos : stringSizes(from: ["XS", "S", "M", "L", "XL", "XXL"] ),
+            .trousersAndChinos : doubleDoubleSizes(widths: Array(stride(from: 28, through: 44, by: 1)), lengths: Array(stride(from: 30, through: 36, by: 1)) )
         ],
         .female : [
-            .coats : Size.DoubleSize( Array(stride(from: 40, through: 78, by: 1)) ),
-            .jeans : initDoubleDoubleSizes(widths: Array(stride(from: 28, through: 44, by: 1)), lengths: Array(stride(from: 30, through: 36, by: 1)) ),
-            .shoes : Size.DoubleSize( Array(stride(from: 35, through: 50, by: 0.5)) ),
-            .sweaters : Size.StringSize( ["XS", "S", "M", "L", "XL", "XXL"] ),
-            .trousers : initDoubleDoubleSizes(widths: Array(stride(from: 28, through: 44, by: 1)), lengths: Array(stride(from: 30, through: 36, by: 1)) )
+            .coats : doubleSizes(from: Array(stride(from: 40, through: 78, by: 1)) ),
+            .jeans : doubleDoubleSizes( widths: Array(stride(from: 28, through: 44, by: 1)), lengths: Array(stride(from: 30, through: 36, by: 1)) ),
+            .shoes : doubleSizes(from: Array(stride(from: 35, through: 50, by: 0.5)) ),
+            .sweaters : stringSizes(from: ["XS", "S", "M", "L", "XL", "XXL"] ),
+            .trousers : doubleDoubleSizes( widths: Array(stride(from: 28, through: 44, by: 1)), lengths: Array(stride(from: 30, through: 36, by: 1)) )
         ]
     ]
     
-    static func getSizesFor(gender: Gender, category: Categories.Category) -> Size {
+    static func getSizesFor(gender: Gender, category: Tinpon.Category) -> [Tinpon.Variation.Size] {
         return self.sizes[gender]![category]!
     }
     
-    // inits Double-Double size dictionary, which maps all possible lengths to every possible width
-    private static func initDoubleDoubleSizes(widths: [Double], lengths: [Double]) -> Size {
-        var result = [Double:[Double]]()
+    // convert Array to Sizes
+    private static func doubleSizes(from doubleArray: [Double]) -> [Tinpon.Variation.Size] {
+        return doubleArray.map { Tinpon.Variation.Size.double($0) }
+    }
+    private static func doubleDoubleSizes(widths: [Double], lengths: [Double]) -> [Tinpon.Variation.Size] {
+        var result = [Tinpon.Variation.Size]()
         for width in widths {
-            result[width] = lengths
+            for length in lengths {
+                result.append(.doubleDouble(width, length))
+            }
         }
-        return Size.DoubleDoubleSize(result)
+        return result
+    }
+    private static func stringSizes(from stringArray: [String]) -> [Tinpon.Variation.Size] {
+        return stringArray.map { Tinpon.Variation.Size.string($0) }
     }
 }
