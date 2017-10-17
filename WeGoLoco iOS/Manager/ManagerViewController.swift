@@ -17,18 +17,15 @@ class ManagerViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-//        let tinpon = Tinpon()
-//        tinpon.name = "Tinpon"
-//        print(JSONDecoder().)
-//        firstly {
-//            API.createTinpon(tinpon: Tinpon(testing: true))
-//        }.catch { error in
-//            print("lol \(error)")
-//        }
-
+        let image = UIImage(named: "test")
         
-
-
+        firstly {
+            API.uploadImage(image: image!, path: "Tinpons/main")
+        }.then {
+            print("uploaded")
+        }.catch { error in
+            print(error)
+        }
     }
     
     override func viewDidLoad() {

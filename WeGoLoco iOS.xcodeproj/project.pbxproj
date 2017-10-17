@@ -42,7 +42,7 @@
 		D41A9EEC1F90EEC9003F075B /* AWSAPIGateway.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D41A9EEA1F90EEC4003F075B /* AWSAPIGateway.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D41A9EEE1F90EF0D003F075B /* AWSCognitoIdentityProvider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D41A9EED1F90EF0A003F075B /* AWSCognitoIdentityProvider.framework */; };
 		D41A9EEF1F90EF0D003F075B /* AWSCognitoIdentityProvider.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D41A9EED1F90EF0A003F075B /* AWSCognitoIdentityProvider.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		D41A9EF31F90EFAE003F075B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D41A9EF21F90EFA4003F075B /* Images.xcassets */; };
+		D43B8CB71F95FBA0002F67A1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D43B8CB61F95FBA0002F67A1 /* Images.xcassets */; };
 		D45BE00B1F9362E3000AD3B5 /* APIRequestSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45BE0061F9362DD000AD3B5 /* APIRequestSchema.swift */; };
 		D45BE00C1F9362E3000AD3B5 /* APIResponseSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45BE0071F9362DD000AD3B5 /* APIResponseSchema.swift */; };
 		D45BE00D1F9362E3000AD3B5 /* APIWeGoLocoClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45BE0081F9362DD000AD3B5 /* APIWeGoLocoClient.swift */; };
@@ -68,6 +68,8 @@
 		D4CB2C611F8E637D0095BF1F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CB2C601F8E637D0095BF1F /* SignUpViewController.swift */; };
 		D4F803A61F8E793700E13FFC /* Iso8601Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F803A51F8E793700E13FFC /* Iso8601Date.swift */; };
 		D4F803A81F8E7D8600E13FFC /* EmailConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F803A71F8E7D8600E13FFC /* EmailConfirmationViewController.swift */; };
+		D4F9D9A91F95FCF6003E9BEC /* AWSS3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4F9D9A81F95FCF3003E9BEC /* AWSS3.framework */; };
+		D4F9D9AA1F95FCF6003E9BEC /* AWSS3.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D4F9D9A81F95FCF3003E9BEC /* AWSS3.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -83,6 +85,7 @@
 				D41A9EEF1F90EF0D003F075B /* AWSCognitoIdentityProvider.framework in Embed Frameworks */,
 				D41A9EEC1F90EEC9003F075B /* AWSAPIGateway.framework in Embed Frameworks */,
 				D41A9EDD1F90EEA1003F075B /* AWSCore.framework in Embed Frameworks */,
+				D4F9D9AA1F95FCF6003E9BEC /* AWSS3.framework in Embed Frameworks */,
 				D41A9EE51F90EEA1003F075B /* PromiseKit.framework in Embed Frameworks */,
 				D41A9EE31F90EEA1003F075B /* ImageRow.framework in Embed Frameworks */,
 				D41A9EE11F90EEA1003F075B /* IGListKit.framework in Embed Frameworks */,
@@ -119,7 +122,7 @@
 		D41A9ED91F90EE97003F075B /* TOCropViewController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TOCropViewController.framework; path = Carthage/Build/iOS/TOCropViewController.framework; sourceTree = SOURCE_ROOT; };
 		D41A9EEA1F90EEC4003F075B /* AWSAPIGateway.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSAPIGateway.framework; path = Carthage/Build/iOS/AWSAPIGateway.framework; sourceTree = SOURCE_ROOT; };
 		D41A9EED1F90EF0A003F075B /* AWSCognitoIdentityProvider.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSCognitoIdentityProvider.framework; path = Carthage/Build/iOS/AWSCognitoIdentityProvider.framework; sourceTree = SOURCE_ROOT; };
-		D41A9EF21F90EFA4003F075B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D43B8CB61F95FBA0002F67A1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D45BE0061F9362DD000AD3B5 /* APIRequestSchema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestSchema.swift; sourceTree = "<group>"; };
 		D45BE0071F9362DD000AD3B5 /* APIResponseSchema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponseSchema.swift; sourceTree = "<group>"; };
 		D45BE0081F9362DD000AD3B5 /* APIWeGoLocoClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIWeGoLocoClient.swift; sourceTree = "<group>"; };
@@ -157,6 +160,7 @@
 		D4CB2C601F8E637D0095BF1F /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		D4F803A51F8E793700E13FFC /* Iso8601Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Iso8601Date.swift; sourceTree = "<group>"; };
 		D4F803A71F8E7D8600E13FFC /* EmailConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailConfirmationViewController.swift; sourceTree = "<group>"; };
+		D4F9D9A81F95FCF3003E9BEC /* AWSS3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSS3.framework; path = Carthage/Build/iOS/AWSS3.framework; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +174,7 @@
 				D41A9EEE1F90EF0D003F075B /* AWSCognitoIdentityProvider.framework in Frameworks */,
 				D41A9EEB1F90EEC9003F075B /* AWSAPIGateway.framework in Frameworks */,
 				D41A9EDC1F90EEA1003F075B /* AWSCore.framework in Frameworks */,
+				D4F9D9A91F95FCF6003E9BEC /* AWSS3.framework in Frameworks */,
 				D41A9EE41F90EEA1003F075B /* PromiseKit.framework in Frameworks */,
 				D41A9EE21F90EEA1003F075B /* ImageRow.framework in Frameworks */,
 				D41A9EE01F90EEA1003F075B /* IGListKit.framework in Frameworks */,
@@ -226,7 +231,7 @@
 		D47876171F8BBED20079818C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D41A9EF21F90EFA4003F075B /* Images.xcassets */,
+				D43B8CB61F95FBA0002F67A1 /* Images.xcassets */,
 				D474F5C71F94F91000B83D0D /* Enum.swift */,
 				D41A9EC91F90E85F003F075B /* Errors.swift */,
 				D41A9EC71F90E7F5003F075B /* FontAndColors.swift */,
@@ -332,6 +337,7 @@
 				D48ABBA91F90FB2E002F5983 /* Assets */,
 				D41A9EED1F90EF0A003F075B /* AWSCognitoIdentityProvider.framework */,
 				D41A9EEA1F90EEC4003F075B /* AWSAPIGateway.framework */,
+				D4F9D9A81F95FCF3003E9BEC /* AWSS3.framework */,
 				D41A9ED51F90EE96003F075B /* AWSCognito.framework */,
 				D41A9ED21F90EE96003F075B /* AWSCore.framework */,
 				D41A9ED81F90EE96003F075B /* Eureka.framework */,
@@ -442,8 +448,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D48ABBA61F90F52D002F5983 /* SHViewController.xib in Resources */,
+				D43B8CB71F95FBA0002F67A1 /* Images.xcassets in Resources */,
 				D4B95CB61F8AA7ED005F5DCA /* LaunchScreen.storyboard in Resources */,
-				D41A9EF31F90EFAE003F075B /* Images.xcassets in Resources */,
 				D4B95CB11F8AA7ED005F5DCA /* Main.storyboard in Resources */,
 				D48ABBA71F90F530002F5983 /* Media.xcassets in Resources */,
 				D48ABBA41F90F52D002F5983 /* SHCollectionViewCell.xib in Resources */,

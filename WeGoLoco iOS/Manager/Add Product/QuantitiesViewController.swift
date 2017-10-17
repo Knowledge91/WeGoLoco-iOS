@@ -154,10 +154,13 @@ class QuantitiesViewController: FormViewController, AddProductProtocol, LoadingA
     
     // MARK : - Actions
     @IBAction func createTinponButton(_ sender: UIBarButtonItem) {
+        startLoadingAnimation()
         firstly {
             API.createTinpon(tinpon: tinpon)
-        }.then {
-            print("tinpon created")
+        }.then { [weak self] _ -> Void in
+            guard let strongSelf = self else { return }
+            strongSelf.stopLoadingAnimation()
+            strongSelf.presentingViewController?.dismiss(animated: true)
         }.catch{ error in
             print(error)
         }
