@@ -20,24 +20,26 @@ class API {
         case Tinpons = "/tinpons"
     }
     
-    static func invoke(httpMethod: HTTPMethod, endPoint: EndPoint, queryParameters: [AnyHashable: Any]?, headerParameters: [AnyHashable : Any]?, httpBody: Any?, completion: @escaping (Error?)->()) {
+    static func invoke(httpMethod: HTTPMethod, endPoint: EndPoint, queryParameters: [AnyHashable: Any]?, headerParameters: [AnyHashable : Any]?, httpBody: Any?, completion: @escaping (Error?, Data?)->()) {
         let client = APIWeGoLocoClient.default()
         
         let request = AWSAPIGatewayRequest(httpMethod: httpMethod.rawValue, urlString: endPoint.rawValue, queryParameters: queryParameters, headerParameters: headerParameters, httpBody: httpBody)
         client.invoke(request).continueWith { task -> Void in
             if let error = task.error {
-                completion(error)
+                completion(error, nil)
+            } else if let result = task.result {
+                completion(nil, result.responseData)
             } else {
-                completion(nil)
+                completion(nil, nil)
             }
         }
     }
-    static func invoke(httpMethod: HTTPMethod, endPoint: EndPoint, queryParameters: [AnyHashable: Any]?, headerParameters: [AnyHashable : Any]?, httpBody: Any?) -> Promise<Void> {
+    static func invoke(httpMethod: HTTPMethod, endPoint: EndPoint, queryParameters: [AnyHashable: Any]?, headerParameters: [AnyHashable : Any]?, httpBody: Any?) -> Promise<Data?> {
         return PromiseKit.wrap{ invoke(httpMethod: httpMethod, endPoint: endPoint, queryParameters: queryParameters, headerParameters: headerParameters, httpBody: httpBody, completion: $0) }
     }
     
     // MARK: - Tinpon
-    static func createTinpon(tinpon: Tinpon, completion: @escaping (Error?)->()) {
+    static func createTinpon(tinpon: Tinpon, tinponImages: TinponImages, completion: @escaping (Error?)->()) {
         let jsonEncoder = JSONEncoder()
         jsonEncoder.outputFormatting = .prettyPrinted
         do {
@@ -46,18 +48,37 @@ class API {
             let body = jsonData
             firstly {
                 self.invoke(httpMethod: .POST, endPoint: .Tinpons, queryParameters: nil, headerParameters: nil, httpBody: body)
-                }.then {
-                    completion(nil)
-                }.catch { error -> () in
-                    completion(error)
+            }.then { responseData -> () in
+                let tinponId = String(data: responseData!, encoding: String.Encoding.utf8) as String!
+                // for now only upload the first main image (which will be later on displayed in the Swiper)
+                let image = tinponImages.main[0]
+                self.tinponUploadMainImage(tinponId: tinponId!, image: image)
+            }.then {
+                completion(nil)
+            }.catch { error -> () in
+                completion(error)
             }
         }
         catch {
             
         }
     }
-    static func createTinpon(tinpon: Tinpon) -> Promise<Void> {
-        return PromiseKit.wrap{ createTinpon(tinpon: tinpon, completion: $0) }
+    static func createTinpon(tinpon: Tinpon, tinponImages: TinponImages) -> Promise<Void> {
+        return PromiseKit.wrap{ createTinpon(tinpon: tinpon, tinponImages: tinponImages, completion: $0) }
+    }
+    static func tinponUploadMainImage(tinponId: String, image: UIImage, completion: @escaping (Error?)->()) {
+        var path = "Tinpons/"+tinponId+"/1"
+        firstly {
+            uploadImage(image: image, path: path)
+        }.then { _ -> Void in 
+            print("path uploaded: \(path)")
+            completion(nil)
+        }.catch { error in
+            completion(error)
+        }
+    }
+    static func tinponUploadMainImage(tinponId: String, image: UIImage) -> Promise<Void> {
+        return PromiseKit.wrap{ tinponUploadMainImage(tinponId: tinponId, image: image, completion: $0) }
     }
     
     // MARK: Image upload

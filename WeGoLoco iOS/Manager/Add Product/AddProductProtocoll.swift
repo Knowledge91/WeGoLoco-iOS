@@ -11,6 +11,7 @@ import Foundation
 protocol AddProductProtocol {
     // MARK: - Model
     var tinpon: Tinpon! { get set }
+    var tinponImages: TinponImages! { get set }
     
     func guardTinpon() -> Void
 

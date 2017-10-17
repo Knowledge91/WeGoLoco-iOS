@@ -9,10 +9,9 @@
 import Foundation
 import IGListKit
 
-//: Playground - noun: a place where people can play
-
 import UIKit
 
+// MARK: - Tinpon
 class Tinpon: Codable {
     enum Category: String, Codable {
         case accessories = "Accessories"
@@ -51,6 +50,13 @@ class Tinpon: Codable {
     var variations: [Variation]?
 
 }
+
+// MARK: - TinponImages
+
+struct TinponImages {
+    var main = [UIImage]()
+}
+
 
 // following http://proxpero.com/2017/07/11/encoding-and-decoding-custom-enums-with-associated-values-in-swift-4/
 extension Tinpon.Variation.Size: Codable {

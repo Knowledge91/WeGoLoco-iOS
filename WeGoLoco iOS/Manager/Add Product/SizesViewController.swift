@@ -13,6 +13,7 @@ class SizesViewController : FormViewController, AddProductProtocol {
     
     // MARK: - AddProductProtocol
     public var tinpon: Tinpon!
+    public var tinponImages: TinponImages!
     func guardTinpon() {
     }
     
@@ -37,6 +38,7 @@ class SizesViewController : FormViewController, AddProductProtocol {
         let colorVC = segue.destination as! ColorsViewController
         colorVC.selectedSizes = getSelectedSizes()
         colorVC.tinpon = tinpon
+        colorVC.tinponImages = tinponImages
     }
     
     // MARK: - Helpers

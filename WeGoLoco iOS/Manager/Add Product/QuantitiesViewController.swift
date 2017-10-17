@@ -18,6 +18,7 @@ import PromiseKit
 class QuantitiesViewController: FormViewController, AddProductProtocol, LoadingAnimationProtocol {
     //MARK: - AddProductProtocol
     var tinpon: Tinpon!
+    var tinponImages: TinponImages!
     func guardTinpon() {
     }
     
@@ -156,7 +157,7 @@ class QuantitiesViewController: FormViewController, AddProductProtocol, LoadingA
     @IBAction func createTinponButton(_ sender: UIBarButtonItem) {
         startLoadingAnimation()
         firstly {
-            API.createTinpon(tinpon: tinpon)
+            API.createTinpon(tinpon: tinpon, tinponImages: tinponImages)
         }.then { [weak self] _ -> Void in
             guard let strongSelf = self else { return }
             strongSelf.stopLoadingAnimation()

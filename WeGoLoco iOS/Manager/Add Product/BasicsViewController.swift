@@ -20,17 +20,17 @@ class BasicsViewController: FormViewController, AddProductProtocol, CLLocationMa
     
     // MARK: - AddProductProtocol
     var tinpon: Tinpon! = Tinpon()
+    var tinponImages: TinponImages! = TinponImages()
     func guardTinpon() {
         tinpon.name = (form.rowBy(tag: "nameRow") as! TextRow).value
         tinpon.price = (form.rowBy(tag: "priceRow") as! DecimalRow).value
         tinpon.gender = getGender()
         
-//        for row in form.allRows {
-//            if let image = (row as? ImageRow)?.value {
-//                tinpon.images.append(image)
-//
-//            }
-//        }
+        for row in form.allRows {
+            if let image = (row as? ImageRow)?.value {
+                tinponImages.main.append(image)
+            }
+        }
     }
     
     
@@ -185,6 +185,7 @@ class BasicsViewController: FormViewController, AddProductProtocol, CLLocationMa
         
         let selectCategoryViewController = segue.destination as! SelectProductCategoryViewController
         selectCategoryViewController.tinpon = tinpon
+        selectCategoryViewController.tinponImages = tinponImages
         selectCategoryViewController.gender = getGender()
         selectCategoryViewController.isMultipleSelection = false
     }

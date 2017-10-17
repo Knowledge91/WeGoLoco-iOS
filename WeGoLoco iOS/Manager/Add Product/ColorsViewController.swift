@@ -13,6 +13,8 @@ import Whisper
 class ColorsViewController: FormViewController, AddProductProtocol {
     // MARK: - AddProductProtocoll
     var tinpon: Tinpon!
+    var tinponImages: TinponImages!
+    
     func guardTinpon() {
         // clear previous variations
         tinpon.variations = nil
@@ -76,6 +78,7 @@ class ColorsViewController: FormViewController, AddProductProtocol {
         
         let quantitiesViewController = segue.destination as! QuantitiesViewController
         quantitiesViewController.tinpon = tinpon
+        quantitiesViewController.tinponImages = tinponImages
     }
     
     

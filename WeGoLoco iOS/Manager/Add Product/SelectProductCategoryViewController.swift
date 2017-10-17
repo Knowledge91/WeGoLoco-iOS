@@ -9,6 +9,7 @@
 class SelectProductCategoryViewController: SelectCategoryViewController, AddProductProtocol {
     // MARK: - AddProductProtocol
     var tinpon: Tinpon!
+    var tinponImages: TinponImages!
     func guardTinpon() {
         tinpon.category = Tinpon.Category(rawValue: singleSelection!)
     }
@@ -25,6 +26,7 @@ class SelectProductCategoryViewController: SelectCategoryViewController, AddProd
         
         let sizesVC = segue.destination as! SizesViewController
         sizesVC.tinpon = tinpon
+        sizesVC.tinponImages = tinponImages
         sizesVC.gender = gender
         sizesVC.category = tinpon.category
     }

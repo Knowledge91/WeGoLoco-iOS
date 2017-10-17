@@ -20,7 +20,7 @@ class ManagerViewController: UIViewController {
         let image = UIImage(named: "test")
         
         firstly {
-            API.uploadImage(image: image!, path: "Tinpons/main")
+            API.tinponUploadMainImage(tinponId: "1", image: image!)
         }.then {
             print("uploaded")
         }.catch { error in
