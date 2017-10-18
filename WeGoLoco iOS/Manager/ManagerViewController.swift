@@ -17,12 +17,11 @@ class ManagerViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        let image = UIImage(named: "test")
-        
         firstly {
-            API.tinponUploadMainImage(tinponId: "1", image: image!)
-        }.then {
-            print("uploaded")
+            API.getNotSwipedTinpons()
+        }.then { tinpons -> Void in
+//            print(tinpons?.first?.id)
+//            print(tinpons?.last?.id)
         }.catch { error in
             print(error)
         }

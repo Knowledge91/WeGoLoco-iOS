@@ -45,6 +45,7 @@ class Tinpon: Codable {
 
     var category: Category?
     var gender: Gender?
+    var id: Int?
     var name: String?
     var price: Double?
     var variations: [Variation]?

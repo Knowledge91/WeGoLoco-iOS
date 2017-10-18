@@ -18,6 +18,7 @@ class API {
     
     enum EndPoint : String {
         case Tinpons = "/tinpons"
+        case TinponsSwiper = "/tinpons/swiper"
     }
     
     static func invoke(httpMethod: HTTPMethod, endPoint: EndPoint, queryParameters: [AnyHashable: Any]?, headerParameters: [AnyHashable : Any]?, httpBody: Any?, completion: @escaping (Error?, Data?)->()) {
@@ -39,6 +40,8 @@ class API {
     }
     
     // MARK: - Tinpon
+    
+    // save Tinpon
     static func createTinpon(tinpon: Tinpon, tinponImages: TinponImages, completion: @escaping (Error?)->()) {
         let jsonEncoder = JSONEncoder()
         jsonEncoder.outputFormatting = .prettyPrinted
@@ -79,6 +82,25 @@ class API {
     }
     static func tinponUploadMainImage(tinponId: String, image: UIImage) -> Promise<Void> {
         return PromiseKit.wrap{ tinponUploadMainImage(tinponId: tinponId, image: image, completion: $0) }
+    }
+    
+    // get notSwiped Tinpons
+    static func getNotSwipedTinpons(completion: @escaping (Error?, [Tinpon]?) -> ()) {
+        firstly {
+            invoke(httpMethod: .GET, endPoint: .TinponsSwiper, queryParameters: nil, headerParameters: nil, httpBody: nil)
+        }.then { responseData -> () in
+            let jsonDecoder = JSONDecoder()
+            
+            let tinpons = try! jsonDecoder.decode([Tinpon].self, from: responseData!)
+            print(String(data: responseData!, encoding: String.Encoding.utf8) as String!)
+            print("Tinpons \(tinpons)")
+            completion(nil, tinpons)
+        }.catch { error in
+            completion(error,nil)
+        }
+    }
+    static func getNotSwipedTinpons() -> Promise<[Tinpon]?> {
+        return PromiseKit.wrap{ getNotSwipedTinpons(completion: $0) }
     }
     
     // MARK: Image upload
