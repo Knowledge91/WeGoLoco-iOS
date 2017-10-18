@@ -21,14 +21,16 @@ class TabBarController: UITabBarController {
             User.isRetailer()
         }.then { isRetailer -> Void in
             if !isRetailer {
-                self.viewControllers?.removeLast()
+                self.viewControllers?.remove(at: (self.viewControllers?.count)!-1)
             } else {
-                if self.viewControllers!.count < 2 {
+                if self.viewControllers!.count < 3 {
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let managerViewController = storyboard.instantiateViewController(withIdentifier: "managerViewController")
-                    self.viewControllers?.append(managerViewController)
+                    self.viewControllers?.insert(managerViewController, at: 0)
                 }
             }
+        }.catch { error in
+            print(error)
         }
     }
 }

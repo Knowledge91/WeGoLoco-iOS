@@ -13,21 +13,15 @@ import PromiseKit
 
 class ManagerViewController: UIViewController {
 
+    @IBOutlet weak var imageView: UIImageView!
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
-        firstly {
-            API.getNotSwipedTinpons()
-        }.then { tinpons -> Void in
-//            print(tinpons?.first?.id)
-//            print(tinpons?.last?.id)
-        }.catch { error in
-            print(error)
-        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+
     }
 }

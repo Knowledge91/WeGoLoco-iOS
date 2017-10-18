@@ -70,7 +70,7 @@ class API {
         return PromiseKit.wrap{ createTinpon(tinpon: tinpon, tinponImages: tinponImages, completion: $0) }
     }
     static func tinponUploadMainImage(tinponId: String, image: UIImage, completion: @escaping (Error?)->()) {
-        var path = "Tinpons/"+tinponId+"/1"
+        let path = "Tinpons/"+tinponId+"/1"
         firstly {
             uploadImage(image: image, path: path)
         }.then { _ -> Void in 
@@ -103,10 +103,27 @@ class API {
         return PromiseKit.wrap{ getNotSwipedTinpons(completion: $0) }
     }
     
-    // MARK: Image upload
+    // get main image
+    static func getTinponMainImage(tinponId: Int, completion: @escaping (Error?, UIImage?) -> ()) {
+        let path = "Tinpons/"+String(tinponId)+"/1.png"
+        print("tinponPath + \(path)")
+        firstly {
+            downloadImage(path: path)
+        }.then { image in
+            completion(nil, image)
+        }.catch { error in
+            completion(error, nil)
+        }
+    }
+    static func getTinponMainImage(tinponId: Int) -> Promise<UIImage?> {
+        return PromiseKit.wrap{ getTinponMainImage(tinponId: tinponId, completion: $0) }
+    }
+    
+    
+    
+    // MARK: S3 Upload / Download
+    // upload to S3
     static func uploadImage(image: UIImage, path: String, completion: @escaping (Error?)->()) {
-        
-        // upload S3 image
         let imageData: NSData = UIImagePNGRepresentation(image)! as NSData
         let transferManager = AWSS3TransferManager.default()
         
@@ -157,6 +174,46 @@ class API {
     static func uploadImage(image: UIImage, path: String) -> Promise<Void> {
         return PromiseKit.wrap{ uploadImage(image: image, path: path, completion: $0) }
     }
+    
+    static func downloadImage(path: String, completion: @escaping (Error?, UIImage?) -> ()) {
+        let transferManager = AWSS3TransferManager.default()
+        
+        let downloadingFileURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("myImage.jpg")
+        
+        let downloadRequest = AWSS3TransferManagerDownloadRequest()
+        
+        downloadRequest!.bucket = "wegoloco"
+        downloadRequest!.key = path
+        downloadRequest!.downloadingFileURL = downloadingFileURL
+        
+        transferManager.download(downloadRequest!).continueWith(executor: AWSExecutor.mainThread(), block: { (task:AWSTask<AnyObject>) -> Any? in
+            
+            if let error = task.error as NSError? {
+                if error.domain == AWSS3TransferManagerErrorDomain, let code = AWSS3TransferManagerErrorType(rawValue: error.code) {
+                    switch code {
+                    case .cancelled, .paused:
+                        completion(nil, nil)
+                        break
+                    default:
+                        print("Error downloading: \(downloadRequest!.key) Error: \(error)")
+                        completion(error, nil)
+                    }
+                } else {
+                    print("Error downloading: \(downloadRequest!.key) Error: \(error)")
+                    completion(error, nil)
+                }
+                return nil
+            }
+            print("Download complete for: \(downloadRequest!.key)")
+            let image: UIImage = UIImage(contentsOfFile: downloadingFileURL.path)!
+            completion(nil, image)
+            return nil
+        })
+    }
+    static func downloadImage(path: String) -> Promise<UIImage?> {
+        return PromiseKit.wrap{ downloadImage(path: path, completion: $0) }
+    }
+    
     
     // MARK: Helper
     
