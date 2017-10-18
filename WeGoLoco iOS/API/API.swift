@@ -84,16 +84,31 @@ class API {
         return PromiseKit.wrap{ tinponUploadMainImage(tinponId: tinponId, image: image, completion: $0) }
     }
     
+    // get main image
+    static func getTinponMainImage(tinponId: Int, completion: @escaping (Error?, UIImage?) -> ()) {
+        let path = "Tinpons/"+String(tinponId)+"/1.png"
+        print("tinponPath + \(path)")
+        firstly {
+            downloadImage(path: path)
+            }.then { image in
+                completion(nil, image)
+            }.catch { error in
+                completion(error, nil)
+        }
+    }
+    static func getTinponMainImage(tinponId: Int) -> Promise<UIImage?> {
+        return PromiseKit.wrap{ getTinponMainImage(tinponId: tinponId, completion: $0) }
+    }
+    
+    
+    // MARK: - Tinpon Swiper
     // get notSwiped Tinpons
     static func getNotSwipedTinpons(completion: @escaping (Error?, [Tinpon]?) -> ()) {
         firstly {
             invoke(httpMethod: .GET, endPoint: .TinponsSwiper, queryParameters: nil, headerParameters: nil, httpBody: nil)
         }.then { responseData -> () in
             let jsonDecoder = JSONDecoder()
-            
             let tinpons = try! jsonDecoder.decode([Tinpon].self, from: responseData!)
-            print(String(data: responseData!, encoding: String.Encoding.utf8) as String!)
-            print("Tinpons \(tinpons)")
             completion(nil, tinpons)
         }.catch { error in
             completion(error,nil)
@@ -103,20 +118,19 @@ class API {
         return PromiseKit.wrap{ getNotSwipedTinpons(completion: $0) }
     }
     
-    // get main image
-    static func getTinponMainImage(tinponId: Int, completion: @escaping (Error?, UIImage?) -> ()) {
-        let path = "Tinpons/"+String(tinponId)+"/1.png"
-        print("tinponPath + \(path)")
+    // save swipe
+    static func saveSwipe(swipedTinpon: SwipedTinpon, completion: @escaping (Error?) -> ()) {
+        let body = codableToJSON(encodable: swipedTinpon)
         firstly {
-            downloadImage(path: path)
-        }.then { image in
-            completion(nil, image)
+            invoke(httpMethod: .POST, endPoint: .TinponsSwiper, queryParameters: nil, headerParameters: nil, httpBody: body)
+        }.then { _ in
+            completion(nil)
         }.catch { error in
-            completion(error, nil)
+            completion(error)
         }
     }
-    static func getTinponMainImage(tinponId: Int) -> Promise<UIImage?> {
-        return PromiseKit.wrap{ getTinponMainImage(tinponId: tinponId, completion: $0) }
+    static func saveSwipe(swipedTinpon: SwipedTinpon) -> Promise<Void> {
+        return PromiseKit.wrap{ saveSwipe(swipedTinpon: swipedTinpon, completion: $0) }
     }
     
     
@@ -216,6 +230,16 @@ class API {
     
     
     // MARK: Helper
+    private static func codableToJSON<T: Encodable>(encodable: T)  -> Data {
+        let jsonEncoder = JSONEncoder()
+        jsonEncoder.outputFormatting = .prettyPrinted
+        let jsonData = try! jsonEncoder.encode(encodable)
+        //print( String(data: jsonData, encoding: .utf8) )
+        return jsonData
+    }
     
+    enum APIError: Error {
+        case jsonEncoder
+    }
 }
 

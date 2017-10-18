@@ -49,13 +49,20 @@ class Tinpon: Codable {
     var name: String?
     var price: Double?
     var variations: [Variation]?
-
 }
 
 // MARK: - TinponImages
 
 struct TinponImages {
     var main = [UIImage]()
+}
+
+// MARK: - SwipedTinpon
+
+struct SwipedTinpon: Codable {
+    var person_id: String
+    var tinpon_id: Int
+    var liked: Int
 }
 
 
@@ -112,70 +119,5 @@ func ==(lhs: Tinpon.Variation.Size, rhs: Tinpon.Variation.Size) -> Bool {
         return false
     }
 }
-
-
-//struct ColorVariation {
-//    var sizeVariations = [SizeVariation]()
-//    var images = [TinponImage]()
-//}
-//
-//struct SizeVariation {
-//    var size: String
-//    var quantity: Int
-//}
-//
-//struct TinponImage {
-//    var image: UIImage
-//    var id: String
-//    init(image: UIImage) {
-//        self.image = image
-//        self.id = UUID().uuidString
-//    }
-//}
-//
-//struct Tinpon {
-//    var id: Int?
-//    var active: Bool?
-//    var category: Categories.Category?
-//    var createdAt: Date?
-//    var gender: Gender?
-//    var imgUrl: String?
-//    var latitude: Double?
-//    var longitude: Double?
-//    var name: String?
-//    var price: Double?
-//    var updatedAt: Date?
-//    var userId: String?
-//    var images = [UIImage]()
-//    var productVariations = [Color : ColorVariation]()
-//
-//    // temporary for addProduct
-//    var sizes: Sizes.Size?
-//    var colors = [Color]()
-//
-//    var mainImageCount: Int?
-//
-//    var description: String {
-//        return "id: \(id ?? 0)\n name: \(self.name ?? "nil")\n gender: \(self.gender?.rawValue ?? "nil")\n price: \(self.price ?? 0.00)\n mainImages: \(images.count)"
-//    }
-//
-//    init() {}
-//
-//    init(testing: Bool) {
-//        if testing {
-//            self.name = "THis IS the Tinpon"
-//            self.category = .jeans
-//            self.price = 49.99
-//
-//            let blackColor = Color(spanishName: "negro")
-//            let redColor = Color(spanishName: "rojo")
-//            let sizeVariation = SizeVariation(size: "M", quantity: 1000)
-//            let sizeVariations = [sizeVariation, sizeVariation]
-//            let colorVariation = ColorVariation(sizeVariations: sizeVariations, images: [])
-//            self.productVariations = [blackColor : colorVariation, redColor : colorVariation]
-//
-//        }
-//    }
-//}
 
 

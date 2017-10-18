@@ -21,6 +21,11 @@ class User {
             return nil
         }
     }
+    
+    static func cognitoId() -> String {
+        let awsUser = UserPool.pool.currentUser()
+        return awsUser!.username!
+    }
 
     static func signOut() {
         let awsUser = UserPool.pool.currentUser()

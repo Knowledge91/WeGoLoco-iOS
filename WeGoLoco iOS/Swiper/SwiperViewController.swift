@@ -139,6 +139,18 @@ class SwiperViewController: UIViewController, LoadingAnimationProtocol {
         }
     }
     
+    fileprivate func saveSwipe(tinpon: Tinpon, like: Int) {
+        print("userId"+User.cognitoId())
+        let swipedTinpon = SwipedTinpon(person_id: User.cognitoId(), tinpon_id: tinpon.id!, liked: like)
+        firstly {
+            API.saveSwipe(swipedTinpon: swipedTinpon)
+        }.then {
+            print("swipe saved")
+        }.catch { error in
+            print(error)
+        }
+    }
+    
     
 }
 
@@ -208,15 +220,14 @@ extension SwiperViewController: KolodaViewDataSource {
         switch direction {
         case .right:
             liked = 1
-//            TinponsAPI.saveSwipe(for: tinpons[index], liked: liked)
         case .left:
             liked = 0
-//            TinponsAPI.saveSwipe(for: tinpons[index], liked: liked)
         case .down:
-            liked = 3
-//            TinponsAPI.saveSwipe(for: tinpons[index], liked: liked)
+            liked = 2
         default: ()
         }
+        
+        self.saveSwipe(tinpon: tinpons[index], like: liked)
         
         // if less than 5 tinpons load next Tinpon
         if tinpons.count - koloda.currentCardIndex < 5 {
