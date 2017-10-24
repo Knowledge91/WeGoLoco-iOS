@@ -51,9 +51,6 @@ class SwiperViewController: UIViewController, LoadingAnimationProtocol {
         kolodaView.dataSource = self
         kolodaView.animator = BackgroundKolodaAnimator(koloda: kolodaView)
         
-        // testing
-         outOfTinponsStack.isHidden = false
-        
         self.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
         
         firstly {
@@ -67,7 +64,7 @@ class SwiperViewController: UIViewController, LoadingAnimationProtocol {
     }
     
     //MARK: IBActions
-    @IBAction func tryAgain(_ sender: UIButton) {
+    @IBAction func tryLoadingMoreButton(_ sender: UIButton) {
         loadTinpons()
     }
     @IBAction func leftButtonTapped(_ sender: Any) {
@@ -110,7 +107,7 @@ class SwiperViewController: UIViewController, LoadingAnimationProtocol {
         }.then { tinpons -> () in
             self.tinpons = tinpons!
             self.kolodaView.reloadData()
-//            self.showoutOfTinponsIfNecessary()
+            self.showoutOfTinponsIfNecessary()
             self.stopLoadingAnimation()
         }.catch { error in
             print("SwiperVC.loadTinpons : not swiped tinpons error : \(error)")
@@ -119,16 +116,18 @@ class SwiperViewController: UIViewController, LoadingAnimationProtocol {
     
     // additionally filters out already existing tinpons
     fileprivate func loadMoreTinpons() {
-//        firstly {
-//            TinponsAPI.getNotSwipedTinpons()
-//        }.then { tinpons -> () in
-//            for tinpon in tinpons {
-//                if !self.isAlreadyDownloaded(tinpon: tinpon) {
-//                    self.tinpons.append(tinpon)
-//                }
-//            }
-//            self.kolodaView.reloadData()
-//        }
+        firstly {
+            API.getNotSwipedTinpons()
+        }.then { tinpons -> () in
+            for tinpon in tinpons! {
+                if !self.isAlreadyDownloaded(tinpon: tinpon) {
+                    self.tinpons.append(tinpon)
+                }
+            }
+            self.kolodaView.reloadData()
+        }.catch { error in
+            print("SwiperVC.loadTinpons : not swiped tinpons error : \(error)")
+        }
     }
     
     fileprivate func showoutOfTinponsIfNecessary() {
@@ -140,8 +139,7 @@ class SwiperViewController: UIViewController, LoadingAnimationProtocol {
     }
     
     fileprivate func saveSwipe(tinpon: Tinpon, like: Int) {
-        print("userId"+User.cognitoId())
-        let swipedTinpon = SwipedTinpon(person_id: User.cognitoId(), tinpon_id: tinpon.id!, liked: like)
+        let swipedTinpon = SwipedTinpon(person_id: User.identityId(), tinpon_id: tinpon.id!, liked: like)
         firstly {
             API.saveSwipe(swipedTinpon: swipedTinpon)
         }.then {

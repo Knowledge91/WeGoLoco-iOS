@@ -4,7 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -66,6 +66,10 @@
                                 <rect key="frame" x="67" y="123" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z9g-af-ebZ">
+                                <rect key="frame" x="163" y="432" width="49" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -114,15 +118,18 @@
                                     <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="y3A-oh-acP" userLabel="outOfTinpons Stack">
                                         <rect key="frame" x="31" y="247" width="282" height="62"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nothing more to show 😭" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NF2-hL-3b4">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nothing more to show 😭" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NF2-hL-3b4">
                                                 <rect key="frame" x="0.5" y="0.0" width="281.5" height="31.5"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jEC-gz-Xbr">
-                                                <rect key="frame" x="109.5" y="31.5" width="63" height="30.5"/>
-                                                <state key="normal" title="Try again"/>
+                                                <rect key="frame" x="83.5" y="31.5" width="115" height="30.5"/>
+                                                <state key="normal" title="Try loading more"/>
+                                                <connections>
+                                                    <action selector="tryLoadingMoreButton:" destination="iMw-l2-CX2" eventType="touchUpInside" id="cuo-3d-tCB"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -130,36 +137,19 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="y3A-oh-acP" secondAttribute="trailing" constant="30" id="1Fo-Ii-N8T"/>
-                                    <constraint firstItem="y3A-oh-acP" firstAttribute="leading" secondItem="xqv-l9-9jQ" secondAttribute="leading" constant="31" id="DWq-Ko-Tas"/>
-                                    <constraint firstItem="y3A-oh-acP" firstAttribute="leading" secondItem="xqv-l9-9jQ" secondAttribute="leading" constant="31" id="Fcg-aD-SXj"/>
                                     <constraint firstAttribute="bottom" secondItem="y3A-oh-acP" secondAttribute="bottom" constant="245" id="QUX-a2-aOT"/>
                                     <constraint firstItem="y3A-oh-acP" firstAttribute="top" secondItem="xqv-l9-9jQ" secondAttribute="top" constant="247" id="Wuq-zn-NAn"/>
-                                    <constraint firstItem="y3A-oh-acP" firstAttribute="top" secondItem="xqv-l9-9jQ" secondAttribute="top" constant="247" id="fp3-ej-y2M"/>
-                                    <constraint firstAttribute="trailing" secondItem="y3A-oh-acP" secondAttribute="trailing" constant="30" id="kHJ-ol-kKS"/>
                                     <constraint firstItem="y3A-oh-acP" firstAttribute="leading" secondItem="xqv-l9-9jQ" secondAttribute="leading" constant="31" id="sQg-b9-NjR"/>
-                                    <constraint firstItem="y3A-oh-acP" firstAttribute="centerX" secondItem="xqv-l9-9jQ" secondAttribute="centerX" id="yvo-ER-h8C"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="xqv-l9-9jQ" firstAttribute="top" secondItem="WTc-XI-70a" secondAttribute="bottom" id="1eE-Nz-teC"/>
-                            <constraint firstItem="xqv-l9-9jQ" firstAttribute="top" secondItem="WTc-XI-70a" secondAttribute="bottom" id="1hO-4Z-pyb"/>
                             <constraint firstItem="7Fe-Pa-SCR" firstAttribute="top" secondItem="xqv-l9-9jQ" secondAttribute="bottom" id="3i8-qn-Waf"/>
-                            <constraint firstItem="xqv-l9-9jQ" firstAttribute="top" secondItem="8oO-d0-eXg" secondAttribute="top" constant="64" id="60k-be-ihL"/>
-                            <constraint firstItem="xqv-l9-9jQ" firstAttribute="bottom" secondItem="8oO-d0-eXg" secondAttribute="bottomMargin" id="7go-80-exE"/>
                             <constraint firstItem="xqv-l9-9jQ" firstAttribute="leading" secondItem="8oO-d0-eXg" secondAttribute="leadingMargin" id="CLh-4L-hTh"/>
-                            <constraint firstItem="xqv-l9-9jQ" firstAttribute="leading" secondItem="8oO-d0-eXg" secondAttribute="leading" constant="16" id="G0r-OJ-Ir6"/>
-                            <constraint firstAttribute="bottom" secondItem="xqv-l9-9jQ" secondAttribute="bottom" constant="49" id="GdN-ve-AEa"/>
                             <constraint firstItem="xqv-l9-9jQ" firstAttribute="leading" secondItem="8oO-d0-eXg" secondAttribute="leadingMargin" id="L8g-za-rA2"/>
-                            <constraint firstItem="xqv-l9-9jQ" firstAttribute="top" secondItem="8oO-d0-eXg" secondAttribute="topMargin" id="McE-29-Ltb"/>
-                            <constraint firstItem="xqv-l9-9jQ" firstAttribute="bottom" secondItem="7Fe-Pa-SCR" secondAttribute="top" id="UJ0-Te-Ig8"/>
-                            <constraint firstAttribute="trailing" secondItem="xqv-l9-9jQ" secondAttribute="trailing" constant="16" id="VaI-Ke-0vO"/>
-                            <constraint firstItem="xqv-l9-9jQ" firstAttribute="centerX" secondItem="8oO-d0-eXg" secondAttribute="centerX" id="WTi-wn-Q4Y"/>
-                            <constraint firstItem="xqv-l9-9jQ" firstAttribute="leading" secondItem="8oO-d0-eXg" secondAttribute="leading" constant="16" id="XX6-ZY-LmH"/>
-                            <constraint firstItem="xqv-l9-9jQ" firstAttribute="trailing" secondItem="8oO-d0-eXg" secondAttribute="trailingMargin" id="Zkq-Hw-duw"/>
                             <constraint firstItem="xqv-l9-9jQ" firstAttribute="trailing" secondItem="8oO-d0-eXg" secondAttribute="trailingMargin" id="yUS-d1-B5C"/>
-                            <constraint firstItem="xqv-l9-9jQ" firstAttribute="top" secondItem="8oO-d0-eXg" secondAttribute="top" constant="64" id="z4C-LB-4rS"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Swiper" id="b7r-XR-nRp"/>
@@ -191,12 +181,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uUe-ui-V1x">
-                                <rect key="frame" x="67" y="139" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Manager" id="nQQ-PA-y1x"/>
                     <toolbarItems/>
@@ -208,9 +194,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="imageView" destination="uUe-ui-V1x" id="pXj-hz-HG7"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mM6-lz-bqK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

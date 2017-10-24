@@ -43,6 +43,7 @@ class Tinpon: Codable {
         var quantity: Int
     }
 
+    var active: Int?
     var category: Category?
     var gender: Gender?
     var id: Int?
@@ -50,6 +51,21 @@ class Tinpon: Codable {
     var price: Double?
     var variations: [Variation]?
 }
+
+
+// MARK: Tinpon ListDiffable
+extension Tinpon: ListDiffable {
+    func diffIdentifier() -> NSObjectProtocol {
+        return self.id! as NSObjectProtocol
+    }
+    
+    func isEqual(toDiffableObject object: ListDiffable?) -> Bool {
+        guard self !== object else { return true }
+        guard let object = object as? Tinpon else { return false }
+        return id == object.id
+    }
+}
+
 
 // MARK: - TinponImages
 
@@ -104,6 +120,7 @@ extension Tinpon.Variation.Size: Codable {
         }
     }
 }
+
 
 // compare two Tinpon.Variation.Sizes'
 // following https://stackoverflow.com/questions/24339807/how-to-test-equality-of-swift-enums-with-associated-values

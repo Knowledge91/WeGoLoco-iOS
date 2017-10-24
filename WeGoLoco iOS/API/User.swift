@@ -22,9 +22,8 @@ class User {
         }
     }
     
-    static func cognitoId() -> String {
-        let awsUser = UserPool.pool.currentUser()
-        return awsUser!.username!
+    static func identityId() -> String {
+        return FederatedIdentities.credentialsProvider.identityId!
     }
 
     static func signOut() {

@@ -14,11 +14,13 @@ class API {
     enum HTTPMethod : String {
         case GET = "GET"
         case POST = "POST"
+        case PUT = "PUT"
     }
     
     enum EndPoint : String {
         case Tinpons = "/tinpons"
         case TinponsSwiper = "/tinpons/swiper"
+        case TinponsManager = "/tinpons/manager"
     }
     
     static func invoke(httpMethod: HTTPMethod, endPoint: EndPoint, queryParameters: [AnyHashable: Any]?, headerParameters: [AnyHashable : Any]?, httpBody: Any?, completion: @escaping (Error?, Data?)->()) {
@@ -134,6 +136,37 @@ class API {
     }
     
     
+    // MARK: Manager
+    // Get Retailer Products
+    public static func getMyUploadedTinpons(completion: @escaping (Error?, [Tinpon]?) -> () ) {
+        firstly {
+            invoke(httpMethod: .GET, endPoint: .TinponsManager, queryParameters: nil, headerParameters: nil, httpBody: nil)
+        }.then { responseData -> () in
+            let jsonDecoder = JSONDecoder()
+            let tinpons = try! jsonDecoder.decode([Tinpon].self, from: responseData!)
+            completion(nil, tinpons)
+        }.catch { error in
+            completion(error,nil)
+        }
+    }
+    public static func getMyUploadedTinpons() -> Promise<[Tinpon]?> {
+        return PromiseKit.wrap{ getMyUploadedTinpons(completion: $0) }
+    }
+    
+    // Update State of Product
+    public static func changeProductState(tinpon: Tinpon, completion: @escaping (Error?) -> () ) {
+        let body = codableToJSON(encodable: tinpon)
+        firstly {
+            invoke(httpMethod: .PUT, endPoint: .TinponsManager, queryParameters: nil, headerParameters: nil, httpBody: body)
+        }.then { _ in
+            completion(nil)
+        }.catch { error in
+            completion(error)
+        }
+    }
+    public static func changeProductState(tinpon: Tinpon) -> Promise<Void> {
+        return PromiseKit.wrap{ changeProductState(tinpon: tinpon, completion: $0) }
+    }
     
     // MARK: S3 Upload / Download
     // upload to S3

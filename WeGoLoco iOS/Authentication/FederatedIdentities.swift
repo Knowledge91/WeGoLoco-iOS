@@ -22,7 +22,7 @@ class FederatedIdentities {
         self.serviceConfiguration = AWSServiceConfiguration(
             region: .EUWest1,
             credentialsProvider: credentialsProvider)
-        
+            
         // setup AWS service configuration
         AWSServiceManager.default().defaultServiceConfiguration = serviceConfiguration
     }
