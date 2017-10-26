@@ -21,16 +21,32 @@ class TabBarController: UITabBarController {
             User.isRetailer()
         }.then { isRetailer -> Void in
             if !isRetailer {
-                //self.viewControllers?.remove(at: (self.viewControllers?.count)!-1)
+                for (index, vc) in self.viewControllers!.enumerated() {
+                    // navigationController.child -> ManagerController
+                    if let _ = vc.childViewControllers[0] as? ManagerViewController {
+                        self.viewControllers?.remove(at: index)
+                    }
+                }
             } else {
-                if self.viewControllers!.count < 3 {
+                if !self.hasManagerVC() {
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let managerViewController = storyboard.instantiateViewController(withIdentifier: "managerViewController")
-                    self.viewControllers?.insert(managerViewController, at: 0)
+                    //let managerViewController = storyboard.instantiateViewController(withIdentifier: "managerViewController")
+                    let navigationViewController = storyboard.instantiateViewController(withIdentifier: "managerNavigationController")
+                    self.viewControllers?.insert(navigationViewController, at: 1)
                 }
             }
         }.catch { error in
             print(error)
         }
+    }
+    
+    // MARK: Helper
+    private func hasManagerVC() -> Bool {
+        for vc in self.viewControllers! {
+            if let _ = vc.childViewControllers[0] as? ManagerViewController {
+                return true
+            }
+        }
+        return false
     }
 }
