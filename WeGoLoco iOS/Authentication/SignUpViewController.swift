@@ -127,6 +127,4 @@ class SignUpViewController: FormViewController {
         emailConfirmationViewController.emailToConfirm = emailToConfirm
         emailConfirmationViewController.user = self.userPool?.getUser(self.email)
      }
-
-
 }

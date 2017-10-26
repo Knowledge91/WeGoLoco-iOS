@@ -385,6 +385,14 @@
                                     <segue destination="8lw-cg-uil" kind="show" id="TZB-Se-Eag"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IOk-tG-9qF">
+                                <rect key="frame" x="16" y="327" width="343" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Forgot Password"/>
+                                <connections>
+                                    <segue destination="zGF-8D-Xgp" kind="show" id="xI1-8B-TBK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -419,6 +427,99 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gvy-UB-M0e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="857" y="139"/>
+        </scene>
+        <!--Forgot Password Enter Email View Controller-->
+        <scene sceneID="kgf-Zn-ZEN">
+            <objects>
+                <viewController id="zGF-8D-Xgp" customClass="ForgotPasswordEnterEmailViewController" customModule="WeGoLoco_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WjJ-eu-eUq"/>
+                        <viewControllerLayoutGuide type="bottom" id="qZM-Vy-av8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="w3r-u1-1gt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vpg-8d-7gm">
+                                <rect key="frame" x="52" y="261" width="273" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kLN-hJ-YNP">
+                                <rect key="frame" x="103" y="318" width="169" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Send Confirmation Code"/>
+                                <connections>
+                                    <action selector="SendConfirmationCodeButtonTouched:" destination="zGF-8D-Xgp" eventType="touchUpInside" id="bfJ-Pb-dI3"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="vpg-8d-7gm" id="dFs-pR-8bs"/>
+                        <segue destination="0K0-Eo-mkk" kind="show" identifier="passwordConfirmationSegue" id="h7X-fX-RcY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ucl-WX-Mxo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="856.79999999999995" y="812.74362818590714"/>
+        </scene>
+        <!--Forgot Password Password Confirmation View Controller-->
+        <scene sceneID="KE0-Cj-TY7">
+            <objects>
+                <viewController id="0K0-Eo-mkk" customClass="ForgotPasswordPasswordConfirmationViewController" customModule="WeGoLoco_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4lW-TI-Ru2"/>
+                        <viewControllerLayoutGuide type="bottom" id="7rZ-ki-yQw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="sir-6T-2Ze">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirmation Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="64p-Mt-AzY">
+                                <rect key="frame" x="139" y="252" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UDI-RM-o72">
+                                <rect key="frame" x="160" y="318" width="55" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Confirm"/>
+                                <connections>
+                                    <action selector="confirmButtonTouched:" destination="0K0-Eo-mkk" eventType="touchUpInside" id="qVs-VT-Rxk"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o0z-RZ-euS">
+                                <rect key="frame" x="95" y="383" width="185" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Resend Confirmation Code"/>
+                                <connections>
+                                    <action selector="resendConfirmationCodeButtonTouched:" destination="0K0-Eo-mkk" eventType="touchUpInside" id="5fX-v6-qTT"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dLo-17-LSe">
+                                <rect key="frame" x="139" y="193" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <connections>
+                        <outlet property="confirmationCodeTextField" destination="64p-Mt-AzY" id="zwy-4s-K2k"/>
+                        <outlet property="newPasswordTextField" destination="dLo-17-LSe" id="jhP-ZK-fi5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HpA-EJ-1Lb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1548" y="813"/>
         </scene>
         <!--Email Confirmation View Controller-->
         <scene sceneID="iac-Qe-Y7G">

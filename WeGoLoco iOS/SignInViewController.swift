@@ -29,7 +29,8 @@ class SignInViewController: UIViewController {
         let authDetails = AWSCognitoIdentityPasswordAuthenticationDetails(username: self.emailTextField.text!, password: self.passwordTextField.text!)
         self.passwordAuthenticationCompletion?.set(result: authDetails)
     }
-
+    
+    // MARK: Helper
 }
 
 

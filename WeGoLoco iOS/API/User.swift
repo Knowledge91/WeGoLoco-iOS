@@ -25,6 +25,11 @@ class User {
     static func identityId() -> String {
         return FederatedIdentities.credentialsProvider.identityId!
     }
+    
+    static func isSignedIn() -> Bool {
+        let awsUser = UserPool.pool.currentUser()
+        return (awsUser?.isSignedIn)!
+    }
 
     static func signOut() {
         let awsUser = UserPool.pool.currentUser()
@@ -58,6 +63,6 @@ class User {
     static func isRetailer() -> Promise<Bool> {
         return PromiseKit.wrap(isRetailer)
     }
-    
+
     
 }

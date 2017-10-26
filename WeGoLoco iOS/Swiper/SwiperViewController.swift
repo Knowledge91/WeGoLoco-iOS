@@ -38,7 +38,10 @@ class SwiperViewController: UIViewController, LoadingAnimationProtocol {
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
+        if User.isSignedIn() {
+            print("jo")
+
         //LoadingAnimationProtocol
         loadingAnimationView = view
         
@@ -60,6 +63,7 @@ class SwiperViewController: UIViewController, LoadingAnimationProtocol {
                 //            print(tinpons?.last?.id)
             }.catch { error in
                 print(error)
+        }
         }
     }
     

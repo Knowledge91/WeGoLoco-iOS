@@ -30,9 +30,8 @@ class TabBarController: UITabBarController {
             } else {
                 if !self.hasManagerVC() {
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    //let managerViewController = storyboard.instantiateViewController(withIdentifier: "managerViewController")
-                    let navigationViewController = storyboard.instantiateViewController(withIdentifier: "managerNavigationController")
-                    self.viewControllers?.insert(navigationViewController, at: 1)
+                    let managerNavigationController = storyboard.instantiateViewController(withIdentifier: "managerNavigationController")
+                    self.viewControllers?.insert(managerNavigationController, at: 1)
                 }
             }
         }.catch { error in
