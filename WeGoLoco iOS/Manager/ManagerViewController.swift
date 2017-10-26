@@ -19,7 +19,7 @@ import PromiseKit
 final class ManagerViewController: UIViewController, ListAdapterDataSource, SearchSectionControllerDelegate {
     
     lazy var adapter: ListAdapter = {
-        return ListAdapter(updater: ListAdapterUpdater(), viewController: self)
+        return ListAdapter(updater: ListAdapterUpdater(), viewController: self, workingRangeSize: 5)
     }()
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     lazy var words: Set<String> = {

@@ -8,20 +8,87 @@
 
 import UIKit
 import AWSCognitoIdentityProvider
-import AWSS3
+import Eureka
+import Whisper
 
-class ProfilViewController: UIViewController {
+class ProfilViewController: FormViewController {
     var user: AWSCognitoIdentityUser?
     var userPool: AWSCognitoIdentityUserPool?
     
-    @IBOutlet weak var imageView: UIImageView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    @IBAction func signOut(_ sender: AnyObject) {
-        User.signOut()
+        
+        // change Password
+        form +++ Section()
+            <<< SwitchRow(){
+                $0.title = "Change Password"
+                $0.tag = "changePasswordSwitch"
+            }
+            <<< PasswordRow(){
+                $0.title = "Current Password"
+                $0.tag = "currentPassword"
+                $0.hidden = .function(["changePasswordSwitch"], { form -> Bool in
+                    let row: RowOf<Bool>! = form.rowBy(tag: "changePasswordSwitch")
+                    return row.value ?? false == false
+                })
+            }
+            <<< PasswordRow(){
+                $0.title = "New Password"
+                $0.tag = "newPassword"
+                $0.hidden = .function(["changePasswordSwitch"], { form -> Bool in
+                    let row: RowOf<Bool>! = form.rowBy(tag: "changePasswordSwitch")
+                    return row.value ?? false == false
+                })
+            }
+            <<< ButtonRow(){
+                $0.title = "Save New Password"
+                $0.hidden = .function(["changePasswordSwitch"], { form -> Bool in
+                    let row: RowOf<Bool>! = form.rowBy(tag: "changePasswordSwitch")
+                    return row.value ?? false == false
+                })
+            }.onCellSelection { _, _ in
+                let currentPassword = (self.form.rowBy(tag: "currentPassword") as! PasswordRow).value!
+                let newPassword = (self.form.rowBy(tag: "newPassword") as! PasswordRow).value!
+                self.changePassword(currentPassword: currentPassword, proposedPassword: newPassword)
+            }
+        
+        // Sign Out
+        +++ Section()
+            <<< ButtonRow() {
+                $0.title = "Sign Out"
+            }.onCellSelection { _, _ in
+                self.signOut()
+            }
+        
     }
 
+    // MARK: Helper
+    private func changePassword(currentPassword: String, proposedPassword: String) -> Void {
+         let user = UserPool.pool.currentUser()
+        print(user)
+        user?.changePassword(currentPassword, proposedPassword: proposedPassword).continueWith { task -> () in
+            if let error = task.error {
+                DispatchQueue.main.async {
+                    let message = Message(title: String(describing: error), backgroundColor: .red)
+                    Whisper.show(whisper: message, to: self.navigationController!, action: .show)
+                }
+            } else {
+                DispatchQueue.main.async {
+                    let message = Message(title: "Password Changed", backgroundColor: .green)
+                    Whisper.show(whisper: message, to: self.navigationController!, action: .show)
+                }
+            }
+        }
+    }
+    
+    private func signOut() {
+        User.signOut()
+    }
+    
 }
+    
+//    @IBAction func signOut(_ sender: AnyObject) {
+//        User.signOut()
+//    }
+
+

@@ -29,6 +29,7 @@ class User {
     static func signOut() {
         let awsUser = UserPool.pool.currentUser()
         awsUser?.signOut()
+        awsUser?.getDetails()
     }
     
     static func getUserAttributes(_ completion: @escaping ([AWSCognitoIdentityProviderAttributeType]?, Error?)->()) {

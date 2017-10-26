@@ -11,6 +11,7 @@ import IGListKit
 import PromiseKit
 
 class ProductCell: UICollectionViewCell {
+    let cache = NSCache<NSString, UIImage>()
     
     public var tinpon: Tinpon! {
         didSet {
@@ -24,12 +25,17 @@ class ProductCell: UICollectionViewCell {
                 productStateSwitch.isOn = false
             }
             
-            firstly {
-                API.getTinponMainImage(tinponId: tinpon!.id!)
-            }.then { image in
-                self.productImageView.image = image
-            }.catch { error in
-                print(error)
+            if let cachedImage = cache.object(forKey: NSString(string: "tinpon_\(tinpon.id!)")) {
+                self.productImageView.image = cachedImage
+            } else {
+                firstly {
+                    API.getTinponMainImage(tinponId: tinpon!.id!)
+                }.then { image -> () in
+                    self.cache.setObject(image!, forKey: NSString(string: "tinpon_\(self.tinpon.id!)"))
+                    self.productImageView.image = image
+                }.catch { error in
+                    print(error)
+                }
             }
         }
     }

@@ -21,7 +21,7 @@ class TabBarController: UITabBarController {
             User.isRetailer()
         }.then { isRetailer -> Void in
             if !isRetailer {
-                self.viewControllers?.remove(at: (self.viewControllers?.count)!-1)
+                //self.viewControllers?.remove(at: (self.viewControllers?.count)!-1)
             } else {
                 if self.viewControllers!.count < 3 {
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
