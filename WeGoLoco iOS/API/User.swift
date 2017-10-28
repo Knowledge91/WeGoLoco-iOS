@@ -32,9 +32,24 @@ class User {
     }
 
     static func signOut() {
+        FederatedIdentities.credentialsProvider.clearCredentials()
         let awsUser = UserPool.pool.currentUser()
         awsUser?.signOut()
         awsUser?.getDetails()
+    }
+    
+    static func signOutAndClean(tabBarController: UITabBarController) {
+
+        // tabBar -> navigation -> view
+        for vc in tabBarController.viewControllers! {
+            // reset navigationControllers
+            vc.navigationController?.popToRootViewController(animated: false)
+            if let resetVC = vc.childViewControllers[0] as? Authentication {
+                // reset viewControllers
+                resetVC.clean()
+            }
+        }
+        signOut()
     }
     
     static func getUserAttributes(_ completion: @escaping ([AWSCognitoIdentityProviderAttributeType]?, Error?)->()) {

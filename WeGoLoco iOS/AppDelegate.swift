@@ -67,7 +67,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate: AWSCognitoIdentityInteractiveAuthenticationDelegate {
     
     func startPasswordAuthentication() -> AWSCognitoIdentityPasswordAuthentication {
-        print("startPasswordAuth")
         if (self.navigationController == nil) {
             self.navigationController = self.storyboard?.instantiateViewController(withIdentifier: "signInNavigationController") as? UINavigationController
         }
@@ -80,7 +79,6 @@ extension AppDelegate: AWSCognitoIdentityInteractiveAuthenticationDelegate {
             self.navigationController!.popToRootViewController(animated: true)
             if (!self.navigationController!.isViewLoaded
                 || self.navigationController!.view.window == nil) {
-                print("startPasswordAuth main queue")
 
                 self.window?.rootViewController?.present(self.navigationController!,
                                                          animated: true,

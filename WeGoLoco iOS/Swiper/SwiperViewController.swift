@@ -23,11 +23,6 @@ class SwiperViewController: UIViewController, LoadingAnimationProtocol {
     var loadingAnimationView: UIView!
     var loadingAnimationOverlay: UIView!
     var loadingAnimationIndicator: UIActivityIndicatorView!
-
-    
-    // MARK: AuthenticationProtocol
-    var authenticationNavigationController: UINavigationController!
-    var authenticationProtocolTabBarController: UITabBarController!
     
     // Outlets
     @IBOutlet weak var kolodaView: CustomKolodaView!
@@ -36,17 +31,19 @@ class SwiperViewController: UIViewController, LoadingAnimationProtocol {
     var tinpons : [Tinpon] = []
     
     //MARK: Lifecycle
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        
+        if User.isSignedIn() {
+            loadTinpons()
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if User.isSignedIn() {
-            print("jo")
-
         //LoadingAnimationProtocol
         loadingAnimationView = view
-        
-        // load Tinpons
-        loadTinpons()
         
         kolodaView.alphaValueSemiTransparent = kolodaAlphaValueSemiTransparent
         kolodaView.countOfVisibleCards = kolodaCountOfVisibleCards
@@ -55,16 +52,6 @@ class SwiperViewController: UIViewController, LoadingAnimationProtocol {
         kolodaView.animator = BackgroundKolodaAnimator(koloda: kolodaView)
         
         self.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
-        
-        firstly {
-            API.getNotSwipedTinpons()
-            }.then { tinpons -> Void in
-                //            print(tinpons?.first?.id)
-                //            print(tinpons?.last?.id)
-            }.catch { error in
-                print(error)
-        }
-        }
     }
     
     //MARK: IBActions
@@ -89,11 +76,6 @@ class SwiperViewController: UIViewController, LoadingAnimationProtocol {
     }
     
     // MARK: Helpers
-    fileprivate func resetUI() {
-        tinpons = [Tinpon]()
-        kolodaView.reloadData()
-    }
-    
     fileprivate func isAlreadyDownloaded(tinpon: Tinpon) -> Bool {
         for swiperTinpon in tinpons {
             if swiperTinpon.id == tinpon.id {
@@ -104,15 +86,16 @@ class SwiperViewController: UIViewController, LoadingAnimationProtocol {
     }
     
     fileprivate func loadTinpons() {
-        resetUI()
+        print("loading Tinpons")
         startLoadingAnimation()
         firstly {
             API.getNotSwipedTinpons()
-        }.then { tinpons -> () in
-            self.tinpons = tinpons!
-            self.kolodaView.reloadData()
-            self.showoutOfTinponsIfNecessary()
-            self.stopLoadingAnimation()
+        }.then { [weak self] tinpons -> () in
+            guard let strongSelf = self else { return }
+            strongSelf.tinpons = tinpons!
+            strongSelf.kolodaView.reloadData()
+            strongSelf.showoutOfTinponsIfNecessary()
+            strongSelf.stopLoadingAnimation()
         }.catch { error in
             print("SwiperVC.loadTinpons : not swiped tinpons error : \(error)")
         }
@@ -153,7 +136,18 @@ class SwiperViewController: UIViewController, LoadingAnimationProtocol {
         }
     }
     
+}
+
+// MARK: ResetProtocol
+extension SwiperViewController: Authentication {
+    func clean() {
+        tinpons.removeAll()
+        kolodaView.reloadData()
+    }
     
+    func reload() {
+        loadTinpons()
+    }
 }
 
 //MARK: KolodaViewDelegate
@@ -169,7 +163,7 @@ extension SwiperViewController: KolodaViewDelegate {
     }
     
     func koloda(_ koloda: KolodaView, didSelectCardAt index: Int) {
-        performSegue(withIdentifier: "segueToTinponDetailViewController", sender: self)
+        //performSegue(withIdentifier: "segueToTinponDetailViewController", sender: self)
     }
     
     func kolodaShouldApplyAppearAnimation(_ koloda: KolodaView) -> Bool {

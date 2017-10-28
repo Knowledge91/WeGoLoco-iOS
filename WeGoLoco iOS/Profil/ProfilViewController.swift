@@ -65,7 +65,6 @@ class ProfilViewController: FormViewController {
     // MARK: Helper
     private func changePassword(currentPassword: String, proposedPassword: String) -> Void {
          let user = UserPool.pool.currentUser()
-        print(user)
         user?.changePassword(currentPassword, proposedPassword: proposedPassword).continueWith { task -> () in
             if let error = task.error {
                 DispatchQueue.main.async {
@@ -82,7 +81,7 @@ class ProfilViewController: FormViewController {
     }
     
     private func signOut() {
-        User.signOut()
+        User.signOutAndClean(tabBarController: self.tabBarController!)
     }
     
 }

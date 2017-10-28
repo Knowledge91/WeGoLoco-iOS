@@ -110,6 +110,7 @@ class API {
             invoke(httpMethod: .GET, endPoint: .TinponsSwiper, queryParameters: nil, headerParameters: nil, httpBody: nil)
         }.then { responseData -> () in
             let jsonDecoder = JSONDecoder()
+            print(NSString(data:responseData!, encoding:String.Encoding.utf8.rawValue))
             let tinpons = try! jsonDecoder.decode([Tinpon].self, from: responseData!)
             completion(nil, tinpons)
         }.catch { error in

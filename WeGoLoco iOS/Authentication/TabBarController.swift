@@ -39,6 +39,10 @@ class TabBarController: UITabBarController {
         }
     }
     
+    public func showSwiper() {
+        self.selectedIndex = 0
+    }
+    
     // MARK: Helper
     private func hasManagerVC() -> Bool {
         for vc in self.viewControllers! {

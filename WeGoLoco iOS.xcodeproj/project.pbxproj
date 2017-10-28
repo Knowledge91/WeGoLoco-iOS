@@ -85,6 +85,7 @@
 		D4CBA45A1F978405002A4365 /* CustomOverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4CBA44E1F97806C002A4365 /* CustomOverlayView.xib */; };
 		D4ECAEE41FA24E47002E581D /* ForgotPasswordEnterEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4ECAEE31FA24E47002E581D /* ForgotPasswordEnterEmailViewController.swift */; };
 		D4ECAEE61FA24E6F002E581D /* ForgotPasswordPasswordConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4ECAEE51FA24E6F002E581D /* ForgotPasswordPasswordConfirmationViewController.swift */; };
+		D4ECAEE81FA27FD9002E581D /* AuthenticationProtocoll.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4ECAEE71FA27FD9002E581D /* AuthenticationProtocoll.swift */; };
 		D4F803A61F8E793700E13FFC /* Iso8601Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F803A51F8E793700E13FFC /* Iso8601Date.swift */; };
 		D4F803A81F8E7D8600E13FFC /* EmailConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F803A71F8E7D8600E13FFC /* EmailConfirmationViewController.swift */; };
 		D4F9D9A91F95FCF6003E9BEC /* AWSS3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4F9D9A81F95FCF3003E9BEC /* AWSS3.framework */; };
@@ -195,6 +196,7 @@
 		D4CBA4531F9783A8002A4365 /* pop.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = pop.framework; path = Carthage/Build/iOS/pop.framework; sourceTree = SOURCE_ROOT; };
 		D4ECAEE31FA24E47002E581D /* ForgotPasswordEnterEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordEnterEmailViewController.swift; sourceTree = "<group>"; };
 		D4ECAEE51FA24E6F002E581D /* ForgotPasswordPasswordConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordPasswordConfirmationViewController.swift; sourceTree = "<group>"; };
+		D4ECAEE71FA27FD9002E581D /* AuthenticationProtocoll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationProtocoll.swift; sourceTree = "<group>"; };
 		D4F803A51F8E793700E13FFC /* Iso8601Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Iso8601Date.swift; sourceTree = "<group>"; };
 		D4F803A71F8E7D8600E13FFC /* EmailConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailConfirmationViewController.swift; sourceTree = "<group>"; };
 		D4F9D9A81F95FCF3003E9BEC /* AWSS3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSS3.framework; path = Carthage/Build/iOS/AWSS3.framework; sourceTree = SOURCE_ROOT; };
@@ -370,7 +372,6 @@
 				D49A5C091F909C62003A824E /* Manager */,
 				D49A5C081F909C2B003A824E /* Profil */,
 				D4B95CAB1F8AA7ED005F5DCA /* AppDelegate.swift */,
-				D4B95CAD1F8AA7ED005F5DCA /* SignInViewController.swift */,
 				D4B95CAF1F8AA7ED005F5DCA /* Main.storyboard */,
 				D47876171F8BBED20079818C /* Supporting Files */,
 				D41A9EB21F90E3D2003F075B /* Special Controller */,
@@ -404,12 +405,14 @@
 		D4CB2C621F8E63870095BF1F /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				D4B95CAD1F8AA7ED005F5DCA /* SignInViewController.swift */,
 				D49A5C0C1F909CDC003A824E /* TabBarController.swift */,
 				D4ECAEE21FA24E05002E581D /* Forgot Password */,
 				D4CB2C601F8E637D0095BF1F /* SignUpViewController.swift */,
 				D4F803A71F8E7D8600E13FFC /* EmailConfirmationViewController.swift */,
 				D49A5C041F9096F1003A824E /* FederatedIdentities.swift */,
 				D49A5C0E1F909DED003A824E /* UserPool.swift */,
+				D4ECAEE71FA27FD9002E581D /* AuthenticationProtocoll.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -575,6 +578,7 @@
 				D4CBA4561F9783F8002A4365 /* SwiperViewController.swift in Sources */,
 				D4CBA4571F9783FA002A4365 /* BackgroundKolodaAnimator.swift in Sources */,
 				D4CB2C611F8E637D0095BF1F /* SignUpViewController.swift in Sources */,
+				D4ECAEE81FA27FD9002E581D /* AuthenticationProtocoll.swift in Sources */,
 				D41A9EC31F90E79F003F075B /* SelectProductCategoryViewController.swift in Sources */,
 				D41A9EC01F90E700003F075B /* CategoryCell.swift in Sources */,
 				D41A9EC41F90E7AA003F075B /* SizesViewController.swift in Sources */,

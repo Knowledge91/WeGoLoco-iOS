@@ -49,9 +49,15 @@ extension SignInViewController: AWSCognitoIdentityPasswordAuthentication {
                 let retryAction = UIAlertAction(title: "Retry", style: .default, handler: nil)
                 alertController.addAction(retryAction)
                 
-                self.present(alertController, animated: true, completion:  nil)
+                
+                
+                self.present(alertController, animated: true, completion: nil)
             } else {
-                self.dismiss(animated: true, completion: nil)
+                let presentingVC = self.presentingViewController
+                self.dismiss(animated: true){
+                    print(presentingVC)
+                    (presentingVC as! TabBarController).showSwiper()
+                }
             }
         }
     }
