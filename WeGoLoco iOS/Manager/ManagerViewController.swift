@@ -101,3 +101,10 @@ final class ManagerViewController: UIViewController, ListAdapterDataSource, Sear
     
 }
 
+extension ManagerViewController: Authentication {    
+    func clean() {
+         tinpons?.removeAll()
+        adapter.reloadData(completion: nil)
+    }
+}
+

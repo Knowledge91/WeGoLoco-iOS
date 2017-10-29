@@ -144,10 +144,6 @@ extension SwiperViewController: Authentication {
         tinpons.removeAll()
         kolodaView.reloadData()
     }
-    
-    func reload() {
-        loadTinpons()
-    }
 }
 
 //MARK: KolodaViewDelegate
