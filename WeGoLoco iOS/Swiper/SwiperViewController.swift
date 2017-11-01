@@ -35,7 +35,7 @@ class SwiperViewController: UIViewController, LoadingAnimationProtocol {
         super.viewWillAppear(true)
         
         
-        if User.isSignedIn() {
+        if UserAPI.isSignedIn() {
             loadTinpons()
         }
     }
@@ -126,7 +126,7 @@ class SwiperViewController: UIViewController, LoadingAnimationProtocol {
     }
     
     fileprivate func saveSwipe(tinpon: Tinpon, like: Int) {
-        let swipedTinpon = SwipedTinpon(person_id: User.identityId(), tinpon_id: tinpon.id!, liked: like)
+        let swipedTinpon = SwipedTinpon(person_id: UserAPI.identityId(), tinpon_id: tinpon.id!, liked: like)
         firstly {
             API.saveSwipe(swipedTinpon: swipedTinpon)
         }.then {

@@ -10,13 +10,41 @@ import UIKit
 import AWSCognitoIdentityProvider
 import Eureka
 import Whisper
+import PromiseKit
 
-class ProfilViewController: FormViewController {
-    var user: AWSCognitoIdentityUser?
-    var userPool: AWSCognitoIdentityUserPool?
+class ProfilViewController: FormViewController, LoadingAnimationProtocol {
+    // MARK: LoadingAnimationProtocol
+    var loadingAnimationView: UIView!
+    var loadingAnimationOverlay: UIView!
+    var loadingAnimationIndicator: UIActivityIndicatorView!
+    
+    var user: User!
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        startLoadingAnimation()
+        firstly {
+            UserAPI.getUser()
+        }.then { user -> Void in
+            self.user = user
+            
+            if !self.user.isRetailer {
+                let retailerSwitchRow = self.form.rowBy(tag: "retailerSwitch") as! SwitchRow
+                retailerSwitchRow.value = self.user.isRetailer
+                retailerSwitchRow.reload()
+            }
+            self.stopLoadingAnimation()
+        }.catch { error in
+            print(error)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //LoadingAnimationProtocol
+        loadingAnimationView = view
         
         // change Password
         form +++ Section()
@@ -54,20 +82,24 @@ class ProfilViewController: FormViewController {
         
         // Become a Retailer
             <<< SwitchRow() {
-                $0.title = "I am a retailer"
+                $0.title = "I am a Retailer"
                 $0.tag = "retailerSwitch"
+                $0.value = true
             }.onChange { row in
+                self.user.isRetailer = row.value!
                 if row.value! {
                     let message = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec vestibulum nisi. Donec tristique iaculis est, at tincidunt nisi. Quisque magna enim, vehicula sed lectus vitae, auctor scelerisque turpis. Ut condimentum auctor enim a pulvinar. Integer id lorem luctus, maximus ipsum sed, consectetur velit. Maecenas eget turpis quis dolor porta molestie. Sed imperdiet suscipit orci. In erat elit, maximus in lectus id, venenatis fringilla velit. Vestibulum interdum molestie iaculis. Fusce id tellus eu erat pharetra venenatis eget in velit. Donec pellentesque felis urna, sit amet consectetur ipsum efficitur non. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                     let alertController = UIAlertController(title: "title",
                                                             message: message,
                                                             preferredStyle: .alert)
                     let disagreeAction = UIAlertAction(title: "I Disagree", style: .cancel, handler: self.setRetailerSwitchToFalse)
-                    let agreeAction = UIAlertAction(title: "I Agree", style: .default, handler: nil)
+                    let agreeAction = UIAlertAction(title: "I Agree", style: .default, handler: self.updateRetailerRole)
                     alertController.addAction(disagreeAction)
                     alertController.addAction(agreeAction)
                  
                     self.present(alertController, animated: true, completion: nil)
+                } else {
+                    self.updateRetailerRole(alert: nil)
                 }
             }
         
@@ -82,10 +114,24 @@ class ProfilViewController: FormViewController {
 
     // MARK: Helper
     private func setRetailerSwitchToFalse(alert: UIAlertAction!) {
-        print("retailer disagree")
         let retailerSwitchRow = form.rowBy(tag: "retailerSwitch") as! SwitchRow
         retailerSwitchRow.value = false
         retailerSwitchRow.cell.switchControl.setOn(false, animated: true)
+    }
+    private func updateRetailerRole(alert: UIAlertAction!) {
+        var newValue: String
+        if user.isRetailer {
+            newValue = "retailer"
+        } else {
+            newValue = "user"
+        }
+        firstly {
+            UserAPI.updateAttribue(role: "custom:role", value: newValue)
+        }.then {
+            (self.tabBarController as! TabBarController).updateItems()
+        }.catch { error in
+            print(error)
+        }
     }
     
     private func changePassword(currentPassword: String, proposedPassword: String) -> Void {
@@ -106,7 +152,7 @@ class ProfilViewController: FormViewController {
     }
     
     private func signOut() {
-        User.signOutAndClean(tabBarController: self.tabBarController!)
+        UserAPI.signOutAndClean(tabBarController: self.tabBarController!)
     }
     
 }

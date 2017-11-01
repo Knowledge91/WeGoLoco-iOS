@@ -10,16 +10,29 @@ import Foundation
 import AWSCognitoIdentityProvider
 import PromiseKit
 
-class User {
-    static func getUserData() {
-        let awsUser = UserPool.pool.currentUser()
-        awsUser?.getDetails().continueOnSuccessWith { (task) -> AnyObject? in
-            DispatchQueue.main.async(execute: {
-                let userAttributes = (task.result)?.userAttributes
-//                print(isRetailer(attributes: userAttributes!))
-            })
-            return nil
+struct User {
+    var isRetailer: Bool
+}
+
+class UserAPI {
+    static func getUser(completion: @escaping (Error?, User?)->() ) {
+        firstly {
+            getUserAttributes()
+        }.then { attributes -> Void in
+            var isRetailer = false
+            for attribute in attributes {
+                if attribute.name == "custom:role" && attribute.value == "retailer" {
+                    isRetailer = true
+                }
+            }
+            let user = User(isRetailer: isRetailer)
+            completion(nil, user)
+        }.catch { error in
+            completion(error, nil)
         }
+    }
+    static func getUser() -> Promise<User?> {
+        return PromiseKit.wrap{ getUser(completion: $0) }
     }
     
     static func identityId() -> String {
@@ -63,20 +76,39 @@ class User {
         return PromiseKit.wrap(getUserAttributes)
     }
     
-    static func isRetailer(_ completion: @escaping (Bool?, Error?)->()) {
-        firstly {
-            self.getUserAttributes()
-        }.then { attributes -> Void in
-            for attribute in attributes {
-                if attribute.name == "custom:role" && attribute.value == "retailer" {
-                    completion(true, nil)
-                }
+//    static func isRetailer(_ completion: @escaping (Bool?, Error?)->()) {
+//        firstly {
+//            self.getUserAttributes()
+//        }.then { attributes -> Void in
+//            for attribute in attributes {
+//                if attribute.name == "custom:role" && attribute.value == "retailer" {
+//                    completion(true, nil)
+//                }
+//            }
+//            completion(false, nil)
+//        }
+//    }
+//    static func isRetailer() -> Promise<Bool> {
+//        return PromiseKit.wrap(isRetailer)
+//    }
+    
+    static func updateAttribute(role: String, value: String, completion: @escaping (Error?)->() ) {
+        let awsUser = UserPool.pool.currentUser()
+        var attributes = [AWSCognitoIdentityUserAttributeType]()
+        let retailerAttribute = AWSCognitoIdentityUserAttributeType()
+        retailerAttribute?.name = role
+        retailerAttribute?.value = value
+        attributes.append(retailerAttribute!)
+        awsUser?.update(attributes).continueWith { task -> Void in
+            if let error = task.error {
+                completion(error)
+            } else {
+                completion(nil)
             }
-            completion(false, nil)
         }
     }
-    static func isRetailer() -> Promise<Bool> {
-        return PromiseKit.wrap(isRetailer)
+    static func updateAttribue(role: String, value: String) -> Promise<Void> {
+        return PromiseKit.wrap{ updateAttribute(role: role, value: value, completion: $0) }
     }
 
     
