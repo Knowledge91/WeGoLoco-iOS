@@ -5,6 +5,7 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>Jameson SS Round.otf</string>
+		<string>GothamRoundedBook.ttf</string>
 	</array>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>We want to select one of your photos</string>

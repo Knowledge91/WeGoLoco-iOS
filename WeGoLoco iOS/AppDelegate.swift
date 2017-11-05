@@ -10,6 +10,7 @@ import UIKit
 import AWSCore
 import AWSCognito
 import AWSCognitoIdentityProvider
+import IQKeyboardManager
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -32,6 +33,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // fetch the user pool client we initialized in above step
         self.storyboard = UIStoryboard(name: "Main", bundle: nil)
         UserPool.pool.delegate = self
+
+        // IQKeyboardManger
+        // prevent keyboard of hiding textviews
+        IQKeyboardManager.shared().isEnabled = true
         
         return true
     }
