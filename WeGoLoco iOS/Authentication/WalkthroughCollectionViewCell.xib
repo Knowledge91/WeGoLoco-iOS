@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,34 +18,38 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="WalkthroughCollectionViewCell" customModule="WeGoLoco_iOS" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="400" height="646"/>
+            <rect key="frame" x="0.0" y="0.0" width="387" height="456"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="400" height="646"/>
+                <rect key="frame" x="0.0" y="0.0" width="387" height="456"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Hp0-4K-U9Q">
                         <rect key="frame" x="-40" y="0.0" width="415" height="415"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AL7-Lo-qQ4">
-                                <rect key="frame" x="0.0" y="0.0" width="400" height="264"/>
-                                <fontDescription key="fontDescription" name="GothamRounded-Book" family="Gotham Rounded" pointSize="18"/>
-                                <nil key="textColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AL7-Lo-qQ4">
+                                <rect key="frame" x="0.0" y="0.0" width="387" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="yYu-c9-kfq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="GothamRounded-Book" family="Gotham Rounded" pointSize="19"/>
+                                <color key="textColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Km8-1Z-Bq5">
-                                <rect key="frame" x="0.0" y="264" width="400" height="400"/>
+                                <rect key="frame" x="0.0" y="40" width="387" height="387"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Km8-1Z-Bq5" secondAttribute="height" multiplier="1:1" id="qKf-Lc-rGT"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="AL7-Lo-qQ4" firstAttribute="leading" secondItem="Hp0-4K-U9Q" secondAttribute="leading" id="3TZ-MT-RCe"/>
+                            <constraint firstItem="AL7-Lo-qQ4" firstAttribute="top" secondItem="Hp0-4K-U9Q" secondAttribute="top" id="4C9-zg-XL8"/>
                             <constraint firstAttribute="trailing" secondItem="Km8-1Z-Bq5" secondAttribute="trailing" id="AGa-sZ-0py"/>
-                            <constraint firstAttribute="trailing" secondItem="AL7-Lo-qQ4" secondAttribute="trailing" id="CZ8-aA-se8"/>
-                            <constraint firstItem="AL7-Lo-qQ4" firstAttribute="leading" secondItem="Hp0-4K-U9Q" secondAttribute="leading" id="TY6-dS-wRy"/>
+                            <constraint firstAttribute="trailing" secondItem="AL7-Lo-qQ4" secondAttribute="trailing" id="Bci-Cb-v1o"/>
                             <constraint firstItem="Km8-1Z-Bq5" firstAttribute="leading" secondItem="Hp0-4K-U9Q" secondAttribute="leading" id="m1D-Pj-tME"/>
                         </constraints>
                     </stackView>
@@ -54,16 +58,15 @@
             <constraints>
                 <constraint firstItem="Hp0-4K-U9Q" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="9GG-1e-JED"/>
                 <constraint firstItem="Hp0-4K-U9Q" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Z63-vX-xEf"/>
-                <constraint firstAttribute="bottom" secondItem="Hp0-4K-U9Q" secondAttribute="bottom" id="baj-fS-WgG"/>
                 <constraint firstAttribute="trailing" secondItem="Hp0-4K-U9Q" secondAttribute="trailing" id="oFl-AW-KOX"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <size key="customSize" width="369" height="530"/>
+            <size key="customSize" width="356" height="340"/>
             <connections>
                 <outlet property="headerLabel" destination="AL7-Lo-qQ4" id="L6u-81-fET"/>
                 <outlet property="sliderImageView" destination="Km8-1Z-Bq5" id="OYB-7b-b66"/>
             </connections>
-            <point key="canvasLocation" x="-420" y="-97"/>
+            <point key="canvasLocation" x="-473.5" y="-195"/>
         </collectionViewCell>
     </objects>
 </document>
