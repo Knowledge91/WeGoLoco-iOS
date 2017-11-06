@@ -8,6 +8,14 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="GothamRounded-Book.otf">
+            <string>GothamRounded-Book</string>
+        </array>
+        <array key="GothamRoundedMedium_21022.ttf">
+            <string>GothamRounded-Medium</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Navigation Controller-->
         <scene sceneID="K0c-DU-TEf">
@@ -18,6 +26,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="JamesonSSRound" family="Jameson SS Round" pointSize="30"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
                     </navigationBar>
                     <connections>
@@ -40,6 +49,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="JamesonSSRound" family="Jameson SS Round" pointSize="30"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
                     </navigationBar>
                     <connections>
@@ -59,7 +69,7 @@
                         <viewControllerLayoutGuide type="bottom" id="cH8-Uh-FST"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="RUC-hE-jqY">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -101,7 +111,7 @@
                         <viewControllerLayoutGuide type="bottom" id="7Fe-Pa-SCR"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8oO-d0-eXg">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xqv-l9-9jQ" userLabel="Koloda View" customClass="CustomKolodaView" customModule="WeGoLoco_iOS" customModuleProvider="target">
@@ -163,7 +173,7 @@
                         <viewControllerLayoutGuide type="bottom" id="lXB-dX-laY"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ors-Ek-QfW">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Manager" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Rz-Cs-Xyf">
@@ -341,11 +351,11 @@
             <objects>
                 <tabBarController id="9F1-Gx-eep" customClass="TabBarController" customModule="WeGoLoco_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="5RI-pQ-jSk"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="L0f-Ic-OML">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="L0f-Ic-OML">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <color key="selectedImageTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
                         <segue destination="WPL-a0-XTl" kind="relationship" relationship="viewControllers" id="kAc-BT-k0g"/>
@@ -369,73 +379,107 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="0gE-QN-RVI">
-                                <rect key="frame" x="16" y="538" width="343" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" spellCheckingType="no" secureTextEntry="YES"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VVB-A6-x0H">
-                                <rect key="frame" x="16" y="563" width="343" height="30"/>
-                                <state key="normal" title="Sign In"/>
-                                <connections>
-                                    <action selector="signInButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3Io-Dy-NkS"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="CJL-iR-ibg">
-                                <rect key="frame" x="16" y="500" width="343" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GK6-aY-0eQ">
-                                <rect key="frame" x="16" y="594" width="343" height="30"/>
-                                <state key="normal" title="Sign Up"/>
-                                <connections>
-                                    <segue destination="8lw-cg-uil" kind="show" id="TZB-Se-Eag"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IOk-tG-9qF">
-                                <rect key="frame" x="16" y="629" width="343" height="30"/>
-                                <state key="normal" title="Forgot Password"/>
-                                <connections>
-                                    <segue destination="zGF-8D-Xgp" kind="show" id="xI1-8B-TBK"/>
-                                </connections>
-                            </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lPF-XN-P0Z" customClass="FSPagerView" customModule="FSPagerView">
-                                <rect key="frame" x="16" y="72" width="343" height="368"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="rGe-K7-hXf">
-                                <rect key="frame" x="8" y="461" width="359" height="37"/>
-                                <color key="pageIndicatorTintColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="currentPageIndicatorTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                            </pageControl>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="irC-s5-36M">
+                                <rect key="frame" x="16" y="69" width="343" height="598"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="-5" translatesAutoresizingMaskIntoConstraints="NO" id="2bp-cq-HPv" userLabel="Walkthrough">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="418"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lPF-XN-P0Z" customClass="FSPagerView" customModule="FSPagerView">
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="393"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="rGe-K7-hXf">
+                                                <rect key="frame" x="0.0" y="388" width="343" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="uRj-fG-lGn"/>
+                                                </constraints>
+                                                <color key="pageIndicatorTintColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="currentPageIndicatorTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            </pageControl>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="kt2-JR-ZDo" userLabel="Sign In">
+                                        <rect key="frame" x="0.0" y="418" width="343" height="140"/>
+                                        <subviews>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="CJL-iR-ibg">
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="40"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" name="GothamRounded-Book" family="Gotham Rounded" pointSize="20"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                            </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="15" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="0gE-QN-RVI">
+                                                <rect key="frame" x="0.0" y="50" width="343" height="40"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" name="GothamRounded-Book" family="Gotham Rounded" pointSize="20"/>
+                                                <textInputTraits key="textInputTraits" spellCheckingType="no" secureTextEntry="YES"/>
+                                            </textField>
+                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VVB-A6-x0H">
+                                                <rect key="frame" x="0.0" y="100" width="343" height="40"/>
+                                                <color key="backgroundColor" red="0.16078431372549018" green="1" blue="0.77647058823529413" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="20"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <state key="normal" title="Sign In"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="signInButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3Io-Dy-NkS"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="140" id="IE5-eL-oZ6"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Z9N-5w-04u" userLabel="Sign Up and Forgot Password">
+                                        <rect key="frame" x="0.0" y="558" width="343" height="40"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GK6-aY-0eQ">
+                                                <rect key="frame" x="0.0" y="0.0" width="171.5" height="40"/>
+                                                <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="15"/>
+                                                <state key="normal" title="Sign Up">
+                                                    <color key="titleColor" red="0.16078431369999999" green="1" blue="0.77647058820000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <segue destination="8lw-cg-uil" kind="show" id="TZB-Se-Eag"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IOk-tG-9qF">
+                                                <rect key="frame" x="171.5" y="0.0" width="171.5" height="40"/>
+                                                <fontDescription key="fontDescription" name="GothamRounded-Medium" family="Gotham Rounded" pointSize="15"/>
+                                                <state key="normal" title="Forgot Password">
+                                                    <color key="titleColor" red="0.16078431369999999" green="1" blue="0.77647058820000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <segue destination="zGF-8D-Xgp" kind="show" id="xI1-8B-TBK"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="Otv-xT-0hh"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="2bp-cq-HPv" firstAttribute="leading" secondItem="irC-s5-36M" secondAttribute="leading" id="AI2-m1-R6f"/>
+                                    <constraint firstAttribute="trailing" secondItem="kt2-JR-ZDo" secondAttribute="trailing" id="IeV-mP-4D8"/>
+                                    <constraint firstAttribute="trailing" secondItem="Z9N-5w-04u" secondAttribute="trailing" id="JWS-nX-au2"/>
+                                    <constraint firstItem="kt2-JR-ZDo" firstAttribute="leading" secondItem="irC-s5-36M" secondAttribute="leading" id="hso-Ut-qoA"/>
+                                    <constraint firstAttribute="trailing" secondItem="2bp-cq-HPv" secondAttribute="trailing" id="jvX-f3-yd4"/>
+                                    <constraint firstItem="Z9N-5w-04u" firstAttribute="leading" secondItem="irC-s5-36M" secondAttribute="leading" id="qFQ-Zh-R0x"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="IOk-tG-9qF" firstAttribute="top" secondItem="GK6-aY-0eQ" secondAttribute="bottom" constant="5" id="7T0-O9-1ov"/>
-                            <constraint firstItem="CJL-iR-ibg" firstAttribute="leading" secondItem="0gE-QN-RVI" secondAttribute="leading" id="86V-bx-c3U"/>
-                            <constraint firstItem="lPF-XN-P0Z" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="GHQ-s5-IxH"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="IOk-tG-9qF" secondAttribute="bottom" constant="8" symbolic="YES" id="M5K-0g-6cQ"/>
-                            <constraint firstItem="GK6-aY-0eQ" firstAttribute="leading" secondItem="IOk-tG-9qF" secondAttribute="leading" id="RTZ-So-c5z"/>
-                            <constraint firstItem="GK6-aY-0eQ" firstAttribute="top" secondItem="VVB-A6-x0H" secondAttribute="bottom" constant="1" id="S4R-hP-pp0"/>
-                            <constraint firstItem="rGe-K7-hXf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-8" id="UtP-DG-THC"/>
-                            <constraint firstItem="rGe-K7-hXf" firstAttribute="centerX" secondItem="CJL-iR-ibg" secondAttribute="centerX" id="V7h-k4-GgK"/>
-                            <constraint firstItem="GK6-aY-0eQ" firstAttribute="top" secondItem="0gE-QN-RVI" secondAttribute="bottom" constant="26" id="VxM-SY-X7T"/>
-                            <constraint firstItem="CJL-iR-ibg" firstAttribute="top" secondItem="rGe-K7-hXf" secondAttribute="bottom" constant="2" id="YhK-xy-f9n"/>
-                            <constraint firstItem="0gE-QN-RVI" firstAttribute="trailing" secondItem="VVB-A6-x0H" secondAttribute="trailing" id="ae0-dQ-4gN"/>
-                            <constraint firstItem="CJL-iR-ibg" firstAttribute="trailing" secondItem="0gE-QN-RVI" secondAttribute="trailing" id="bmh-qN-qr0"/>
-                            <constraint firstItem="GK6-aY-0eQ" firstAttribute="trailing" secondItem="IOk-tG-9qF" secondAttribute="trailing" id="eHp-Qb-VB7"/>
-                            <constraint firstItem="VVB-A6-x0H" firstAttribute="leading" secondItem="GK6-aY-0eQ" secondAttribute="leading" id="ecb-QU-UZa"/>
-                            <constraint firstItem="lPF-XN-P0Z" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="ge0-Et-KhV"/>
-                            <constraint firstItem="lPF-XN-P0Z" firstAttribute="leading" secondItem="CJL-iR-ibg" secondAttribute="leading" id="jzB-ai-gCZ"/>
-                            <constraint firstItem="lPF-XN-P0Z" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="m9O-01-WiZ"/>
-                            <constraint firstItem="0gE-QN-RVI" firstAttribute="leading" secondItem="VVB-A6-x0H" secondAttribute="leading" id="nc0-rA-lT1"/>
-                            <constraint firstItem="VVB-A6-x0H" firstAttribute="trailing" secondItem="GK6-aY-0eQ" secondAttribute="trailing" id="oSB-Vk-ve4"/>
-                            <constraint firstItem="0gE-QN-RVI" firstAttribute="top" secondItem="CJL-iR-ibg" secondAttribute="bottom" constant="8" symbolic="YES" id="rq4-tX-Rn8"/>
-                            <constraint firstItem="rGe-K7-hXf" firstAttribute="top" secondItem="lPF-XN-P0Z" secondAttribute="bottom" constant="21" id="v7T-4e-7Ax"/>
-                            <constraint firstItem="lPF-XN-P0Z" firstAttribute="trailing" secondItem="CJL-iR-ibg" secondAttribute="trailing" id="zZX-3U-329"/>
+                            <constraint firstItem="irC-s5-36M" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="GX0-zq-Xzu"/>
+                            <constraint firstItem="irC-s5-36M" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="5" id="X9t-43-6hc"/>
+                            <constraint firstAttribute="trailing" secondItem="irC-s5-36M" secondAttribute="trailing" constant="16" id="gz6-TK-jT9"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="irC-s5-36M" secondAttribute="bottom" id="vYY-zt-UdN"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="S i g n   I n" id="MmL-gE-A2P"/>
@@ -444,6 +488,7 @@
                         <outlet property="pageControl" destination="rGe-K7-hXf" id="UhG-5e-9Xc"/>
                         <outlet property="pagerView" destination="lPF-XN-P0Z" id="ZfO-U5-HBX"/>
                         <outlet property="passwordTextField" destination="0gE-QN-RVI" id="SXK-7q-wOn"/>
+                        <outlet property="signInButton" destination="VVB-A6-x0H" id="S0b-QB-5R9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

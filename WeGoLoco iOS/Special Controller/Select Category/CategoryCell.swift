@@ -37,7 +37,7 @@ final class CategoryCell: UICollectionViewCell {
         view.backgroundColor = .clear
         view.textAlignment = .center
         view.textColor = .white
-        view.font = Font.body()
+        view.font = Fonts.body()
         view.adjustsFontSizeToFitWidth = true
         self.contentView.addSubview(view)
         return view

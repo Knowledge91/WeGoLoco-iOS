@@ -16,7 +16,7 @@ import UIKit
 import IGListKit
 import PromiseKit
 
-final class ManagerViewController: UIViewController, ListAdapterDataSource, SearchSectionControllerDelegate {
+final class ManagerViewController: UIViewController, ListAdapterDataSource, SearchSectionControllerDelegate, NavigationBarGradientProtocol {
     
     lazy var adapter: ListAdapter = {
         return ListAdapter(updater: ListAdapterUpdater(), viewController: self, workingRangeSize: 5)
@@ -46,6 +46,9 @@ final class ManagerViewController: UIViewController, ListAdapterDataSource, Sear
         view.addSubview(collectionView)
         adapter.collectionView = collectionView
         adapter.dataSource = self
+        
+        // NavBar gradient
+        setNavigationBarGradient()
     }
     
     override func viewDidLayoutSubviews() {

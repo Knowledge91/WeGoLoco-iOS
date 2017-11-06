@@ -71,6 +71,7 @@
 		D48ABBA71F90F530002F5983 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D48ABB9E1F90F4FE002F5983 /* Media.xcassets */; };
 		D48ABBA81F90F82F002F5983 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D4B95CB71F8AA7ED005F5DCA /* Info.plist */; };
 		D48ABBBF1F90FCB2002F5983 /* Jameson SS Round.otf in Resources */ = {isa = PBXBuildFile; fileRef = D48ABBB11F90FB44002F5983 /* Jameson SS Round.otf */; };
+		D4969FF91FAF9F6B000E687A /* NavigationBarGradientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4969FF81FAF9F6B000E687A /* NavigationBarGradientProtocol.swift */; };
 		D49A5C051F9096F1003A824E /* FederatedIdentities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49A5C041F9096F1003A824E /* FederatedIdentities.swift */; };
 		D49A5C0B1F909C83003A824E /* ManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49A5C0A1F909C83003A824E /* ManagerViewController.swift */; };
 		D49A5C0D1F909CDC003A824E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49A5C0C1F909CDC003A824E /* TabBarController.swift */; };
@@ -205,6 +206,7 @@
 		D48ABBB21F90FB44002F5983 /* Jameson SS Round.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Jameson SS Round.woff"; sourceTree = "<group>"; };
 		D48ABBB31F90FB44002F5983 /* Jameson SS Splash.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Jameson SS Splash.otf"; sourceTree = "<group>"; };
 		D48ABBB41F90FB44002F5983 /* Jameson SS Splash.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Jameson SS Splash.woff"; sourceTree = "<group>"; };
+		D4969FF81FAF9F6B000E687A /* NavigationBarGradientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarGradientProtocol.swift; sourceTree = "<group>"; };
 		D49A5C041F9096F1003A824E /* FederatedIdentities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FederatedIdentities.swift; sourceTree = "<group>"; };
 		D49A5C0A1F909C83003A824E /* ManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerViewController.swift; sourceTree = "<group>"; };
 		D49A5C0C1F909CDC003A824E /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -335,6 +337,7 @@
 				D4B95CDD1F8AA8D9005F5DCA /* Frameworks */,
 				D4B95CB41F8AA7ED005F5DCA /* LaunchScreen.storyboard */,
 				D4B95CB71F8AA7ED005F5DCA /* Info.plist */,
+				D4969FF81FAF9F6B000E687A /* NavigationBarGradientProtocol.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -672,6 +675,7 @@
 				D4FCCA141FAA05C90098383F /* WalkthroughCollectionViewCell.swift in Sources */,
 				D4ECAEE81FA27FD9002E581D /* AuthenticationProtocoll.swift in Sources */,
 				D41A9EC31F90E79F003F075B /* SelectProductCategoryViewController.swift in Sources */,
+				D4969FF91FAF9F6B000E687A /* NavigationBarGradientProtocol.swift in Sources */,
 				D41A9EC01F90E700003F075B /* CategoryCell.swift in Sources */,
 				D41A9EC41F90E7AA003F075B /* SizesViewController.swift in Sources */,
 				D4B95CAE1F8AA7ED005F5DCA /* SignInViewController.swift in Sources */,

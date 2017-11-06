@@ -15,7 +15,11 @@ import FSPagerView
 class SignInViewController: UIViewController {
 
     @IBOutlet weak var emailTextField: UITextField!
+    var emailBorderLayer = CALayer()
     @IBOutlet weak var passwordTextField: UITextField!
+    var passwordBottomLayer = CALayer()
+    @IBOutlet weak var signInButton: UIButton!
+    
     var passwordAuthenticationCompletion: AWSTaskCompletionSource<AWSCognitoIdentityPasswordAuthenticationDetails>?
     var emailText: String?
     
@@ -31,6 +35,27 @@ class SignInViewController: UIViewController {
         // Create a pager view
         pagerView.dataSource = self
         pagerView.delegate = self
+        
+        // NavBar Gradient
+        navigationController?.navigationBar.setGradientBackground(colors: Colors.subuGradientColors)
+        self.navigationController?.navigationBar.barStyle = UIBarStyle.black
+        
+        // signIn Button gradient
+        self.signInButton.applyGradient(colours: Colors.subuGradientColors, locations: [0.0, 0.5, 1.0])
+        
+        // Text field bottom border
+        let width = CGFloat(2.0)
+        emailBorderLayer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        emailBorderLayer.frame = CGRect(x: 0, y: emailTextField!.frame.size.height - width, width:  emailTextField!.frame.size.width, height: emailTextField!.frame.size.height)
+        emailBorderLayer.borderWidth = width
+        emailTextField.layer.addSublayer(emailBorderLayer)
+        emailTextField.layer.masksToBounds = true
+        
+        passwordBottomLayer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        passwordBottomLayer.frame = CGRect(x: 0, y: passwordTextField!.frame.size.height - width, width:  passwordTextField!.frame.size.width, height: passwordTextField!.frame.size.height)
+        passwordBottomLayer.borderWidth = width
+        passwordTextField.layer.addSublayer(passwordBottomLayer)
+        passwordTextField.layer.masksToBounds = true
     }
     
     
@@ -53,9 +78,25 @@ class SignInViewController: UIViewController {
         }
     }
     
+    // MARK: Actions
     @IBAction func signInButtonTouched(_ sender: UIButton) {
-        let authDetails = AWSCognitoIdentityPasswordAuthenticationDetails(username: self.emailTextField.text!, password: self.passwordTextField.text!)
-        self.passwordAuthenticationCompletion?.set(result: authDetails)
+        if isValid() {
+            let authDetails = AWSCognitoIdentityPasswordAuthenticationDetails(username: self.emailTextField.text!, password: self.passwordTextField.text!)
+            self.passwordAuthenticationCompletion?.set(result: authDetails)
+        } else {
+            validate()
+        }
+    }
+    
+    // MARK: Helper
+    private func validate() -> Void {
+        if emailTextField.text!.isEmpty {
+            
+        }
+    }
+    private func isValid() -> Bool {
+        if emailTextField.text!.isEmpty || passwordTextField.text!.isEmpty { return false }
+        return true
     }
 }
 

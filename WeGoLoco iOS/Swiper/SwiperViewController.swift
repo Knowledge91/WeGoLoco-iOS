@@ -18,7 +18,7 @@ private let frameAnimationSpringSpeed: CGFloat = 16
 private let kolodaCountOfVisibleCards = 2
 private let kolodaAlphaValueSemiTransparent: CGFloat = 0.1
 
-class SwiperViewController: UIViewController, LoadingAnimationProtocol {
+class SwiperViewController: UIViewController, LoadingAnimationProtocol, NavigationBarGradientProtocol {
     // MARK: LoadingAnimationProtocol
     var loadingAnimationView: UIView!
     var loadingAnimationOverlay: UIView!
@@ -52,6 +52,9 @@ class SwiperViewController: UIViewController, LoadingAnimationProtocol {
         kolodaView.animator = BackgroundKolodaAnimator(koloda: kolodaView)
         
         self.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
+        
+        // Navbar gradient
+        setNavigationBarGradient()
     }
     
     //MARK: IBActions

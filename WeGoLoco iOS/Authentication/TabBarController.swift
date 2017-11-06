@@ -12,12 +12,14 @@ import PromiseKit
 
 // Hides Manager Tab-item if user is not retailer
 class TabBarController: UITabBarController, LoadingAnimationProtocol {
+   
     // MARK: LoadingAnimationProtocol
     var loadingAnimationView: UIView!
     var loadingAnimationOverlay: UIView!
     var loadingAnimationIndicator: UIActivityIndicatorView!
     
     var user: User!
+    let layerGradient = CAGradientLayer()
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -26,6 +28,21 @@ class TabBarController: UITabBarController, LoadingAnimationProtocol {
         loadingAnimationView = view
         
         updateItems()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        layerGradient.colors = [CGColor]()
+        for color in Colors.subuGradientColors {
+            layerGradient.colors?.append(color.cgColor)
+        }
+        layerGradient.startPoint = CGPoint(x: 0, y: 0.5)
+        layerGradient.endPoint = CGPoint(x: 1, y: 0.5)
+        layerGradient.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
+        self.tabBar.layer.insertSublayer(layerGradient, at: 0)
+        
+        self.tabBar.unselectedItemTintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
     }
     
     public func showSwiper() {

@@ -12,7 +12,7 @@ import Eureka
 import Whisper
 import PromiseKit
 
-class ProfilViewController: FormViewController, LoadingAnimationProtocol {
+class ProfilViewController: FormViewController, LoadingAnimationProtocol, NavigationBarGradientProtocol {
     // MARK: LoadingAnimationProtocol
     var loadingAnimationView: UIView!
     var loadingAnimationOverlay: UIView!
@@ -45,6 +45,9 @@ class ProfilViewController: FormViewController, LoadingAnimationProtocol {
         
         //LoadingAnimationProtocol
         loadingAnimationView = view
+        
+        // NavBar gradient
+        setNavigationBarGradient()
         
         // change Password
         form +++ Section()
