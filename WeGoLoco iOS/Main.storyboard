@@ -407,12 +407,19 @@
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" name="GothamRounded-Book" family="Gotham Rounded" pointSize="20"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                                <connections>
+                                                    <action selector="emailTextFieldEditing:" destination="BYZ-38-t0r" eventType="editingChanged" id="Tpm-s3-hfr"/>
+                                                    <action selector="emailTextFieldValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="Bfc-3Y-Jb9"/>
+                                                </connections>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="15" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="0gE-QN-RVI">
                                                 <rect key="frame" x="0.0" y="50" width="343" height="40"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" name="GothamRounded-Book" family="Gotham Rounded" pointSize="20"/>
                                                 <textInputTraits key="textInputTraits" spellCheckingType="no" secureTextEntry="YES"/>
+                                                <connections>
+                                                    <action selector="passwordTextFieldValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="6oi-n9-xDD"/>
+                                                </connections>
                                             </textField>
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VVB-A6-x0H">
                                                 <rect key="frame" x="0.0" y="100" width="343" height="40"/>

@@ -22,6 +22,7 @@ class SignInViewController: UIViewController {
     
     var passwordAuthenticationCompletion: AWSTaskCompletionSource<AWSCognitoIdentityPasswordAuthenticationDetails>?
     var emailText: String?
+    var triedLogin = false
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -80,6 +81,7 @@ class SignInViewController: UIViewController {
     
     // MARK: Actions
     @IBAction func signInButtonTouched(_ sender: UIButton) {
+        triedLogin = true
         if isValid() {
             let authDetails = AWSCognitoIdentityPasswordAuthenticationDetails(username: self.emailTextField.text!, password: self.passwordTextField.text!)
             self.passwordAuthenticationCompletion?.set(result: authDetails)
@@ -88,11 +90,30 @@ class SignInViewController: UIViewController {
         }
     }
     
+    @IBAction func emailTextFieldEditing(_ sender: UITextField) {
+        validate()
+    }
+    
+    
     // MARK: Helper
     private func validate() -> Void {
-        if emailTextField.text!.isEmpty {
-            
+        if triedLogin && !isValidEmail(testStr: emailTextField.text!) {
+            emailBorderLayer.borderColor = UIColor.red.cgColor
+        } else {
+            emailBorderLayer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         }
+        if triedLogin && passwordTextField.text!.isEmpty {
+            passwordBottomLayer.borderColor = UIColor.red.cgColor
+        } else {
+            passwordBottomLayer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        }
+    }
+    private func isValidEmail(testStr:String) -> Bool {
+        print("testing email")
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: testStr)
     }
     private func isValid() -> Bool {
         if emailTextField.text!.isEmpty || passwordTextField.text!.isEmpty { return false }
