@@ -51,6 +51,7 @@
 		D42791E21F9DF6B5000C58AC /* ProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D42791E11F9DF6B5000C58AC /* ProductCell.xib */; };
 		D42791E41F9DF8F1000C58AC /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42791E31F9DF8F1000C58AC /* ProductCell.swift */; };
 		D43B8CB71F95FBA0002F67A1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D43B8CB61F95FBA0002F67A1 /* Images.xcassets */; };
+		D43F82661FB2327B00B1981F /* CustomAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43F82651FB2327B00B1981F /* CustomAlertController.swift */; };
 		D447870A1FAB6850004495F9 /* IQKeyboardManagerSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44787091FAB6850004495F9 /* IQKeyboardManagerSwift.framework */; };
 		D4496CAE1FAB68C600FB9D2C /* IQKeyboardManagerSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4496CAD1FAB68C600FB9D2C /* IQKeyboardManagerSwift.framework */; };
 		D4496CAF1FAB68C900FB9D2C /* IQKeyboardManagerSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4496CAD1FAB68C600FB9D2C /* IQKeyboardManagerSwift.framework */; };
@@ -180,6 +181,7 @@
 		D42791E11F9DF6B5000C58AC /* ProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductCell.xib; sourceTree = "<group>"; };
 		D42791E31F9DF8F1000C58AC /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		D43B8CB61F95FBA0002F67A1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D43F82651FB2327B00B1981F /* CustomAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertController.swift; sourceTree = "<group>"; };
 		D44787091FAB6850004495F9 /* IQKeyboardManagerSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IQKeyboardManagerSwift.framework; path = Carthage/Build/iOS/IQKeyboardManagerSwift.framework; sourceTree = SOURCE_ROOT; };
 		D4496CAD1FAB68C600FB9D2C /* IQKeyboardManagerSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IQKeyboardManagerSwift.framework; path = Carthage/Build/iOS/IQKeyboardManagerSwift.framework; sourceTree = SOURCE_ROOT; };
 		D4496CB11FAB904A00FB9D2C /* IQKeyboardManager.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IQKeyboardManager.framework; path = Carthage/Build/iOS/IQKeyboardManager.framework; sourceTree = SOURCE_ROOT; };
@@ -338,6 +340,7 @@
 				D4B95CB41F8AA7ED005F5DCA /* LaunchScreen.storyboard */,
 				D4B95CB71F8AA7ED005F5DCA /* Info.plist */,
 				D4969FF81FAF9F6B000E687A /* NavigationBarGradientProtocol.swift */,
+				D43F82651FB2327B00B1981F /* CustomAlertController.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -685,6 +688,7 @@
 				D41A9EC21F90E700003F075B /* SelectCategoryViewController.swift in Sources */,
 				D41A9D731F90E0A7003F075B /* LoadingAnimationProtocol.swift in Sources */,
 				D41A9EC81F90E7F5003F075B /* FontAndColors.swift in Sources */,
+				D43F82661FB2327B00B1981F /* CustomAlertController.swift in Sources */,
 				D49A5C051F9096F1003A824E /* FederatedIdentities.swift in Sources */,
 				D41A9EC11F90E700003F075B /* CategorySectionController.swift in Sources */,
 				D474F5C81F94F91000B83D0D /* Enum.swift in Sources */,

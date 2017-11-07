@@ -109,7 +109,6 @@ class SignInViewController: UIViewController {
         }
     }
     private func isValidEmail(testStr:String) -> Bool {
-        print("testing email")
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
@@ -154,9 +153,20 @@ extension SignInViewController: AWSCognitoIdentityPasswordAuthentication {
     public func didCompleteStepWithError(_ error: Error?) {
         DispatchQueue.main.async {
             if let error = error as NSError? {
-                let alertController = UIAlertController(title: error.userInfo["__type"] as? String,
-                                                        message: error.userInfo["message"] as? String,
-                                                        preferredStyle: .alert)
+                var title = ""
+                var message = ""
+                if error.userInfo["__type"] as? String == "UserNotFoundException" {
+                    title = "User does not exist"
+                    message = "The entered email does not correspond to a registered User."
+                } else {
+                    title = "Incorrect password"
+                    message = "The given password does not match the User."
+                }
+                let alertController = CustomAlertController(
+                    title: title,
+                    message: message,
+                    preferredStyle: .alert
+                )
                 let retryAction = UIAlertAction(title: "Retry", style: .default, handler: nil)
                 alertController.addAction(retryAction)
                 
