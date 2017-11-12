@@ -33,8 +33,12 @@ class SignUpViewController: FormViewController {
         return birthdate?.DDMMyyyy
     }
     
+    var triedToSignUp = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tableView.backgroundColor = Colors.background
         
         self.userPool = AWSCognitoIdentityUserPool(forKey: "UserPool")
         
@@ -44,10 +48,28 @@ class SignUpViewController: FormViewController {
                 $0.title = "Email"
                 $0.tag = "emailRow"
                 $0.placeholder = "here@wegoloco.es"
+                $0.add(rule: RuleRequired())
+                $0.add(rule: RuleEmail())
+                $0.validationOptions = .validatesOnChange
+            }.cellSetup { cell, row in
+                cell.tintColor = Colors.second
+            }.cellUpdate { cell, row in
+                if !row.isValid {
+                    cell.titleLabel?.textColor = .red
+                }
             }
             <<< PasswordRow() {
                 $0.title = "Password"
                 $0.tag = "passwordRow"
+                $0.add(rule: RuleRequired())
+                $0.add(rule: RuleMinLength(minLength: 6))
+                $0.validationOptions = .validatesOnChange
+            }.cellSetup { cell, row in
+                cell.tintColor = Colors.second
+            }.cellUpdate { cell, row in
+                if !row.isValid {
+                    cell.titleLabel?.textColor = .red
+                }
             }
         
             +++ Section("Birthday & Gender")
@@ -55,17 +77,23 @@ class SignUpViewController: FormViewController {
                     $0.title = "Birthdate"
                     $0.tag = "birthdateRow"
                     $0.value = Date()
+                }.cellSetup { cell, row in
+                    cell.tintColor = Colors.second
                 }
                 <<< SegmentedRow<String>() {
                     $0.title = "Gender"
                     $0.tag = "genderRow"
                     $0.options = ["male", "female"]
                     $0.value = "male"
+                }.cellSetup { cell, row in
+                    cell.tintColor = Colors.second
                 }
         
             +++ Section()
                 <<< ButtonRow() {
                     $0.title = "Sign Up"
+                }.cellUpdate{ cell, row in
+                    cell.textLabel?.textColor = Colors.first
                 }.onCellSelection { _, _ in
                     self.signUp()
                 }
@@ -87,7 +115,7 @@ class SignUpViewController: FormViewController {
         
         let roleAttribute = AWSCognitoIdentityUserAttributeType()
         roleAttribute?.name = "custom:role"
-        roleAttribute?.value = "retailer"
+        roleAttribute?.value = "user"
         attributes.append(roleAttribute!)
 
         
@@ -95,30 +123,55 @@ class SignUpViewController: FormViewController {
     }
     
     private func signUp() {
-        userPool?.signUp(email, password: password, userAttributes: getUserAttributes(), validationData: nil).continueWith { [weak self] task -> Void in
-            guard let strongSelf = self else { return }
-            DispatchQueue.main.async(execute: {
-                if let error = task.error as NSError? {
-                    let alertController = UIAlertController(title: error.userInfo["__type"] as? String,
-                                                            message: error.userInfo["message"] as? String,
-                                                            preferredStyle: .alert)
-                    let retryAction = UIAlertAction(title: "Retry", style: .default, handler: nil)
-                    alertController.addAction(retryAction)
-                    
-                    self?.present(alertController, animated: true, completion:  nil)
-                } else if let result = task.result  {
-                    // handle the case where user has to confirm his identity via email / SMS
-                    if (result.user.confirmedStatus != AWSCognitoIdentityUserStatus.confirmed) {
-                        strongSelf.emailToConfirm = result.codeDeliveryDetails?.destination
-                        strongSelf.performSegue(withIdentifier: "confirmSignUpSegue", sender:self)
-                    } else {
-                        let _ = strongSelf.navigationController?.popToRootViewController(animated: true)
+
+        if isValid() {
+            userPool?.signUp(email, password: password, userAttributes: getUserAttributes(), validationData: nil).continueWith { [weak self] task -> Void in
+                guard let strongSelf = self else { return }
+                DispatchQueue.main.async(execute: {
+                    if let error = task.error as NSError? {
+//                        let alertController = UIAlertController(title: error.userInfo["__type"] as? String,
+//                                                                message: error.userInfo["message"] as? String,
+//                                                                preferredStyle: .alert)
+//                        let retryAction = UIAlertAction(title: "Retry", style: .default, handler: nil)
+//                        alertController.addAction(retryAction)
+//
+//                        self?.present(alertController, animated: true, completion:  nil)
+                        if error.userInfo["__type"] as! String == "UsernameExistsException" {
+                            let message = Message(title: "Email already registered!", backgroundColor: .red)
+                            Whisper.show(whisper: message, to: (self?.navigationController!)!, action: .show)
+                        }
+                    } else if let result = task.result  {
+                        // handle the case where user has to confirm his identity via email / SMS
+                        if (result.user.confirmedStatus != AWSCognitoIdentityUserStatus.confirmed) {
+                            strongSelf.emailToConfirm = result.codeDeliveryDetails?.destination
+                            strongSelf.performSegue(withIdentifier: "confirmSignUpSegue", sender:self)
+                        } else {
+                            let _ = strongSelf.navigationController?.popToRootViewController(animated: true)
+                        }
                     }
-                }
-            })
+                })
+            }
         }
     }
     
+    func tableView(_: UITableView, willDisplayHeaderView view: UIView, forSection: Int) {
+        if let view = view as? UITableViewHeaderFooterView {
+            view.textLabel?.textColor = Colors.first
+        }
+    }
+    
+    
+    // MARK: - Helper
+    private func isValid() -> Bool {
+        let errors = form.validate()
+        if errors.isEmpty {
+            return true
+        }
+        let message = Message(title: errors[0].msg, backgroundColor: .red)
+        Whisper.show(whisper: message, to: navigationController!, action: .show)
+        
+        return false
+    }
     
      // MARK: - Navigation
      

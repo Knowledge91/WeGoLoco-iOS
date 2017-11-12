@@ -115,7 +115,7 @@ class SignInViewController: UIViewController {
         return emailTest.evaluate(with: testStr)
     }
     private func isValid() -> Bool {
-        if emailTextField.text!.isEmpty || passwordTextField.text!.isEmpty { return false }
+        if emailTextField.text!.isEmpty || !isValidEmail(testStr: emailTextField.text!) || passwordTextField.text!.isEmpty { return false }
         return true
     }
 }

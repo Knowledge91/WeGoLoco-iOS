@@ -8,6 +8,7 @@
 
 import UIKit
 import AWSCognitoIdentityProvider
+import Whisper
 
 class EmailConfirmationViewController: UIViewController {
 
@@ -36,14 +37,11 @@ class EmailConfirmationViewController: UIViewController {
             guard let strongSelf = self else { return nil }
             DispatchQueue.main.async(execute: {
                 if let error = task.error as? NSError {
-                    let alertController = UIAlertController(title: error.userInfo["__type"] as? String,
-                                                            message: error.userInfo["message"] as? String,
-                                                            preferredStyle: .alert)
-                    let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
-                    alertController.addAction(okAction)
-                    
-                    strongSelf.present(alertController, animated: true, completion:  nil)
+                    let message = Message(title: "Wrong confirmation code!", backgroundColor: .red)
+                    Whisper.show(whisper: message, to: strongSelf.navigationController!, action: .show)
                 } else {
+                    let message = Message(title: "Successfully signed up!", backgroundColor: .green)
+                    Whisper.show(whisper: message, to: strongSelf.navigationController!, action: .show)
                     let _ = strongSelf.navigationController?.popToRootViewController(animated: true)
                 }
             })
