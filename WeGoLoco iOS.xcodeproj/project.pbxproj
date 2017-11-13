@@ -330,6 +330,7 @@
 		D47876171F8BBED20079818C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D4ECAEE71FA27FD9002E581D /* AuthenticationProtocoll.swift */,
 				D43B8CB61F95FBA0002F67A1 /* Images.xcassets */,
 				D474F5C71F94F91000B83D0D /* Enum.swift */,
 				D41A9EC91F90E85F003F075B /* Errors.swift */,
@@ -475,7 +476,6 @@
 				D4F803A71F8E7D8600E13FFC /* EmailConfirmationViewController.swift */,
 				D49A5C041F9096F1003A824E /* FederatedIdentities.swift */,
 				D49A5C0E1F909DED003A824E /* UserPool.swift */,
-				D4ECAEE71FA27FD9002E581D /* AuthenticationProtocoll.swift */,
 				D4FCCA121FAA05C90098383F /* WalkthroughCollectionViewCell.swift */,
 				D4FCCA131FAA05C90098383F /* WalkthroughCollectionViewCell.xib */,
 			);

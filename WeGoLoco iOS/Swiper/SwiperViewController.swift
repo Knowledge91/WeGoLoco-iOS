@@ -23,6 +23,8 @@ class SwiperViewController: UIViewController, LoadingAnimationProtocol, Navigati
     var loadingAnimationView: UIView!
     var loadingAnimationOverlay: UIView!
     var loadingAnimationIndicator: UIActivityIndicatorView!
+    // MARK: AuthenticationProtocol
+    var needsRefresh = true
     
     // Outlets
     @IBOutlet weak var kolodaView: CustomKolodaView!
@@ -33,10 +35,9 @@ class SwiperViewController: UIViewController, LoadingAnimationProtocol, Navigati
     //MARK: Lifecycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
-        
-        if UserAPI.isSignedIn() {
-            loadTinpons()
+
+        if needsRefresh {
+            refresh()
         }
     }
     override func viewDidLoad() {
@@ -89,16 +90,14 @@ class SwiperViewController: UIViewController, LoadingAnimationProtocol, Navigati
     }
     
     fileprivate func loadTinpons() {
-        print("loading Tinpons")
         startLoadingAnimation()
         firstly {
             API.getNotSwipedTinpons()
-        }.then { [weak self] tinpons -> () in
-            guard let strongSelf = self else { return }
-            strongSelf.tinpons = tinpons!
-            strongSelf.kolodaView.reloadData()
-            strongSelf.showoutOfTinponsIfNecessary()
-            strongSelf.stopLoadingAnimation()
+        }.then { tinpons -> () in
+            self.tinpons = tinpons!
+            self.kolodaView.reloadData()
+            self.showoutOfTinponsIfNecessary()
+            self.stopLoadingAnimation()
         }.catch { error in
             print("SwiperVC.loadTinpons : not swiped tinpons error : \(error)")
         }
@@ -143,7 +142,13 @@ class SwiperViewController: UIViewController, LoadingAnimationProtocol, Navigati
 
 // MARK: ResetProtocol
 extension SwiperViewController: Authentication {
+    func refresh() {
+        needsRefresh = false
+        tinpons.removeAll()
+        self.loadTinpons()
+    }
     func clean() {
+        needsRefresh = true
         tinpons.removeAll()
         kolodaView.reloadData()
     }

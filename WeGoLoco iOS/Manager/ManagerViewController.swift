@@ -18,6 +18,9 @@ import PromiseKit
 
 final class ManagerViewController: UIViewController, ListAdapterDataSource, SearchSectionControllerDelegate, NavigationBarGradientProtocol {
     
+    // MARK: AuthenticationProtocol
+    var needsRefresh = true
+    
     lazy var adapter: ListAdapter = {
         return ListAdapter(updater: ListAdapterUpdater(), viewController: self, workingRangeSize: 5)
     }()
@@ -104,7 +107,11 @@ final class ManagerViewController: UIViewController, ListAdapterDataSource, Sear
     
 }
 
-extension ManagerViewController: Authentication {    
+extension ManagerViewController: Authentication {
+    func refresh() {
+        print("refresh")
+    }
+    
     func clean() {
          tinpons?.removeAll()
         adapter.reloadData(completion: nil)

@@ -9,5 +9,9 @@
 import Foundation
 
 protocol Authentication {
+    var needsRefresh: Bool { get set }
+    
+    func refresh()
     func clean()
 }
+

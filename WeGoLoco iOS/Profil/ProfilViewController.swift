@@ -18,25 +18,19 @@ class ProfilViewController: FormViewController, LoadingAnimationProtocol, Naviga
     var loadingAnimationOverlay: UIView!
     var loadingAnimationIndicator: UIActivityIndicatorView!
     
+    // MARK: AuthenticationProtocol
+    var needsRefresh = true
+    
     var user: User!
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        startLoadingAnimation()
-        firstly {
-            UserAPI.getUser()
-        }.then { user -> Void in
-            self.user = user
-            
-            if !self.user.isRetailer {
-                let retailerSwitchRow = self.form.rowBy(tag: "retailerSwitch") as! SwitchRow
-                retailerSwitchRow.value = self.user.isRetailer
-                retailerSwitchRow.reload()
-            }
-            self.stopLoadingAnimation()
-        }.catch { error in
-            print(error)
+        print("PROvIEL")
+        print(needsRefresh)
+        
+        if needsRefresh {
+            refresh()
         }
     }
     
@@ -116,6 +110,23 @@ class ProfilViewController: FormViewController, LoadingAnimationProtocol, Naviga
     }
 
     // MARK: Helper
+    fileprivate func loadUser() {
+        startLoadingAnimation()
+        firstly {
+            UserAPI.getUser()
+        }.then { user -> Void in
+            self.user = user
+            
+            if !self.user.isRetailer {
+                let retailerSwitchRow = self.form.rowBy(tag: "retailerSwitch") as! SwitchRow
+                retailerSwitchRow.value = self.user.isRetailer
+                retailerSwitchRow.reload()
+            }
+            self.stopLoadingAnimation()
+        }.catch { error in
+            print(error)
+        }
+    }
     private func setRetailerSwitchToFalse(alert: UIAlertAction!) {
         let retailerSwitchRow = form.rowBy(tag: "retailerSwitch") as! SwitchRow
         retailerSwitchRow.value = false
@@ -161,8 +172,13 @@ class ProfilViewController: FormViewController, LoadingAnimationProtocol, Naviga
 }
 
 extension ProfilViewController: Authentication {
+    func refresh() {
+        needsRefresh = false
+        loadUser()
+    }
     func clean() {
-        
+        print("profil clean")
+        needsRefresh = true
     }
 }
 

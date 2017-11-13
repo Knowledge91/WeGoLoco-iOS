@@ -176,7 +176,6 @@ extension SignInViewController: AWSCognitoIdentityPasswordAuthentication {
             } else {
                 let presentingVC = self.presentingViewController
                 self.dismiss(animated: true){
-                    print(presentingVC)
                     (presentingVC as! TabBarController).showSwiper()
                 }
             }
