@@ -118,9 +118,7 @@ class ProfilViewController: FormViewController, LoadingAnimationProtocol, Naviga
             self.user = user
             
             if !self.user.isRetailer {
-                let retailerSwitchRow = self.form.rowBy(tag: "retailerSwitch") as! SwitchRow
-                retailerSwitchRow.value = self.user.isRetailer
-                retailerSwitchRow.reload()
+                self.setRetailerSwitchTo(bool: user!.isRetailer)
             }
             self.stopLoadingAnimation()
         }.catch { error in
@@ -147,7 +145,11 @@ class ProfilViewController: FormViewController, LoadingAnimationProtocol, Naviga
             print(error)
         }
     }
-    
+    private func setRetailerSwitchTo(bool: Bool) {
+        let retailerSwitchRow = self.form.rowBy(tag: "retailerSwitch") as! SwitchRow
+        retailerSwitchRow.value = bool
+        retailerSwitchRow.reload()
+    }
     private func changePassword(currentPassword: String, proposedPassword: String) -> Void {
          let user = UserPool.pool.currentUser()
         user?.changePassword(currentPassword, proposedPassword: proposedPassword).continueWith { task -> () in
@@ -177,7 +179,7 @@ extension ProfilViewController: Authentication {
         loadUser()
     }
     func clean() {
-        print("profil clean")
+        setRetailerSwitchTo(bool: true)
         needsRefresh = true
     }
 }
