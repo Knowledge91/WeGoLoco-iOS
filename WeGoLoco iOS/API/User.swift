@@ -52,7 +52,7 @@ class UserAPI {
     }
     
     static func signOutAndClean(tabBarController: UITabBarController) {
-
+        signOut()
         // tabBar -> navigation -> view
         for vc in tabBarController.viewControllers! {
             // reset navigationControllers
@@ -62,7 +62,6 @@ class UserAPI {
                 resetVC.clean()
             }
         }
-        signOut()
     }
     
     static func getUserAttributes(_ completion: @escaping ([AWSCognitoIdentityProviderAttributeType]?, Error?)->()) {

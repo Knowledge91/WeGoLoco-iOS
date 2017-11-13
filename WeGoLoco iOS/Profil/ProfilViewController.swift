@@ -26,9 +26,6 @@ class ProfilViewController: FormViewController, LoadingAnimationProtocol, Naviga
     override func viewDidAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        print("PROvIEL")
-        print(needsRefresh)
-        
         if needsRefresh {
             refresh()
         }
@@ -43,13 +40,14 @@ class ProfilViewController: FormViewController, LoadingAnimationProtocol, Naviga
         // NavBar gradient
         setNavigationBarGradient()
         
+        // view background color
+        self.tableView.backgroundColor = Colors.background
+        
         // change Password
         form  +++ Section("Password & Role")
             <<< SwitchRow(){
                 $0.title = "Change Password"
                 $0.tag = "changePasswordSwitch"
-                }.cellSetup { cell, row in
-                    cell.tintColor = Colors.second
             }
             <<< PasswordRow(){
                 $0.title = "Current Password"
@@ -88,7 +86,7 @@ class ProfilViewController: FormViewController, LoadingAnimationProtocol, Naviga
                 $0.value = true
             }.onChange { row in
                 self.user.isRetailer = row.value!
-                if row.value! {
+                if UserAPI.isSignedIn() && row.value! {
                     let message = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec vestibulum nisi. Donec tristique iaculis est, at tincidunt nisi. Quisque magna enim, vehicula sed lectus vitae, auctor scelerisque turpis. Ut condimentum auctor enim a pulvinar. Integer id lorem luctus, maximus ipsum sed, consectetur velit. Maecenas eget turpis quis dolor porta molestie. Sed imperdiet suscipit orci. In erat elit, maximus in lectus id, venenatis fringilla velit. Vestibulum interdum molestie iaculis. Fusce id tellus eu erat pharetra venenatis eget in velit. Donec pellentesque felis urna, sit amet consectetur ipsum efficitur non. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                     let alertController = UIAlertController(title: "title",
                                                             message: message,
@@ -125,7 +123,9 @@ class ProfilViewController: FormViewController, LoadingAnimationProtocol, Naviga
             self.user = user
             
             if !self.user.isRetailer {
-                self.setRetailerSwitchTo(bool: user!.isRetailer)
+                let retailerSwitchRow = self.form.rowBy(tag: "retailerSwitch") as! SwitchRow
+                retailerSwitchRow.value = self.user.isRetailer
+                retailerSwitchRow.reload()
             }
             self.stopLoadingAnimation()
         }.catch { error in
@@ -151,11 +151,6 @@ class ProfilViewController: FormViewController, LoadingAnimationProtocol, Naviga
         }.catch { error in
             print(error)
         }
-    }
-    private func setRetailerSwitchTo(bool: Bool) {
-        let retailerSwitchRow = self.form.rowBy(tag: "retailerSwitch") as! SwitchRow
-        retailerSwitchRow.value = bool
-        retailerSwitchRow.reload()
     }
     private func changePassword(currentPassword: String, proposedPassword: String) -> Void {
          let user = UserPool.pool.currentUser()
@@ -186,8 +181,17 @@ extension ProfilViewController: Authentication {
         loadUser()
     }
     func clean() {
-        setRetailerSwitchTo(bool: true)
+        setRetailerSwitchToFalse(alert: nil)
         needsRefresh = true
+    }
+}
+
+// Section color
+extension ProfilViewController {
+    func tableView(_: UITableView, willDisplayHeaderView view: UIView, forSection: Int) {
+        if let view = view as? UITableViewHeaderFooterView {
+            view.textLabel?.textColor = Colors.first
+        }
     }
 }
 
