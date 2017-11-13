@@ -44,10 +44,12 @@ class ProfilViewController: FormViewController, LoadingAnimationProtocol, Naviga
         setNavigationBarGradient()
         
         // change Password
-        form +++ Section()
+        form  +++ Section("Password & Role")
             <<< SwitchRow(){
                 $0.title = "Change Password"
                 $0.tag = "changePasswordSwitch"
+                }.cellSetup { cell, row in
+                    cell.tintColor = Colors.second
             }
             <<< PasswordRow(){
                 $0.title = "Current Password"
@@ -71,6 +73,8 @@ class ProfilViewController: FormViewController, LoadingAnimationProtocol, Naviga
                     let row: RowOf<Bool>! = form.rowBy(tag: "changePasswordSwitch")
                     return row.value ?? false == false
                 })
+            }.cellUpdate{ cell, row in
+                cell.textLabel?.textColor = Colors.first
             }.onCellSelection { _, _ in
                 let currentPassword = (self.form.rowBy(tag: "currentPassword") as! PasswordRow).value!
                 let newPassword = (self.form.rowBy(tag: "newPassword") as! PasswordRow).value!
@@ -101,8 +105,11 @@ class ProfilViewController: FormViewController, LoadingAnimationProtocol, Naviga
             }
         
         // Sign Out
+        +++ Section()
             <<< ButtonRow() {
                 $0.title = "Sign Out"
+            }.cellUpdate{ cell, row in
+                cell.textLabel?.textColor = Colors.first
             }.onCellSelection { _, _ in
                 self.signOut()
             }

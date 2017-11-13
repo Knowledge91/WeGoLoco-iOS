@@ -36,7 +36,7 @@ class SwiperViewController: UIViewController, LoadingAnimationProtocol, Navigati
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
 
-        if needsRefresh {
+        if UserAPI.isSignedIn() && needsRefresh {
             refresh()
         }
     }
