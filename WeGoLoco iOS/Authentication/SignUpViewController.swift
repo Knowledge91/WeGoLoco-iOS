@@ -75,8 +75,8 @@ class SignUpViewController: FormViewController {
     }
     
     // MARK: - Helper
-    private func retailerForm() -> Form {
-        return form
+    private func retailerForm() {
+        form
             +++ Section("Contact & Password")
             <<< TextRow() {
                 $0.title = "Shop Name"
@@ -197,8 +197,8 @@ class SignUpViewController: FormViewController {
                     self.signUp()
         }
     }
-    private func userForm() -> Form {
-        return form
+    private func userForm() {
+        form
             +++ Section("Email & Password")
             <<< EmailRow() {
                 $0.title = "Email"

@@ -44,7 +44,7 @@ class ProfilViewController: FormViewController, LoadingAnimationProtocol, Naviga
         self.tableView.backgroundColor = Colors.background
         
         // change Password
-        form  +++ Section("Password & Role")
+        form  +++ Section("Password")
             <<< SwitchRow(){
                 $0.title = "Change Password"
                 $0.tag = "changePasswordSwitch"
@@ -79,29 +79,6 @@ class ProfilViewController: FormViewController, LoadingAnimationProtocol, Naviga
                 self.changePassword(currentPassword: currentPassword, proposedPassword: newPassword)
             }
         
-        // Become a Retailer
-            <<< SwitchRow() {
-                $0.title = "I am a Retailer"
-                $0.tag = "retailerSwitch"
-                $0.value = true
-            }.onChange { row in
-                self.user.isRetailer = row.value!
-                if UserAPI.isSignedIn() && row.value! {
-                    let message = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec vestibulum nisi. Donec tristique iaculis est, at tincidunt nisi. Quisque magna enim, vehicula sed lectus vitae, auctor scelerisque turpis. Ut condimentum auctor enim a pulvinar. Integer id lorem luctus, maximus ipsum sed, consectetur velit. Maecenas eget turpis quis dolor porta molestie. Sed imperdiet suscipit orci. In erat elit, maximus in lectus id, venenatis fringilla velit. Vestibulum interdum molestie iaculis. Fusce id tellus eu erat pharetra venenatis eget in velit. Donec pellentesque felis urna, sit amet consectetur ipsum efficitur non. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                    let alertController = UIAlertController(title: "title",
-                                                            message: message,
-                                                            preferredStyle: .alert)
-                    let disagreeAction = UIAlertAction(title: "I Disagree", style: .cancel, handler: self.setRetailerSwitchToFalse)
-                    let agreeAction = UIAlertAction(title: "I Agree", style: .default, handler: self.updateRetailerRole)
-                    alertController.addAction(disagreeAction)
-                    alertController.addAction(agreeAction)
-                 
-                    self.present(alertController, animated: true, completion: nil)
-                } else {
-                    self.updateRetailerRole(alert: nil)
-                }
-            }
-        
         // Sign Out
         +++ Section()
             <<< ButtonRow() {
@@ -128,26 +105,6 @@ class ProfilViewController: FormViewController, LoadingAnimationProtocol, Naviga
                 retailerSwitchRow.reload()
             }
             self.stopLoadingAnimation()
-        }.catch { error in
-            print(error)
-        }
-    }
-    private func setRetailerSwitchToFalse(alert: UIAlertAction!) {
-        let retailerSwitchRow = form.rowBy(tag: "retailerSwitch") as! SwitchRow
-        retailerSwitchRow.value = false
-        retailerSwitchRow.cell.switchControl.setOn(false, animated: true)
-    }
-    private func updateRetailerRole(alert: UIAlertAction!) {
-        var newValue: String
-        if user.isRetailer {
-            newValue = "retailer"
-        } else {
-            newValue = "user"
-        }
-        firstly {
-            UserAPI.updateAttribue(role: "custom:role", value: newValue)
-        }.then {
-            (self.tabBarController as! TabBarController).updateItems()
         }.catch { error in
             print(error)
         }
@@ -181,7 +138,6 @@ extension ProfilViewController: Authentication {
         loadUser()
     }
     func clean() {
-        setRetailerSwitchToFalse(alert: nil)
         needsRefresh = true
     }
 }
