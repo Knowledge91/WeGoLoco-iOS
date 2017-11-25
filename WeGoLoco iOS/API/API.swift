@@ -55,9 +55,7 @@ class API {
                 self.invoke(httpMethod: .POST, endPoint: .Tinpons, queryParameters: nil, headerParameters: nil, httpBody: body)
             }.then { responseData -> () in
                 let tinponId = String(data: responseData!, encoding: String.Encoding.utf8) as String!
-                // for now only upload the first main image (which will be later on displayed in the Swiper)
-                let image = tinponImages.main[0]
-                self.tinponUploadMainImage(tinponId: tinponId!, image: image)
+                self.tinponUploadImages(tinponId: tinponId!, images: tinponImages.main)
             }.then {
                 completion(nil)
             }.catch { error -> () in
@@ -71,19 +69,24 @@ class API {
     static func createTinpon(tinpon: Tinpon, tinponImages: TinponImages) -> Promise<Void> {
         return PromiseKit.wrap{ createTinpon(tinpon: tinpon, tinponImages: tinponImages, completion: $0) }
     }
-    static func tinponUploadMainImage(tinponId: String, image: UIImage, completion: @escaping (Error?)->()) {
-        let path = "Tinpons/"+tinponId+"/1"
+    
+    static func tinponUploadImages(tinponId: String, images: [UIImage], completion: @escaping (Error?)->()) {
+        var promises = [Promise<Void>]()
+        for (index, image) in images.enumerated() {
+            let path = "Tinpons/"+tinponId+"/"+String(index+1)
+            promises.append(uploadImage(image: image, path: path))
+        }
         firstly {
-            uploadImage(image: image, path: path)
-        }.then { _ -> Void in 
-            print("path uploaded: \(path)")
+            when(fulfilled: promises)
+        }.then { results -> () in
+            print("uploaded : \(images.count) images")
             completion(nil)
         }.catch { error in
             completion(error)
         }
     }
-    static func tinponUploadMainImage(tinponId: String, image: UIImage) -> Promise<Void> {
-        return PromiseKit.wrap{ tinponUploadMainImage(tinponId: tinponId, image: image, completion: $0) }
+    static func tinponUploadImages(tinponId: String, images: [UIImage]) -> Promise<Void> {
+        return PromiseKit.wrap{ tinponUploadImages(tinponId: tinponId, images: images, completion: $0) }
     }
     
     // get main image

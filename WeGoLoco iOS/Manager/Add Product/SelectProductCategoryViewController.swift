@@ -24,6 +24,8 @@ class SelectProductCategoryViewController: SelectCategoryViewController, AddProd
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guardTinpon()
         
+        print(tinponImages.main.count)
+        
         let sizesVC = segue.destination as! SizesViewController
         sizesVC.tinpon = tinpon
         sizesVC.tinponImages = tinponImages

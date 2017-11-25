@@ -26,6 +26,7 @@ class BasicsViewController: FormViewController, AddProductProtocol, CLLocationMa
         tinpon.price = (form.rowBy(tag: "priceRow") as! DecimalRow).value
         tinpon.gender = getGender()
         
+        tinponImages.main.removeAll()
         for row in form.allRows {
             if let image = (row as? ImageRow)?.value {
                 tinponImages.main.append(image)

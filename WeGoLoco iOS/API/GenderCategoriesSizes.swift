@@ -33,7 +33,6 @@ struct Categories {
     
     static var categories: [Gender: [Category]] = [
         .male : [
-            .accessories,
             .coats,
             .jeans,
             .shoes,
