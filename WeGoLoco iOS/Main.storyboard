@@ -9,10 +9,13 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="GothamRounded-Bold.otf">
+            <string>GothamRounded-Bold</string>
+        </array>
         <array key="GothamRounded-Book.otf">
             <string>GothamRounded-Book</string>
         </array>
-        <array key="GothamRoundedMedium_21022.ttf">
+        <array key="GothamRounded-Medium.otf">
             <string>GothamRounded-Medium</string>
         </array>
     </customFonts>
@@ -49,6 +52,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Eme-s6-iEk">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="JamesonSSRound" family="Jameson SS Round" pointSize="30"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -464,7 +468,7 @@
                                                     <color key="titleColor" red="0.16078431369999999" green="1" blue="0.77647058820000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="8lw-cg-uil" kind="show" id="TZB-Se-Eag"/>
+                                                    <segue destination="Zhu-RX-u4w" kind="show" id="FtB-nt-p10"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -504,6 +508,61 @@
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
         </scene>
+        <!--User Or Retailer Sign Up View Controller-->
+        <scene sceneID="drY-Xd-8b7">
+            <objects>
+                <viewController id="Zhu-RX-u4w" customClass="UserOrRetailerSignUpViewController" customModule="WeGoLoco_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PFQ-IX-uu1"/>
+                        <viewControllerLayoutGuide type="bottom" id="5Pp-KD-AjT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zN7-Xd-OuC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="E2c-UR-fhR">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aas-L7-WgM">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="301.5"/>
+                                        <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="40"/>
+                                        <state key="normal" title="User">
+                                            <color key="titleColor" red="0.16078431369999999" green="1" blue="0.77647058820000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="userButtonTouched:" destination="Zhu-RX-u4w" eventType="touchUpInside" id="ytD-Kx-uvy"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tED-Gq-UVL">
+                                        <rect key="frame" x="0.0" y="301.5" width="375" height="301.5"/>
+                                        <color key="backgroundColor" red="0.16078431369999999" green="1" blue="0.77647058820000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="GothamRounded-Bold" family="Gotham Rounded" pointSize="40"/>
+                                        <state key="normal" title="Retailer">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="retailerButtonTouched:" destination="Zhu-RX-u4w" eventType="touchUpInside" id="ZcI-HY-d3R"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="E2c-UR-fhR" secondAttribute="trailing" id="Z1h-eD-ehI"/>
+                            <constraint firstItem="E2c-UR-fhR" firstAttribute="top" secondItem="PFQ-IX-uu1" secondAttribute="bottom" id="dc1-65-INI"/>
+                            <constraint firstItem="E2c-UR-fhR" firstAttribute="leading" secondItem="zN7-Xd-OuC" secondAttribute="leading" id="nyD-aM-SFi"/>
+                            <constraint firstItem="5Pp-KD-AjT" firstAttribute="top" secondItem="E2c-UR-fhR" secondAttribute="bottom" id="xFK-GD-qWo"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <segue destination="8lw-cg-uil" kind="show" identifier="segueToSignUpViewController" id="KDd-lo-5LY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5fG-li-WMt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="857" y="128"/>
+        </scene>
         <!--S i g n   U p-->
         <scene sceneID="58s-Jl-iyg">
             <objects>
@@ -524,7 +583,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gvy-UB-M0e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="857" y="139"/>
+            <point key="canvasLocation" x="1548" y="139"/>
         </scene>
         <!--Forgot Password Enter Email View Controller-->
         <scene sceneID="kgf-Zn-ZEN">
@@ -564,7 +623,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ucl-WX-Mxo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="856.79999999999995" y="812.74362818590714"/>
+            <point key="canvasLocation" x="137" y="836"/>
         </scene>
         <!--Forgot Password Password Confirmation View Controller-->
         <scene sceneID="KE0-Cj-TY7">
@@ -639,7 +698,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HpA-EJ-1Lb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1548" y="812.74362818590714"/>
+            <point key="canvasLocation" x="137" y="1585"/>
         </scene>
         <!--Email Confirmation View Controller-->
         <scene sceneID="iac-Qe-Y7G">
@@ -687,7 +746,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J0m-C2-w7U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1548" y="138.98050974512745"/>
+            <point key="canvasLocation" x="2223" y="139"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="LsB-gh-tCy">

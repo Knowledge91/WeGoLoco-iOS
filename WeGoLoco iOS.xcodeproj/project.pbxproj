@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D40F39FE1FC9916200CFE528 /* UserOrRetailerSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40F39FD1FC9916200CFE528 /* UserOrRetailerSignUpViewController.swift */; };
 		D41A9D701F90DF99003F075B /* BasicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41A9D6B1F90DD92003F075B /* BasicsViewController.swift */; };
 		D41A9D711F90DF9C003F075B /* AddProductProtocoll.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41A9D6A1F90DD92003F075B /* AddProductProtocoll.swift */; };
 		D41A9D731F90E0A7003F075B /* LoadingAnimationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41A9D721F90E0A7003F075B /* LoadingAnimationProtocol.swift */; };
@@ -149,6 +150,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D40F39FD1FC9916200CFE528 /* UserOrRetailerSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOrRetailerSignUpViewController.swift; sourceTree = "<group>"; };
 		D41A9D6A1F90DD92003F075B /* AddProductProtocoll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductProtocoll.swift; sourceTree = "<group>"; };
 		D41A9D6B1F90DD92003F075B /* BasicsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicsViewController.swift; sourceTree = "<group>"; };
 		D41A9D6C1F90DD92003F075B /* SizesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizesViewController.swift; sourceTree = "<group>"; };
@@ -472,6 +474,7 @@
 				D4B95CAD1F8AA7ED005F5DCA /* SignInViewController.swift */,
 				D49A5C0C1F909CDC003A824E /* TabBarController.swift */,
 				D4ECAEE21FA24E05002E581D /* Forgot Password */,
+				D40F39FD1FC9916200CFE528 /* UserOrRetailerSignUpViewController.swift */,
 				D4CB2C601F8E637D0095BF1F /* SignUpViewController.swift */,
 				D4F803A71F8E7D8600E13FFC /* EmailConfirmationViewController.swift */,
 				D49A5C041F9096F1003A824E /* FederatedIdentities.swift */,
@@ -655,6 +658,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D40F39FE1FC9916200CFE528 /* UserOrRetailerSignUpViewController.swift in Sources */,
 				D41A9D711F90DF9C003F075B /* AddProductProtocoll.swift in Sources */,
 				D41A9EC61F90E7B2003F075B /* QuantitiesViewController.swift in Sources */,
 				D41A9D751F90E0BF003F075B /* GenderCategoriesSizes.swift in Sources */,
