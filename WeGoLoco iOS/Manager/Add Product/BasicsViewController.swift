@@ -25,6 +25,7 @@ class BasicsViewController: FormViewController, AddProductProtocol, CLLocationMa
         tinpon.name = (form.rowBy(tag: "nameRow") as! TextRow).value
         tinpon.price = (form.rowBy(tag: "priceRow") as! DecimalRow).value
         tinpon.gender = getGender()
+        tinpon.active = 1
         
         tinponImages.main.removeAll()
         for row in form.allRows {

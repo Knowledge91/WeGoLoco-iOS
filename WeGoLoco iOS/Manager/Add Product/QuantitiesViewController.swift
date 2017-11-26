@@ -161,7 +161,12 @@ class QuantitiesViewController: FormViewController, AddProductProtocol, LoadingA
         }.then { [weak self] _ -> Void in
             guard let strongSelf = self else { return }
             strongSelf.stopLoadingAnimation()
-            strongSelf.presentingViewController?.dismiss(animated: true)
+            
+            // display new Tinpon in table view
+            strongSelf.performSegue(withIdentifier: "unwindSegueToManagerTableViewController", sender: self)
+            
+            // go back to Manager table view
+            // strongSelf.presentingViewController?.dismiss(animated: true)
         }.catch{ error in
             print(error)
         }

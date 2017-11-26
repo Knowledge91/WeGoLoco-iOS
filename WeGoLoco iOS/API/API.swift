@@ -168,7 +168,7 @@ class API {
     
     // MARK: Manager
     // Get Retailer Products
-    public static func getMyUploadedTinpons(completion: @escaping (Error?, [Tinpon]?) -> () ) {
+    public static func getRetailerTinpons(completion: @escaping (Error?, [Tinpon]?) -> () ) {
         firstly {
             invoke(httpMethod: .GET, endPoint: .TinponsManager, queryParameters: nil, headerParameters: nil, httpBody: nil)
         }.then { responseData -> () in
@@ -179,8 +179,8 @@ class API {
             completion(error,nil)
         }
     }
-    public static func getMyUploadedTinpons() -> Promise<[Tinpon]?> {
-        return PromiseKit.wrap{ getMyUploadedTinpons(completion: $0) }
+    public static func getRetailerTinpons() -> Promise<[Tinpon]?> {
+        return PromiseKit.wrap{ getRetailerTinpons(completion: $0) }
     }
     
     // Update State of Product

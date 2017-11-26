@@ -95,7 +95,7 @@ final class ManagerViewController: UIViewController, ListAdapterDataSource, Sear
     // MARK: Helper
     private func loadTinpons() {
         firstly {
-            API.getMyUploadedTinpons()
+            API.getRetailerTinpons()
         }.then { tinpons -> Void in
             print("loaded Tinpons")
             self.tinpons = tinpons
