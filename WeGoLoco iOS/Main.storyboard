@@ -9,13 +9,13 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="GothamRounded-Bold.otf">
+        <array key="GothamRoundedBold_21016.ttf">
             <string>GothamRounded-Bold</string>
         </array>
-        <array key="GothamRounded-Book.otf">
+        <array key="GothamRoundedBook.ttf">
             <string>GothamRounded-Book</string>
         </array>
-        <array key="GothamRounded-Medium.otf">
+        <array key="GothamRoundedMedium_21022.ttf">
             <string>GothamRounded-Medium</string>
         </array>
     </customFonts>
@@ -59,12 +59,60 @@
                         </textAttributes>
                     </navigationBar>
                     <connections>
-                        <segue destination="Uas-S2-QCn" kind="relationship" relationship="rootViewController" id="M3C-zt-Ii9"/>
+                        <segue destination="j3A-wZ-2xm" kind="relationship" relationship="rootViewController" id="yF4-fJ-xxo"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PDf-tH-F92" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="857" y="-1220"/>
+        </scene>
+        <!--Manager-->
+        <scene sceneID="f2A-4M-iz1">
+            <objects>
+                <tableViewController storyboardIdentifier="managerViewController" id="j3A-wZ-2xm" customClass="ManagerTableViewController" customModule="WeGoLoco_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="WVc-rZ-aPP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="managerTableViewCell" id="xxn-gT-3P1" customClass="ManagerTableViewCell" customModule="WeGoLoco_iOS" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xxn-gT-3P1" id="5uB-3G-q0F" customClass="ManagerTableViewCell" customModule="WeGoLoco_iOS" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bTy-O0-fNz">
+                                            <rect key="frame" x="16" y="12" width="42" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="nameLabel" destination="bTy-O0-fNz" id="bjU-cJ-MEz"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="j3A-wZ-2xm" id="Rnh-B5-EVy"/>
+                            <outlet property="delegate" destination="j3A-wZ-2xm" id="BTQ-sF-Jch"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Manager" id="tpE-BK-1ra">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="AUE-jR-MNJ">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <segue destination="tpu-LR-pm5" kind="presentation" id="x8f-Qb-n7G"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b1f-b5-Bn6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1549" y="-1223"/>
         </scene>
         <!--P r o f i l-->
         <scene sceneID="nWm-6R-jNt">
@@ -169,43 +217,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Kq-DU-I3h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1548" y="-1890.4047976011996"/>
-        </scene>
-        <!--M a n a g e r-->
-        <scene sceneID="9Zl-eR-0qB">
-            <objects>
-                <viewController storyboardIdentifier="managerViewController" id="Uas-S2-QCn" customClass="ManagerViewController" customModule="WeGoLoco_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="YIW-vp-Ot4"/>
-                        <viewControllerLayoutGuide type="bottom" id="lXB-dX-laY"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ors-Ek-QfW">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Manager" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Rz-Cs-Xyf">
-                                <rect key="frame" x="166" y="323" width="68" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Manager" id="nQQ-PA-y1x"/>
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" title="M a n a g e r" id="2cR-tE-gWc">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="6c4-Qy-ddt">
-                            <connections>
-                                <segue destination="tpu-LR-pm5" kind="presentation" id="770-Dv-BML"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mM6-lz-bqK" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1548" y="-1220"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qDm-JO-DHX">

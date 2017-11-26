@@ -84,6 +84,8 @@
 		D4B95CAE1F8AA7ED005F5DCA /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B95CAD1F8AA7ED005F5DCA /* SignInViewController.swift */; };
 		D4B95CB11F8AA7ED005F5DCA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B95CAF1F8AA7ED005F5DCA /* Main.storyboard */; };
 		D4B95CB61F8AA7ED005F5DCA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B95CB41F8AA7ED005F5DCA /* LaunchScreen.storyboard */; };
+		D4C82CEF1FCAC22B0097A55F /* ManagerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C82CEE1FCAC22B0097A55F /* ManagerTableViewController.swift */; };
+		D4C82CF11FCAC5460097A55F /* ManagerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C82CF01FCAC5460097A55F /* ManagerTableViewCell.swift */; };
 		D4CB2C611F8E637D0095BF1F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CB2C601F8E637D0095BF1F /* SignUpViewController.swift */; };
 		D4CBA4511F97816A002A4365 /* Koloda.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4CBA4501F978166002A4365 /* Koloda.framework */; };
 		D4CBA4521F97816A002A4365 /* Koloda.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D4CBA4501F978166002A4365 /* Koloda.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -224,6 +226,8 @@
 		D4B95CB01F8AA7ED005F5DCA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
 		D4B95CB51F8AA7ED005F5DCA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D4B95CB71F8AA7ED005F5DCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4C82CEE1FCAC22B0097A55F /* ManagerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerTableViewController.swift; sourceTree = "<group>"; };
+		D4C82CF01FCAC5460097A55F /* ManagerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerTableViewCell.swift; sourceTree = "<group>"; };
 		D4CB2C601F8E637D0095BF1F /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		D4CBA44B1F97806B002A4365 /* BackgroundKolodaAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundKolodaAnimator.swift; sourceTree = "<group>"; };
 		D4CBA44C1F97806C002A4365 /* CustomKolodaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomKolodaView.swift; sourceTree = "<group>"; };
@@ -389,6 +393,8 @@
 		D49A5C091F909C62003A824E /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				D4C82CEE1FCAC22B0097A55F /* ManagerTableViewController.swift */,
+				D4C82CF01FCAC5460097A55F /* ManagerTableViewCell.swift */,
 				D49A5C0A1F909C83003A824E /* ManagerViewController.swift */,
 				D42791D91F9DF124000C58AC /* SearchSectionController.swift */,
 				D42791DB1F9DF16B000C58AC /* SearchCell.swift */,
@@ -668,6 +674,7 @@
 				D41A9D821F90E2EF003F075B /* Color.swift in Sources */,
 				D41A9ECA1F90E85F003F075B /* Errors.swift in Sources */,
 				D49A5C0F1F909DED003A824E /* UserPool.swift in Sources */,
+				D4C82CF11FCAC5460097A55F /* ManagerTableViewCell.swift in Sources */,
 				D41A9D771F90E0C7003F075B /* Tinpon.swift in Sources */,
 				D49A5C0B1F909C83003A824E /* ManagerViewController.swift in Sources */,
 				D45BE00D1F9362E3000AD3B5 /* APIWeGoLocoClient.swift in Sources */,
@@ -680,6 +687,7 @@
 				D4F803A61F8E793700E13FFC /* Iso8601DateExtension.swift in Sources */,
 				D48ABBA51F90F52D002F5983 /* SHViewController.swift in Sources */,
 				D4CBA4561F9783F8002A4365 /* SwiperViewController.swift in Sources */,
+				D4C82CEF1FCAC22B0097A55F /* ManagerTableViewController.swift in Sources */,
 				D4CBA4571F9783FA002A4365 /* BackgroundKolodaAnimator.swift in Sources */,
 				D4CB2C611F8E637D0095BF1F /* SignUpViewController.swift in Sources */,
 				D4FCCA141FAA05C90098383F /* WalkthroughCollectionViewCell.swift in Sources */,

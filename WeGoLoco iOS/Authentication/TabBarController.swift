@@ -61,11 +61,12 @@ class TabBarController: UITabBarController, LoadingAnimationProtocol {
                 if !self.user.isRetailer {
                     for (index, vc) in self.viewControllers!.enumerated() {
                         // navigationController.child -> ManagerController
-                        if let _ = vc.childViewControllers[0] as? ManagerViewController {
+                        if let _ = vc.childViewControllers[0] as? ManagerTableViewController {
                             self.viewControllers?.remove(at: index)
                         }
                     }
                 } else {
+                    print("has manager \(self.hasManagerVC())")
                     if !self.hasManagerVC() {
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
                         let managerNavigationController = storyboard.instantiateViewController(withIdentifier: "managerNavigationController")
@@ -80,7 +81,7 @@ class TabBarController: UITabBarController, LoadingAnimationProtocol {
     
     private func hasManagerVC() -> Bool {
         for vc in self.viewControllers! {
-            if let _ = vc.childViewControllers[0] as? ManagerViewController {
+            if let _ = vc.childViewControllers[0] as? ManagerTableViewController {
                 return true
             }
         }

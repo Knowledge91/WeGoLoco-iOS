@@ -21,7 +21,7 @@ final class ProductSectionController: ListSectionController {
 
     override func sizeForItem(at index: Int) -> CGSize {
         let width = collectionContext!.containerSize.width
-        let height = 50 + width + 50 + 10    // Name row + Image (Aspect 1:1) + Price row + bottom separator
+        let height = CGFloat(50 + 50)    // Name row + Price row + bottom separator
         return CGSize(width: width, height: height)
     }
 
