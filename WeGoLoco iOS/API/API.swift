@@ -280,7 +280,7 @@ class API {
                 }
                 return nil
             }
-            print("Download complete for: \(downloadRequest!.key)")
+//            print("Download complete for: \(downloadRequest!.key)")
             let image: UIImage = UIImage(contentsOfFile: downloadingFileURL.path)!
             completion(nil, image)
             return nil

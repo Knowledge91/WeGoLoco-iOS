@@ -105,6 +105,7 @@ class SwiperViewController: UIViewController, LoadingAnimationProtocol, Navigati
     
     // additionally filters out already existing tinpons
     fileprivate func loadMoreTinpons() {
+        print("loading more Tinpons")
         firstly {
             API.getNotSwipedTinponsWithMainImage()
             }.then { tinponsWithImages -> () in
@@ -212,9 +213,6 @@ extension SwiperViewController: KolodaViewDataSource {
     }
     
     func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {
-        // free up some memory
-//        tinpons[index].images.removeAll()
-        
         // save swipedTinpon
         var liked = 0
         switch direction {
@@ -228,6 +226,9 @@ extension SwiperViewController: KolodaViewDataSource {
         }
         
         self.saveSwipe(tinpon: tinpons[index].tinpon, like: liked)
+        
+        // free up some memory after swipe
+        tinpons[index].tinponImages.main.removeAll()
         
         // if less than 5 tinpons load next Tinpon
         if tinpons.count - koloda.currentCardIndex < 5 {
