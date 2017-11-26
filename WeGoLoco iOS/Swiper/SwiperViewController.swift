@@ -30,7 +30,7 @@ class SwiperViewController: UIViewController, LoadingAnimationProtocol, Navigati
     @IBOutlet weak var kolodaView: CustomKolodaView!
     @IBOutlet weak var outOfTinponsStack: UIStackView!
     
-    var tinpons : [Tinpon] = []
+    var tinpons : [TinponWithImages] = []
     
     //MARK: Lifecycle
     override func viewWillAppear(_ animated: Bool) {
@@ -80,9 +80,9 @@ class SwiperViewController: UIViewController, LoadingAnimationProtocol, Navigati
     }
     
     // MARK: Helpers
-    fileprivate func isAlreadyDownloaded(tinpon: Tinpon) -> Bool {
+    fileprivate func isAlreadyDownloaded(tinponWithImages: TinponWithImages) -> Bool {
         for swiperTinpon in tinpons {
-            if swiperTinpon.id == tinpon.id {
+            if swiperTinpon.tinpon.id == tinponWithImages.tinpon.id {
                 return true
             }
         }
@@ -92,7 +92,7 @@ class SwiperViewController: UIViewController, LoadingAnimationProtocol, Navigati
     fileprivate func loadTinpons() {
         startLoadingAnimation()
         firstly {
-            API.getNotSwipedTinpons()
+            API.getNotSwipedTinponsWithMainImage()
         }.then { tinpons -> () in
             self.tinpons = tinpons!
             self.kolodaView.reloadData()
@@ -106,11 +106,11 @@ class SwiperViewController: UIViewController, LoadingAnimationProtocol, Navigati
     // additionally filters out already existing tinpons
     fileprivate func loadMoreTinpons() {
         firstly {
-            API.getNotSwipedTinpons()
-        }.then { tinpons -> () in
-            for tinpon in tinpons! {
-                if !self.isAlreadyDownloaded(tinpon: tinpon) {
-                    self.tinpons.append(tinpon)
+            API.getNotSwipedTinponsWithMainImage()
+            }.then { tinponsWithImages -> () in
+            for tinponWithImages in tinponsWithImages! {
+                if !self.isAlreadyDownloaded(tinponWithImages: tinponWithImages) {
+                    self.tinpons.append(tinponWithImages)
                 }
             }
             self.kolodaView.reloadData()
@@ -203,7 +203,7 @@ extension SwiperViewController: KolodaViewDataSource {
     
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
         let cell = Bundle.main.loadNibNamed("CustomOverlayView", owner: self, options: nil)?[0] as? CustomOverlayView
-        cell?.tinpon = tinpons[index]
+        cell?.tinponWithImages = tinpons[index]
         return cell!
     }
     
@@ -227,7 +227,7 @@ extension SwiperViewController: KolodaViewDataSource {
         default: ()
         }
         
-        self.saveSwipe(tinpon: tinpons[index], like: liked)
+        self.saveSwipe(tinpon: tinpons[index].tinpon, like: liked)
         
         // if less than 5 tinpons load next Tinpon
         if tinpons.count - koloda.currentCardIndex < 5 {

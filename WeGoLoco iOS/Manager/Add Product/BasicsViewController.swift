@@ -29,7 +29,7 @@ class BasicsViewController: FormViewController, AddProductProtocol, CLLocationMa
         tinponImages.main.removeAll()
         for row in form.allRows {
             if let image = (row as? ImageRow)?.value {
-                tinponImages.main.append(image)
+                tinponImages.main.append(image.resizeImageForS3())
             }
         }
     }

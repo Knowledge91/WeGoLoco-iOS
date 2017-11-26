@@ -92,13 +92,12 @@ class API {
     // get main image
     static func getTinponMainImage(tinponId: Int, completion: @escaping (Error?, UIImage?) -> ()) {
         let path = "Tinpons/"+String(tinponId)+"/1.png"
-        print("tinponPath + \(path)")
         firstly {
             downloadImage(path: path)
-            }.then { image in
-                completion(nil, image)
-            }.catch { error in
-                completion(error, nil)
+        }.then { image in
+            completion(nil, image)
+        }.catch { error in
+            completion(error, nil)
         }
     }
     static func getTinponMainImage(tinponId: Int) -> Promise<UIImage?> {
@@ -107,13 +106,40 @@ class API {
     
     
     // MARK: - Tinpon Swiper
+    
+    // get not swiped Tinpons with images
+    static func getNotSwipedTinponsWithMainImage(completion: @escaping (Error?, [TinponWithImages]?) -> ()) {
+        var tinpons = [Tinpon]()
+        firstly {
+            getNotSwipedTinpons()
+        }.then { tinponsFromPromise -> Promise<[UIImage?]> in
+            tinpons = tinponsFromPromise!
+            var promises = [Promise<UIImage?>]()
+            for tinpon in tinpons {
+                promises.append(getTinponMainImage(tinponId: tinpon.id!))
+            }
+            return when(fulfilled: promises)
+        }.then { images -> Void in
+            var tinponsWithImages = [TinponWithImages]()
+            for (index, image) in images.enumerated() {
+                tinponsWithImages.append(TinponWithImages(tinpon: tinpons[index], tinponImages: TinponImages(main: [image!])))
+            }
+            completion(nil, tinponsWithImages)
+        }.catch { error in
+            completion(error, nil)
+        }
+    }
+    static func getNotSwipedTinponsWithMainImage() -> Promise<[TinponWithImages]?> {
+        return PromiseKit.wrap{ getNotSwipedTinponsWithMainImage(completion: $0) }
+    }
+    
     // get notSwiped Tinpons
     static func getNotSwipedTinpons(completion: @escaping (Error?, [Tinpon]?) -> ()) {
         firstly {
             invoke(httpMethod: .GET, endPoint: .TinponsSwiper, queryParameters: nil, headerParameters: nil, httpBody: nil)
         }.then { responseData -> () in
             let jsonDecoder = JSONDecoder()
-            print(NSString(data:responseData!, encoding:String.Encoding.utf8.rawValue))
+            //print(NSString(data:responseData!, encoding:String.Encoding.utf8.rawValue))
             let tinpons = try! jsonDecoder.decode([Tinpon].self, from: responseData!)
             completion(nil, tinpons)
         }.catch { error in
@@ -229,7 +255,7 @@ class API {
     static func downloadImage(path: String, completion: @escaping (Error?, UIImage?) -> ()) {
         let transferManager = AWSS3TransferManager.default()
         
-        let downloadingFileURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("myImage.jpg")
+        let downloadingFileURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(UUID().uuidString+".jpg")
         
         let downloadRequest = AWSS3TransferManagerDownloadRequest()
         
@@ -238,7 +264,6 @@ class API {
         downloadRequest!.downloadingFileURL = downloadingFileURL
         
         transferManager.download(downloadRequest!).continueWith(executor: AWSExecutor.mainThread(), block: { (task:AWSTask<AnyObject>) -> Any? in
-            
             if let error = task.error as NSError? {
                 if error.domain == AWSS3TransferManagerErrorDomain, let code = AWSS3TransferManagerErrorType(rawValue: error.code) {
                     switch code {

@@ -73,6 +73,13 @@ struct TinponImages {
     var main = [UIImage]()
 }
 
+// MARK: - Tinpon With Images
+
+struct TinponWithImages {
+    var tinpon: Tinpon
+    var tinponImages: TinponImages
+}
+
 // MARK: - SwipedTinpon
 
 struct SwipedTinpon: Codable {

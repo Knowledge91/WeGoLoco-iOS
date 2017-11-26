@@ -17,17 +17,18 @@ private let overlayFavouriteImageName = "kolodaFavouriteOverlay"
 
 class CustomOverlayView: OverlayView {
 
-    var tinpon: Tinpon? {
+    var tinponWithImages: TinponWithImages? {
         didSet {
-            title.text = tinpon?.name
-            firstly {
-                API.getTinponMainImage(tinponId: tinpon!.id!)
-            }.then { image in
-                self.image.image = image
-            }.catch { error in
-                print(error)
-            }
-            priceLabel.text = (tinpon?.category?.rawValue)!+" | "+String(describing: tinpon!.price!)+" €"
+            title.text = tinponWithImages?.tinpon.name
+//            firstly {
+//                API.getTinponMainImage(tinponId: tinpon!.id!)
+//            }.then { image in
+//                self.image.image = image
+//            }.catch { error in
+//                print(error)
+//            }
+            self.image.image = tinponWithImages?.tinponImages.main[0]
+            priceLabel.text = (tinponWithImages?.tinpon.category?.rawValue)!+" | "+String(describing: tinponWithImages?.tinpon.price!)+" €"
             //let resizedImageUrl = "http://tinpons-userfiles-mobilehub-1827971537.s3-website-eu-west-1.amazonaws.com/300x400/"+(tinpon?.imgUrl)!
             //image.imageFromServerURL(urlString: resizedImageUrl)
 //            image.image = tinpon?.images[0]

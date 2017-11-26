@@ -79,6 +79,7 @@
 		D49A5C0D1F909CDC003A824E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49A5C0C1F909CDC003A824E /* TabBarController.swift */; };
 		D49A5C0F1F909DED003A824E /* UserPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49A5C0E1F909DED003A824E /* UserPool.swift */; };
 		D49A5C121F90B8DB003A824E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49A5C111F90B8DB003A824E /* User.swift */; };
+		D4B8CDC61FCA038300A9FEB9 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B8CDC51FCA038300A9FEB9 /* UIImageExtension.swift */; };
 		D4B95CAC1F8AA7ED005F5DCA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B95CAB1F8AA7ED005F5DCA /* AppDelegate.swift */; };
 		D4B95CAE1F8AA7ED005F5DCA /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B95CAD1F8AA7ED005F5DCA /* SignInViewController.swift */; };
 		D4B95CB11F8AA7ED005F5DCA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4B95CAF1F8AA7ED005F5DCA /* Main.storyboard */; };
@@ -96,7 +97,7 @@
 		D4ECAEE41FA24E47002E581D /* ForgotPasswordEnterEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4ECAEE31FA24E47002E581D /* ForgotPasswordEnterEmailViewController.swift */; };
 		D4ECAEE61FA24E6F002E581D /* ForgotPasswordPasswordConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4ECAEE51FA24E6F002E581D /* ForgotPasswordPasswordConfirmationViewController.swift */; };
 		D4ECAEE81FA27FD9002E581D /* AuthenticationProtocoll.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4ECAEE71FA27FD9002E581D /* AuthenticationProtocoll.swift */; };
-		D4F803A61F8E793700E13FFC /* Iso8601Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F803A51F8E793700E13FFC /* Iso8601Date.swift */; };
+		D4F803A61F8E793700E13FFC /* Iso8601DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F803A51F8E793700E13FFC /* Iso8601DateExtension.swift */; };
 		D4F803A81F8E7D8600E13FFC /* EmailConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F803A71F8E7D8600E13FFC /* EmailConfirmationViewController.swift */; };
 		D4F9D9A91F95FCF6003E9BEC /* AWSS3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4F9D9A81F95FCF3003E9BEC /* AWSS3.framework */; };
 		D4F9D9AA1F95FCF6003E9BEC /* AWSS3.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D4F9D9A81F95FCF3003E9BEC /* AWSS3.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -216,6 +217,7 @@
 		D49A5C0C1F909CDC003A824E /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		D49A5C0E1F909DED003A824E /* UserPool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPool.swift; sourceTree = "<group>"; };
 		D49A5C111F90B8DB003A824E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		D4B8CDC51FCA038300A9FEB9 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		D4B95CA81F8AA7ED005F5DCA /* WeGoLoco iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WeGoLoco iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4B95CAB1F8AA7ED005F5DCA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4B95CAD1F8AA7ED005F5DCA /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
@@ -233,7 +235,7 @@
 		D4ECAEE31FA24E47002E581D /* ForgotPasswordEnterEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordEnterEmailViewController.swift; sourceTree = "<group>"; };
 		D4ECAEE51FA24E6F002E581D /* ForgotPasswordPasswordConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordPasswordConfirmationViewController.swift; sourceTree = "<group>"; };
 		D4ECAEE71FA27FD9002E581D /* AuthenticationProtocoll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationProtocoll.swift; sourceTree = "<group>"; };
-		D4F803A51F8E793700E13FFC /* Iso8601Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Iso8601Date.swift; sourceTree = "<group>"; };
+		D4F803A51F8E793700E13FFC /* Iso8601DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Iso8601DateExtension.swift; sourceTree = "<group>"; };
 		D4F803A71F8E7D8600E13FFC /* EmailConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailConfirmationViewController.swift; sourceTree = "<group>"; };
 		D4F9D9A81F95FCF3003E9BEC /* AWSS3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSS3.framework; path = Carthage/Build/iOS/AWSS3.framework; sourceTree = SOURCE_ROOT; };
 		D4FCCA0E1FA9FF430098383F /* FSPagerView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FSPagerView.framework; path = Carthage/Build/iOS/FSPagerView.framework; sourceTree = SOURCE_ROOT; };
@@ -338,12 +340,13 @@
 				D41A9EC91F90E85F003F075B /* Errors.swift */,
 				D41A9EC71F90E7F5003F075B /* FontAndColors.swift */,
 				D41A9D721F90E0A7003F075B /* LoadingAnimationProtocol.swift */,
-				D4F803A51F8E793700E13FFC /* Iso8601Date.swift */,
+				D4F803A51F8E793700E13FFC /* Iso8601DateExtension.swift */,
 				D4B95CDD1F8AA8D9005F5DCA /* Frameworks */,
 				D4B95CB41F8AA7ED005F5DCA /* LaunchScreen.storyboard */,
 				D4B95CB71F8AA7ED005F5DCA /* Info.plist */,
 				D4969FF81FAF9F6B000E687A /* NavigationBarGradientProtocol.swift */,
 				D43F82651FB2327B00B1981F /* CustomAlertController.swift */,
+				D4B8CDC51FCA038300A9FEB9 /* UIImageExtension.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -674,7 +677,7 @@
 				D49A5C0D1F909CDC003A824E /* TabBarController.swift in Sources */,
 				D4675BB41F8BDB2600784AA4 /* ProfilViewController.swift in Sources */,
 				D42791DC1F9DF16B000C58AC /* SearchCell.swift in Sources */,
-				D4F803A61F8E793700E13FFC /* Iso8601Date.swift in Sources */,
+				D4F803A61F8E793700E13FFC /* Iso8601DateExtension.swift in Sources */,
 				D48ABBA51F90F52D002F5983 /* SHViewController.swift in Sources */,
 				D4CBA4561F9783F8002A4365 /* SwiperViewController.swift in Sources */,
 				D4CBA4571F9783FA002A4365 /* BackgroundKolodaAnimator.swift in Sources */,
@@ -702,6 +705,7 @@
 				D45BE00C1F9362E3000AD3B5 /* APIResponseSchema.swift in Sources */,
 				D4F803A81F8E7D8600E13FFC /* EmailConfirmationViewController.swift in Sources */,
 				D4B95CAC1F8AA7ED005F5DCA /* AppDelegate.swift in Sources */,
+				D4B8CDC61FCA038300A9FEB9 /* UIImageExtension.swift in Sources */,
 				D4CBA4581F9783FC002A4365 /* CustomKolodaView.swift in Sources */,
 				D45BE00F1F93670A000AD3B5 /* API.swift in Sources */,
 				D4ECAEE61FA24E6F002E581D /* ForgotPasswordPasswordConfirmationViewController.swift in Sources */,
